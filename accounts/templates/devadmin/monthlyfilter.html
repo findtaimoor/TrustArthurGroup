@@ -1,0 +1,181 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" > -->
+
+<style>
+
+    @media(max-width: 768px) { 
+    table{
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    }
+    </style>
+
+
+<div class="m-5">
+  {% comment %} <button type="button" onclick="tableToCSV()">
+    download CSV
+</button> {% endcomment %}
+<table id="example" class="table display nowrap mt-3" style="width:100%">
+  <thead>
+      <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Payment ID</th>
+          <th>Payment Status</th>
+          <th>Ordered Date</th>
+        </tr>
+  </thead>
+  <tbody>
+    {% for i in orders %}
+    <tr>
+        <td>{{i.product_title}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.payment_id}}</td>
+        <td>{{i.payment_status}}</td>
+        <td>{{i.ordered_date|date:"d-m-Y"}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+        
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+
+<script>
+    
+    // function filterRows() {
+//   var from = $('#datefilterfrom').val();
+//   var to = $('#datefilterto').val();
+
+    var from = '{{mindate}}';
+    var to = '{{maxdate}}';
+
+    // if (!from && !to) { // no value for from and to
+    //     return;
+    // }
+
+  from = from || '1970-01-01'; // default from to a old date if it is not set
+  to = to || '2999-12-31';
+
+  var dateFrom = moment(from);
+  var dateTo = moment(to);
+
+  $('#example tbody tr').each(function(i, tr) {
+    var val = $(tr).find("td:nth-child(5)").text();
+    var dateVal = moment(val, "DD/MM/YYYY");
+    var visible = (dateVal.isBetween(dateFrom, dateTo, null, [])) ? "" : "none"; // [] for inclusive
+    $(tr).css('display', visible);
+  });
+// }
+
+// $('#datefilterfrom').on("change", filterRows);
+// $('#datefilterto').on("change", filterRows);
+  
+ $(document).ready(function() {
+  
+       var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'csv' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
+ });
+
+
+
+ function tableToCSV() {
+ 
+  // Variable to store the final csv data
+  var csv_data = [];
+
+  // Get each row data
+  var rows = document.getElementsByTagName('tr');
+  for (var i = 0; i < rows.length; i++) {
+
+      // Get each column data
+      var cols = rows[i].querySelectorAll('td,th');
+
+      // Stores each csv row data
+      var csvrow = [];
+      for (var j = 0; j < cols.length; j++) {
+
+          // Get the text data of each cell
+          // of a row and push it to csvrow
+          csvrow.push(cols[j].innerHTML);
+      }
+
+      // Combine each column value with comma
+      csv_data.push(csvrow.join(","));
+  }
+
+  // Combine each row data with new line character
+  csv_data = csv_data.join('\n');
+
+  // Call this function to download csv file 
+  downloadCSVFile(csv_data);
+
+}
+
+function downloadCSVFile(csv_data) {
+
+  // Create CSV file object and feed
+  // our csv_data into it
+  CSVFile = new Blob([csv_data], {
+      type: "text/csv"
+  });
+
+  // Create to temporary link to initiate
+  // download process
+  var temp_link = document.createElement('a');
+
+  // Download csv file
+  temp_link.download = "trustbanc.csv";
+  var url = window.URL.createObjectURL(CSVFile);
+  temp_link.href = url;
+
+  // This link should not be displayed
+  temp_link.style.display = "none";
+  document.body.appendChild(temp_link);
+
+  // Automatically click the link to
+  // trigger download
+  temp_link.click();
+  document.body.removeChild(temp_link);
+}
+
+</script>
+
+
+
+{% endblock main-content %}

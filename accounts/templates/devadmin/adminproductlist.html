@@ -1,0 +1,88 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/mdb.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables-select.min.css' %}" />
+
+<style>
+
+@media(max-width: 768px) { 
+table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
+</style>
+
+<div class="m-4">
+    <h2 class=""> Product List</h2>
+
+<table id="dtMaterialDesignExample" class="table table-striped table-responsive" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th >Product</th>
+        <th >Product Title</th>
+        <th >Product Another Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {% if product %}
+    
+        {% for i in product %}
+
+      <tr>
+        <td>{{i.typeofuser}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.title2}}</td>
+        <td><a href="{% url 'admineditproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeleteproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a></td>
+      </tr>
+
+      {% endfor %}
+
+    {% endif %}
+    </tbody>
+</table>
+</div>
+</div>
+
+  <script src="{% static 'devadmin/js/addons/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/popper.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/bootstrap.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/mdb.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables-select.min.js' %}"></script>
+
+<script>
+
+
+ $('#dtMaterialDesignExample').DataTable();
+
+
+    $('#dtMaterialDesignExample_wrapper, #dt-material-checkbox_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter, #dt-material-checkbox_wrapper .dataTables_filter').find(
+      'input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length, #dt-material-checkbox_wrapper .dataTables_length').addClass(
+      'd-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
+    
+</script>
+
+{% endblock main-content %}

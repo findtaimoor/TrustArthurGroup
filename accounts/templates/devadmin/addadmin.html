@@ -1,0 +1,76 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+
+    <style>td{
+      padding:20px;
+      }
+    </style>
+
+    <h2 class="m-4"> Add Admin</h2>
+    <form method ="post">
+      {% csrf_token %}
+      <table>
+
+        <tr>
+          <td>
+            <label>Enter Email:</label>
+          </td>
+          <td>
+            <input class="form-control" type="email" name="email" placeholder="Enter Email" required>
+          </td>
+        </tr>
+
+        <tr>
+            <td>
+              <label>Enter Password:</label>
+            </td>
+            <td>
+              <input class="form-control" type="password" name="password1" placeholder="Enter Password" required>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+              <label>Enter Confirm Password:</label>
+            </td>
+            <td>
+              <input class="form-control" type="password" name="password2" placeholder="Enter Confirm Password" required>
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td><label for="subincidenttypes">Admin Types: </label></td>
+            <td>
+                <input type="checkbox" id="superadmin" name="superadmin" value="superadmin">
+                <label for="superadmin">Super Admin</label><br>
+                <input type="checkbox" id="admin" name="admin" value="admin">
+                <label for="admin">Admin</label><br>
+            </td>
+          </tr>
+
+        {% if msg %}
+        <tr>
+            <td>
+              <label class="text-danger">{{msg}}</label>
+            </td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>
+            <input class="form-control btn btn-success" type="submit" value="Submit">
+          </td>
+        </tr>
+
+      </table>
+    </form>
+    </div>
+    
+
+{% endblock main-content %}

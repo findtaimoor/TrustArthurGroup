@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.heading{
+    text-align: center;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 100px;
+    text-align: center;
+    color: #2D2D2D;
+    padding-top: 30px;
+}
+
+
+
+.product-text{
+    text-align: center;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 28px;
+    color: #747474;
+}
+
+.product-container{
+    /* max-width: 1270px; */
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.product-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 235px; */
+    transition: 0.5s;
+}
+
+.sidediv{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* height: 235px; */
+    transition: 0.5s;
+}
+
+.left-box img{
+    max-width: 278px;
+    min-width: 278px;
+    min-height: 250px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.product-content:hover{
+    transform: scale(1.05);
+}
+
+.right-box{
+    width: 350px;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 250px;
+}
+
+.right-box .img{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.right-box p b{
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 40px;
+    color: black;
+}
+
+.right-box p{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 26px;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .left-box img{
+        max-width: 350px;
+        min-width: 350px;
+    }
+    .heading{
+        font-size: 40px;
+        line-height:50px;
+    }
+    .sidediv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px)  {
+    .left-box img{
+        max-width: 165px;
+        min-width: 165px;
+    }
+}
+
+
+@media (min-width: 1024px) and (max-width: 1366px)  {
+
+    .left-box img{
+        max-width: 225px;
+        min-width: 225px;
+    }
+}

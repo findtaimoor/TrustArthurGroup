@@ -1,0 +1,127 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" > -->
+
+<style>
+
+    @media(max-width: 768px) { 
+    table{
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    }
+    </style>
+    
+    <!-- <div class="mt-5 mx-5">
+    <div class="row">
+      <div class="col-md-3">
+          <h4>Date from</h4>
+          <input type="date" class="form-control" id="datefilterfrom" data-date-split-input="true">
+      </div>
+      <div class="col-md-3">
+          <h4>Date to</h4>
+        <input type="date" class="form-control" id="datefilterto" data-date-split-input="true">
+      </div>
+    </div>
+  </div> -->
+
+<div class="m-5">
+<table id="example" class="table display nowrap mt-3" style="width:100%">
+  <thead>
+      <tr>
+          <th>User Email</th>
+          <th>Product Title</th>
+          <th>SubProduct Title</th>
+          <th>Price</th>
+          <th>Quote Date</th>
+        </tr>
+  </thead>
+  <tbody>
+    {% for i in quote %}
+    <tr>
+        <td>{{i.user.email}}</td>
+        <td>{{i.product.product.title}}</td>
+        <td>{{i.product.sub_title}}</td>
+        <td>{{i.product.selling_price}}</td>
+        <td>{{i.quote_date}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+        
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+
+<script>
+    
+$(document).ready(function() {
+
+var table = $('#example').DataTable( {
+ lengthChange: false,
+ buttons: [ 'copy', 'excel', 'pdf', 'csv' ]
+} );
+
+table.buttons().container()
+ .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
+});
+
+
+//  function filterRows() {
+//    var from = $('#datefilterfrom').val();
+//  var to = $('#datefilterto').val();
+
+//      if (!from && !to) { // no value for from and to
+//          return;
+//      }
+
+//   from = from || '1970-01-01'; // default from to a old date if it is not set
+//   to = to || '2999-12-31';
+
+//   var dateFrom = moment(from);
+//   var dateTo = moment(to);
+
+//   $('#example tbody tr').each(function(i, tr) {
+//     var val = $(tr).find("td:nth-child(5)").text();
+//     var dateVal = moment(val, "DD/MM/YYYY");
+//     var visible = (dateVal.isBetween(dateFrom, dateTo, null, [])) ? "" : "none"; // [] for inclusive
+//     $(tr).css('display', visible);
+//   });
+
+//  }
+
+//  $('#datefilterfrom').on("change", filterRows);
+//  $('#datefilterto').on("change", filterRows);
+  
+</script>
+
+
+
+{% endblock main-content %}

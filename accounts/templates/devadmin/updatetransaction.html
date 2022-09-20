@@ -1,0 +1,50 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+
+    <style>td{
+      padding:20px;
+      }
+    </style>
+
+    <h2 class="m-4"> Update Transaction</h2>
+    <form method ="post">
+      {% csrf_token %}
+      <table>
+
+        <tr>
+          <td>
+            <label>Enter Transaction Id:</label>
+          </td>
+          <td>
+            <input class="form-control" type="text" name="payment_id" value="{{orders.payment_id}}" placeholder="Enter Payment Id" required>
+          </td>
+        </tr>
+
+        <tr>
+            <td><label for="status">Payment Status: </label></td>
+            <td>
+            <select class="form-control" name="payment_status">  
+            {% for i in status %}
+                <option value = "{{i}}" {% if orders.payment_status == i %} selected="selected" {% endif %}>{{i}}</option>
+            {% endfor %}
+            </select>
+            </td>
+          </tr>
+
+        <tr>
+          <td>
+            <input class="form-control btn btn-success" type="submit" value="Submit">
+          </td>
+        </tr>
+
+      </table>
+    </form>
+    </div>
+    
+
+{% endblock main-content %}

@@ -1,0 +1,1286 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} Signup {% endblock title %}
+
+{% block main-content %}
+
+
+    <section class="login signup">
+      <div class="container">
+        <div class="sign-grd">
+          <div class="rgt-pan signup-model">
+            {% comment %} <svg class="quote-icon" width="26" height="20" viewBox="0 0 26 20" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21.9531 0.421875C23.0469 0.421875 23.5938 0.640625 23.5938 1.07812C23.5938 1.26562 23.4219 1.42187 23.0781 1.54688C20.2031 2.70313 18.7656 4.95313 18.7656 8.29688C19.2031 8.23438 19.5156 8.20312 19.7031 8.20312C23.4531 8.20312 25.3281 10.0781 25.3281 13.8281C25.3281 17.5469 23.4531 19.4062 19.7031 19.4062C15.3594 19.4062 13.1875 17.0156 13.1875 12.2344C13.1875 7.07812 15.2656 3.375 19.4219 1.125C20.2969 0.65625 21.1406 0.421875 21.9531 0.421875ZM9.71875 0.5625C10.8125 0.5625 11.3594 0.78125 11.3594 1.21875C11.3594 1.40625 11.1875 1.5625 10.8438 1.6875C7.96875 2.84375 6.53125 5.09375 6.53125 8.4375C6.96875 8.375 7.28125 8.34375 7.46875 8.34375C11.2188 8.34375 13.0938 10.2188 13.0938 13.9688C13.0938 17.6875 11.2188 19.5469 7.46875 19.5469C3.125 19.5469 0.953125 17.1562 0.953125 12.375C0.953125 7.21875 3.03125 3.51562 7.1875 1.26562C8.0625 0.796875 8.90625 0.5625 9.71875 0.5625Z"
+                fill="#00DAF7" />
+            </svg>
+
+            <p class="img-text">
+              The passage experienced a surge in popularity during the 1960s
+              when Letraset used it on their dry-transfer sheets, and again
+              during the 90s as desktop publishers bundled the text with their
+              software.
+            </p>
+            <div class="writer-name">
+              <p>Vincent Obi</p>
+              <svg class="mark-varified" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M0.666672 8.00002C0.666672 3.94993 3.94992 0.666687 8 0.666687C12.0501 0.666687 15.3333 3.94993 15.3333 8.00002C15.3333 12.0501 12.0501 15.3334 8 15.3334C3.94992 15.3334 0.666672 12.0501 0.666672 8.00002Z"
+                  fill="#08AD36" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M11.5404 5.362C11.8008 5.62235 11.8008 6.04446 11.5404 6.30481L7.40237 10.6381C7.14202 10.8985 6.71991 10.8985 6.45956 10.6381L4.45956 8.63814C4.19921 8.37779 4.19921 7.95568 4.45956 7.69533C4.71991 7.43498 5.14202 7.43498 5.40237 7.69533L6.93096 9.22393L10.5976 5.362C10.858 5.10165 11.2801 5.10165 11.5404 5.362Z"
+                  fill="white" />
+              </svg>
+            </div>
+            <svg class="triangle" width="34" height="33" viewBox="0 0 34 33" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 0H33.5V33H0V20.5H21V0Z" fill="white" />
+            </svg> {% endcomment %}
+          </div>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="have-account">
+                  <p>Already have an account? <a href="{% url 'signin' %}"><b>Sign In</b></a></p>
+                </div>
+                <form>
+                  <div class="join-us">
+                    <h3>Join Us!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">To begin this journey, tell us what type of account you’d be
+                      opening.</p>
+                  </div>
+                  <!-- <input type="text" placeholder="Name" />
+                  <input type="email" placeholder="Email" />
+                  <input type="password" placeholder="Password" />
+                  <button>Sign Up</button> -->
+
+
+                  <div class="box basic-drop-shadow individual-btn" id="next">
+                    <div>
+                      <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25 0L49.7275 17.9656L40.2824 47.0344H9.71758L0.272532 17.9656L25 0Z"
+                          stroke="#302E2F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M18.7204 28.8871C19.5018 28.1057 20.5616 27.6667 21.6667 27.6667H28.3333C29.4384 27.6667 30.4982 28.1057 31.2796 28.8871C32.061 29.6685 32.5 30.7283 32.5 31.8334V33.5C32.5 33.9603 32.1269 34.3334 31.6667 34.3334C31.2064 34.3334 30.8333 33.9603 30.8333 33.5V31.8334C30.8333 31.1703 30.5699 30.5344 30.1011 30.0656C29.6323 29.5967 28.9964 29.3334 28.3333 29.3334H21.6667C21.0036 29.3334 20.3677 29.5967 19.8989 30.0656C19.4301 30.5344 19.1667 31.1703 19.1667 31.8334V33.5C19.1667 33.9603 18.7936 34.3334 18.3333 34.3334C17.8731 34.3334 17.5 33.9603 17.5 33.5V31.8334C17.5 30.7283 17.939 29.6685 18.7204 28.8871Z"
+                          fill="#302E2F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M25 19.3334C23.6193 19.3334 22.5 20.4526 22.5 21.8334C22.5 23.2141 23.6193 24.3334 25 24.3334C26.3807 24.3334 27.5 23.2141 27.5 21.8334C27.5 20.4526 26.3807 19.3334 25 19.3334ZM20.8333 21.8334C20.8333 19.5322 22.6988 17.6667 25 17.6667C27.3012 17.6667 29.1666 19.5322 29.1666 21.8334C29.1666 24.1345 27.3012 26 25 26C22.6988 26 20.8333 24.1345 20.8333 21.8334Z"
+                          fill="#302E2F" />
+                      </svg>
+                    </div>
+                    <div class="individual">
+                      <p><b class="typeofuser">Individual</b><br>Personal account to manage all your activities.</p>
+                    </div>
+                    <div>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.5893 0.577391C7.26386 0.251954 6.73622 0.251954 6.41079 0.577391C6.08535 0.902828 6.08535 1.43047 6.41079 1.7559L10.8215 6.16665H1.16671C0.70647 6.16665 0.333374 6.53974 0.333374 6.99998C0.333374 7.46022 0.70647 7.83331 1.16671 7.83331H10.8215L6.41079 12.2441C6.08535 12.5695 6.08535 13.0971 6.41079 13.4226C6.73622 13.748 7.26386 13.748 7.5893 13.4226L13.4226 7.58924C13.7481 7.2638 13.7481 6.73616 13.4226 6.41072L7.5893 0.577391Z"
+                          fill="#302E2F" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="box basic-drop-shadow business-btn">
+                    <div>
+                      <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.09543 18.2329L25 0.865247L48.9046 18.2329L39.7738 46.3344H10.2262L1.09543 18.2329Z"
+                          stroke="#302E2F" stroke-width="1.4" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M18.3333 22.6667C17.8731 22.6667 17.5 23.0398 17.5 23.5V31.8334C17.5 32.2936 17.8731 32.6667 18.3333 32.6667H31.6666C32.1269 32.6667 32.5 32.2936 32.5 31.8334V23.5C32.5 23.0398 32.1269 22.6667 31.6666 22.6667H18.3333ZM15.8333 23.5C15.8333 22.1193 16.9526 21 18.3333 21H31.6666C33.0474 21 34.1666 22.1193 34.1666 23.5V31.8334C34.1666 33.2141 33.0474 34.3334 31.6666 34.3334H18.3333C16.9526 34.3334 15.8333 33.2141 15.8333 31.8334V23.5Z"
+                          fill="#302E2F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M21.5655 18.3989C22.0344 17.9301 22.6703 17.6667 23.3333 17.6667H26.6666C27.3297 17.6667 27.9656 17.9301 28.4344 18.3989C28.9033 18.8678 29.1666 19.5036 29.1666 20.1667V33.5C29.1666 33.9603 28.7935 34.3334 28.3333 34.3334C27.8731 34.3334 27.5 33.9603 27.5 33.5V20.1667C27.5 19.9457 27.4122 19.7337 27.2559 19.5774C27.0996 19.4212 26.8877 19.3334 26.6666 19.3334H23.3333C23.1123 19.3334 22.9003 19.4212 22.7441 19.5774C22.5878 19.7337 22.5 19.9457 22.5 20.1667V33.5C22.5 33.9603 22.1269 34.3334 21.6666 34.3334C21.2064 34.3334 20.8333 33.9603 20.8333 33.5V20.1667C20.8333 19.5036 21.0967 18.8678 21.5655 18.3989Z"
+                          fill="#302E2F" />
+                      </svg>
+                    </div>
+                    <div class="individual">
+                      <p><b class="typeofuser">Corporate</b><br>Own or belong to a company, this is for you.</p>
+                    </div>
+                    <div>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.5893 0.577391C7.26386 0.251954 6.73622 0.251954 6.41079 0.577391C6.08535 0.902828 6.08535 1.43047 6.41079 1.7559L10.8215 6.16665H1.16671C0.70647 6.16665 0.333374 6.53974 0.333374 6.99998C0.333374 7.46022 0.70647 7.83331 1.16671 7.83331H10.8215L6.41079 12.2441C6.08535 12.5695 6.08535 13.0971 6.41079 13.4226C6.73622 13.748 7.26386 13.748 7.5893 13.4226L13.4226 7.58924C13.7481 7.2638 13.7481 6.73616 13.4226 6.41072L7.5893 0.577391Z"
+                          fill="#302E2F" />
+                      </svg>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="registration_form" action="{% url 'signup' %}">
+                  <div class="join-us">
+                    <h3>Register Individual Account!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <!-- <input type="text" placeholder="Name" />
+                  <input type="email" placeholder="Email" />
+                  <input type="password" placeholder="Password" />
+                  <button>Sign Up</button> -->
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+
+                  <label class="required-field">Your Full name</label>
+                  <input type="text" name="name" id="usr_name" placeholder="Enter Full Name" autocomplete="on" required>
+
+                  <label class="required-field">Email address</label>
+                  <input type="email" name="email" id="usr_email" placeholder="Enter Email Address" autocomplete="on" required>
+
+                  <div class="form-group">
+                    <label class="required-field">Create password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password" placeholder="Enter Password" id="id_password" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="required-field">Confirm Password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password2"  id="id_password2" placeholder="Confirm Password" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword2" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <input class="" type="checkbox" id="check_term" required>
+                      <label for="check_term">&nbsp; I agree to Terms & Conditions</label>
+                    </div>
+                  </div>
+
+                  <span class="text-danger text-left mb-3" id="msg"></span>
+
+                  <div>
+                  </div>
+                </form>
+                <button type="submit" class="btn-register" value="Submit now">Submit</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile1" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+
+                  <label>Phone number</label>
+                  <input type="tel"  id="usr_phone" name="phone" placeholder="Enter Phone Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" autocomplete="on" required>
+                  <label>House or Building number</label>
+                  <input type="text" name="usr_house_number" placeholder="Please Enter House/Building Number" id="usr_house_number" autocomplete="on" required>
+                  <label>Street name</label>
+                  <input type="text" name="usr_street_name" placeholder="Please Enter Street name" id="usr_street_name" autocomplete="on" required>
+                  {% comment %} <label>LGA</label>
+                  <input type="text" name="usr_city" placeholder="Please Enter LGA" id="usr_city" autocomplete="on" required> {% endcomment %}
+                  {% comment %} <label>State</label>
+                  <input type="text" name="usr_state" placeholder="Please Enter State" id="usr_state" autocomplete="on" required> {% endcomment %}
+                  <div class="form-group">
+                    <label class="control-label">State</label>
+                    <select onchange="toggleLGA(this);" name="usr_state" id="usr_state" class="form-control">
+                      <option value="" selected="selected">- Select -</option>
+                      <option value="Abia">Abia</option>
+                      <option value="Adamawa">Adamawa</option>
+                      <option value="AkwaIbom">AkwaIbom</option>
+                      <option value="Anambra">Anambra</option>
+                      <option value="Bauchi">Bauchi</option>
+                      <option value="Bayelsa">Bayelsa</option>
+                      <option value="Benue">Benue</option>
+                      <option value="Borno">Borno</option>
+                      <option value="Cross River">Cross River</option>
+                      <option value="Delta">Delta</option>
+                      <option value="Ebonyi">Ebonyi</option>
+                      <option value="Edo">Edo</option>
+                      <option value="Ekiti">Ekiti</option>
+                      <option value="Enugu">Enugu</option>
+                      <option value="FCT">FCT</option>
+                      <option value="Gombe">Gombe</option>
+                      <option value="Imo">Imo</option>
+                      <option value="Jigawa">Jigawa</option>
+                      <option value="Kaduna">Kaduna</option>
+                      <option value="Kano">Kano</option>
+                      <option value="Katsina">Katsina</option>
+                      <option value="Kebbi">Kebbi</option>
+                      <option value="Kogi">Kogi</option>
+                      <option value="Kwara">Kwara</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Nasarawa">Nasarawa</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Ogun">Ogun</option>
+                      <option value="Ondo">Ondo</option>
+                      <option value="Osun">Osun</option>
+                      <option value="Oyo">Oyo</option>
+                      <option value="Plateau">Plateau</option>
+                      <option value="Rivers">Rivers</option>
+                      <option value="Sokoto">Sokoto</option>
+                      <option value="Taraba">Taraba</option>
+                      <option value="Yobe">Yobe</option>
+                      <option value="Zamfara">Zamafara</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">LGA</label>
+                    <select name="usr_city" id="usr_city" class="form-control select-lga" required>
+                    </select>
+                  </div>
+
+                  <label>Country of residence</label>
+                  <input type="text" name="country" placeholder="Please Enter Street name" id="usr_country" autocomplete="on" required>
+
+                  {% comment %} <div class="form-group">
+                    <label>Country of residence</label>
+                    <select class="select" id="usr_country" name="country" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                      <option value="Cote DIvoire">Cote DIvoire</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaco">Curacao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">Dominican Republic</option>
+                      <option value="East Timor">East Timor</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">Equatorial Guinea</option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands">Falkland Islands</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                    </select>
+                  </div> {% endcomment %}
+                  <span class="text-danger text-left mb-3" id="msg2"></span>
+                </form>
+                <button class="btn-register-2">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile2" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Date of birth</label>
+                  <input type="date" name="date" id="usr_birthdate" placeholder="Enter Date" required onclick="validDate()">
+                  <label for="Gender">Gender</label>
+                  <select class="select" name="gender" id="usr_gender" required>
+                    <option value="Please Select" selected disabled>Please Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <div class="form-group">
+                    <label>Occupation</label>
+                    <select class="select" name="occupation" id="usr_occupation" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Accountant">Accountant</option>
+                      <option value="Actort">Actor</option>
+                      <option value="Architect">Architect</option>
+                      <option value="Artisan">Artisan</option>
+                      <option value="Lawyer">Lawyer</option>
+                      <option value="Banker">Banker</option>
+                      <option value="Business Person">Business Person</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Medical Professional">Medical Professional</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Technology Professional">Technology Professional</option>
+                      <option value="Economist">Economist</option>
+                      <option value="Engineer">Engineer</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>National Identity Number</label>
+                    <input type="text" maxlength = "11" name="NIN" placeholder="Please Enter National Identity Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="NIN"required>
+                  </div>
+                  <div class="form-group">
+                    <label>Bank Verification Number</label>
+                    <input type="text" maxlength = "11" name="BVN" placeholder="Please Enter Bank Verification Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="BVN" required>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg3"></span>
+                </form>
+                <button class="btn-register-3">Save & Continue</button>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile3" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Is this a Joint Account?</label>
+                  <select class="select" name="joint_account" id="joint_account" required>
+                    <option value="Please Select" selected disabled>Please Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <span class="text-danger text-left mb-3" id="msg4"></span>
+                </form>
+                <button class="btn-register-4">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile4" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Add Details of Another member </h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Your full name</label>
+                  <input type="text" name="name" placeholder="Enter full Name" id="another_name" autocomplete="on" required>
+                  <label class="required-field">Email address</label>
+                  <input type="email" name="email" placeholder="Enter Email address" id="another_email" autocomplete="on" required>
+                  <div class="form-group">
+                    <label class="required-field">Create password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password3" placeholder="Enter Password" id="id_password3" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword3" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Confirm password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password4" placeholder=" Enter Confirm Password"  id="id_password4" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword4" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <input class="" type="checkbox" id="checkbox_5" required>
+                      <label for="check_term">&nbsp; I agree to Terms & Conditions</label>
+                    </div>
+                  </div>
+
+                  <span class="text-danger text-left mb-3" id="msg5"></span>
+
+                </form>
+                <button class="btn-register-5">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile5" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+
+                  <label>Phone number</label>
+                  <input type="tel" maxlength="11" name="phone" placeholder="Enter Phone Number" id="another_phone" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                  <label>House or Building number</label>
+                  <input type="text" name="another_house_number" placeholder="Please Enter House/Building Number" id="another_house_number" autocomplete="on" required>
+                  <label>Street name</label>
+                  <input type="text" name="another_street_name" placeholder="Please Enter Street Name" id="another_street_name" autocomplete="on" required>
+                  {% comment %} <label>City or LGA</label>
+                  <input type="text" name="another_city" placeholder="Please Enter City or LGA" id="another_city" autocomplete="on" required>
+                  <label>State</label>
+                  <input type="text" name="another_state" placeholder="Please Enter State" id="another_state" autocomplete="on" required>
+                  <div class="form-group">
+                    <label>Country of residence</label>
+                    <select class="select" id="another_country" name="country" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                      <option value="Cote DIvoire">Cote DIvoire</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaco">Curacao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">Dominican Republic</option>
+                      <option value="East Timor">East Timor</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">Equatorial Guinea</option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands">Falkland Islands</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                    </select>
+                  </div> {% endcomment %}
+
+                  <div class="form-group">
+                    <label class="control-label">State</label>
+                    <select onchange="toggleLGA(this);" name="another_state" id="another_state" class="form-control">
+                      <option value="" selected="selected">- Select -</option>
+                      <option value="Abia">Abia</option>
+                      <option value="Adamawa">Adamawa</option>
+                      <option value="AkwaIbom">AkwaIbom</option>
+                      <option value="Anambra">Anambra</option>
+                      <option value="Bauchi">Bauchi</option>
+                      <option value="Bayelsa">Bayelsa</option>
+                      <option value="Benue">Benue</option>
+                      <option value="Borno">Borno</option>
+                      <option value="Cross River">Cross River</option>
+                      <option value="Delta">Delta</option>
+                      <option value="Ebonyi">Ebonyi</option>
+                      <option value="Edo">Edo</option>
+                      <option value="Ekiti">Ekiti</option>
+                      <option value="Enugu">Enugu</option>
+                      <option value="FCT">FCT</option>
+                      <option value="Gombe">Gombe</option>
+                      <option value="Imo">Imo</option>
+                      <option value="Jigawa">Jigawa</option>
+                      <option value="Kaduna">Kaduna</option>
+                      <option value="Kano">Kano</option>
+                      <option value="Katsina">Katsina</option>
+                      <option value="Kebbi">Kebbi</option>
+                      <option value="Kogi">Kogi</option>
+                      <option value="Kwara">Kwara</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Nasarawa">Nasarawa</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Ogun">Ogun</option>
+                      <option value="Ondo">Ondo</option>
+                      <option value="Osun">Osun</option>
+                      <option value="Oyo">Oyo</option>
+                      <option value="Plateau">Plateau</option>
+                      <option value="Rivers">Rivers</option>
+                      <option value="Sokoto">Sokoto</option>
+                      <option value="Taraba">Taraba</option>
+                      <option value="Yobe">Yobe</option>
+                      <option value="Zamfara">Zamafara</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">LGA</label>
+                    <select name="another_city" id="another_city" class="form-control select-lga" required>
+                    </select>
+                  </div>
+
+                  <label>Country of residence</label>
+                  <input type="text" name="country" placeholder="Please Enter Street name" id="another_country" autocomplete="on" required>
+                  <span class="text-danger text-left mb-3" id="msg6"></span>
+                </form>
+                <button class="btn-register-6">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile6" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Date of birth</label>
+                  <input type="date" name="date" id="another_birthdate" placeholder="Enter Date" required onclick="validDate()">
+                  <label for="Gender">Gender</label>
+                  <select class="select" name="gender" id="another_gender" required>
+                    <option value="Please Select" selected disabled>Please Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <div class="form-group">
+                    <label>Occupation</label>
+                    <select class="select" name="occupation" id="another_occupation" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Accountant">Accountant</option>
+                      <option value="Actort">Actor</option>
+                      <option value="Architect">Architect</option>
+                      <option value="Artisan">Artisan</option>
+                      <option value="Lawyer">Lawyer</option>
+                      <option value="Banker">Banker</option>
+                      <option value="Business Person">Business Person</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Medical Professional">Medical Professional</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Technology Professional">Technology Professional</option>
+                      <option value="Economist">Economist</option>
+                      <option value="Engineer">Engineer</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg7"></span>
+                </form>
+                <button class="btn-register-7">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile7">
+                  <div class="join-us">
+                    <h3>Upload Documents!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Signature</label>
+                  <input type="file" name="signature" id="another_signature" placeholder="Select From Device " required>
+                  <label class="required-field">Photo</label>
+                  <input type="file" name="photo" id="another_photo" placeholder="Select From Device" required>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_term8" required>
+                    <label for="check_term8">I agree to terms & conditions</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_sign" required>
+                    <label for="check_sign">I agree to signature mandet</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_telefax" required>
+                    <label for="check_telefax">I agree to Telefax Indemnity</label>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg8"></span>
+                </form>
+                <button class="btn-register-8">Register Account</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile8" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Add Details of Next kin</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Your full name</p></label>
+                  <input type="text" name="name" id="kin_name" placeholder="Enter Full Name" autocomplete="on" required>
+                  <label class="required-field">Next of kin relationship</p></label>
+                  <select class="select" name="occupation" id="kin_occupation" required>
+                    <option value="Please Select" selected disabled>Please Select</option>
+                    <option value="Husband">Husband</option>
+                    <option value="Wife">Wife</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Brother">Brother</option>
+                    <option value="Sister">Sister</option>
+                    <option value="Cousin">Cousin</option>
+                    <option value="Dependent">Dependent</option>
+
+                  </select>
+                  <span class="text-danger text-left mb-3" id="msg9"></span>
+                </form>
+                <button class="btn-register-9">Register Account</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile9" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Phone number</label>
+                  <input type="tel" name="phone" id="kin_phone" placeholder="Enter Phone number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                  <label>House or Building number</label>
+                  <input type="text" name="kin_house_number" placeholder="Please Enter House/Building number" id="kin_house_number" autocomplete="on" required>
+                  <label>Street name</label>
+                  <input type="text" name="kin_street_name" placeholder="Please Enter Street Name" id="kin_street_name" autocomplete="on" required>
+                  {% comment %} <label>LGA</label>
+                  <input type="text" name="kin_city" placeholder="Please Enter LGA" id="kin_city" autocomplete="on" required>
+                  <label>State</label>
+                  <input type="text" name="kin_state" placeholder="Please Enter State" id="kin_state" autocomplete="on" required>
+                  <div class="form-group">
+                    <label>Country of residence</label>
+                    <select class="select" id="kin_country" name="country" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                      <option value="Cote DIvoire">Cote DIvoire</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaco">Curacao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">Dominican Republic</option>
+                      <option value="East Timor">East Timor</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">Equatorial Guinea</option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands">Falkland Islands</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                    </select>
+                  </div> {% endcomment %}
+
+                  <div class="form-group">
+                    <label class="control-label">State</label>
+                    <select onchange="toggleLGA(this);" name="kin_state" id="kin_state" class="form-control">
+                      <option value="" selected="selected">- Select -</option>
+                      <option value="Abia">Abia</option>
+                      <option value="Adamawa">Adamawa</option>
+                      <option value="AkwaIbom">AkwaIbom</option>
+                      <option value="Anambra">Anambra</option>
+                      <option value="Bauchi">Bauchi</option>
+                      <option value="Bayelsa">Bayelsa</option>
+                      <option value="Benue">Benue</option>
+                      <option value="Borno">Borno</option>
+                      <option value="Cross River">Cross River</option>
+                      <option value="Delta">Delta</option>
+                      <option value="Ebonyi">Ebonyi</option>
+                      <option value="Edo">Edo</option>
+                      <option value="Ekiti">Ekiti</option>
+                      <option value="Enugu">Enugu</option>
+                      <option value="FCT">FCT</option>
+                      <option value="Gombe">Gombe</option>
+                      <option value="Imo">Imo</option>
+                      <option value="Jigawa">Jigawa</option>
+                      <option value="Kaduna">Kaduna</option>
+                      <option value="Kano">Kano</option>
+                      <option value="Katsina">Katsina</option>
+                      <option value="Kebbi">Kebbi</option>
+                      <option value="Kogi">Kogi</option>
+                      <option value="Kwara">Kwara</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Nasarawa">Nasarawa</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Ogun">Ogun</option>
+                      <option value="Ondo">Ondo</option>
+                      <option value="Osun">Osun</option>
+                      <option value="Oyo">Oyo</option>
+                      <option value="Plateau">Plateau</option>
+                      <option value="Rivers">Rivers</option>
+                      <option value="Sokoto">Sokoto</option>
+                      <option value="Taraba">Taraba</option>
+                      <option value="Yobe">Yobe</option>
+                      <option value="Zamfara">Zamafara</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">LGA</label>
+                    <select name="kin_city" id="kin_city" class="form-control select-lga" required>
+                    </select>
+                  </div>
+
+                  <label>Country of residence</label>
+                  <input type="text" name="country" placeholder="Please Enter Street name" id="kin_country" autocomplete="on" required>
+
+                  <span class="text-danger text-left mb-3" id="msg10"></span>
+                </form>
+                <button class="btn-register-10">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile10" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Upload Documents!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Signature </label>
+                  <input type="file" name="signature" id="individual_signature" placeholder="Select From Device " required>
+                  <label class="required-field">Photo</label>
+                  <input type="file" name="photo" id="individual_photo" placeholder="Select From Device" required>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_term11" required>
+                    <label for="check_term11">I agree to terms & conditions</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_sign2" required>
+                    <label for="check_sign2">I agree to signature mandet</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_telefax2" required>
+                    <label for="check_telefax16">I agree to Telefax Indemnity</label>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg11"></span>
+                </form>
+                <button class="btn-register-11">Register Account</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile11" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Register Corporate Account!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Company name</label>
+                  <input type="text" name="name" id="company_name" placeholder="Enter Your Company Name" autocomplete="on" required>
+                  <label class="required-field">Company Registration number</label>
+                  <input type="text" name="number" id="company_number" placeholder="Enter Company Registration Number" autocomplete="on" required>
+                  <label class="required-field">Tax id</label>
+                  <input type="text" name="tax_id" id="tax_id" placeholder="Enter Tax Id" autocomplete="on" required>
+                  <label>Industry</label>
+                  <select class="select" name="Industry" id="company_Industry" required>
+                    <option value="Please Select" selected disabled>Please Select</option>
+                    <option value="Husband">Husband</option>
+                    <option value="Wife">Wife</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Brother">Brother</option>
+                    <option value="Sister">Sister</option>
+                    <option value="Cousin">Cousin</option>
+                    <option value="Dependent">Dependent</option>
+                  </select>
+                  <div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <input class="" type="checkbox" id="check_term12" required>
+                      <label for="check_term">&nbsp; I agree to Terms & Conditions</label>
+                    </div>
+                  </div>
+
+                  <span class="text-danger text-left mb-3" id="msg12"></span>
+
+                </form>
+                <button class="btn-register-12">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile13" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Date of incorporation</label>
+                  <input type="date" name="date" id="company_date" required onclick="CompanyDate()">
+                  <script>
+                  function CompanyDate(){
+                    console.log("Hello")
+                    var today = new Date().toISOString().split('T')[0];
+                    console.log(today)
+                    document.getElementsByName("date")[0].setAttribute('max', today);
+                  }
+                  </script>
+
+
+                  <label class="required-field">Email address</label>
+                  <input type="email" name="email" id="company_email" placeholder="Enter Email address" autocomplete="on" required>
+                  <div class="form-group">
+                    <label class="required-field">Create password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password5" placeholder="Enter Password"  id="id_password5" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword5" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="required-field">Confirm password</label>
+                    <div class="inputeye">
+                      <input type="password" name="password6" placeholder="Enter Password" id="id_password6" required>
+                      <span>
+                      <i class="far fa-eye" id="togglePassword6" style="margin-left: -30px; cursor: pointer;"></i>
+                      <span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>National Identity Number</label>
+                    <input type="text" name="NIN" placeholder="Please Enter National Identity Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_NIN" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Bank Verification Number</label>
+                    <input type="text" name="BVN" placeholder="Please Enter Bank Verification Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_BVN" required>
+                  </div>
+                  <div>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg13"></span>
+                </form>
+                <button class="btn-register-13">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile14" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Complete Your Profile!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Phone number</label>
+                  <input type="tel" name="phone" id="company_phone" placeholder="Enter Phone Number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                  <label>House or Building number</label>
+                  <input type="text" name="company_house_number" placeholder="Please Enter House/Building Number" id="company_house_number" autocomplete="on" required>
+                  <label>Street name</label>
+                  <input type="text" name="company_street_name" placeholder="Please Enter Street Name" id="company_street_name" autocomplete="on" required>
+                  {% comment %} <label>LGA</label>
+                  <input type="text" name="company_city" placeholder="Please Enter LGA" id="company_city" autocomplete="on" required>
+                  <label>State</label>
+                  <input type="text" name="company_state" placeholder="Please Enter State" id="company_state" autocomplete="on" required>
+                  <div class="form-group">
+                    <label>Country of residence</label>
+                    <select class="select" id="company_country" name="country" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Afganistan">Afghanistan</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                      <option value="Cote DIvoire">Cote DIvoire</option>
+                      <option value="Croatia">Croatia</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Curaco">Curacao</option>
+                      <option value="Cyprus">Cyprus</option>
+                      <option value="Czech Republic">Czech Republic</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominica">Dominica</option>
+                      <option value="Dominican Republic">Dominican Republic</option>
+                      <option value="East Timor">East Timor</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Egypt">Egypt</option>
+                      <option value="El Salvador">El Salvador</option>
+                      <option value="Equatorial Guinea">Equatorial Guinea</option>
+                      <option value="Eritrea">Eritrea</option>
+                      <option value="Estonia">Estonia</option>
+                      <option value="Ethiopia">Ethiopia</option>
+                      <option value="Falkland Islands">Falkland Islands</option>
+                      <option value="Faroe Islands">Faroe Islands</option>
+                      <option value="Fiji">Fiji</option>
+                      <option value="Finland">Finland</option>
+                    </select>
+                  </div> {% endcomment %}
+                  <div class="form-group">
+                    <label class="control-label">State</label>
+                    <select onchange="toggleLGA(this);" name="company_state" id="company_state" class="form-control">
+                      <option value="" selected="selected">- Select -</option>
+                      <option value="Abia">Abia</option>
+                      <option value="Adamawa">Adamawa</option>
+                      <option value="AkwaIbom">AkwaIbom</option>
+                      <option value="Anambra">Anambra</option>
+                      <option value="Bauchi">Bauchi</option>
+                      <option value="Bayelsa">Bayelsa</option>
+                      <option value="Benue">Benue</option>
+                      <option value="Borno">Borno</option>
+                      <option value="Cross River">Cross River</option>
+                      <option value="Delta">Delta</option>
+                      <option value="Ebonyi">Ebonyi</option>
+                      <option value="Edo">Edo</option>
+                      <option value="Ekiti">Ekiti</option>
+                      <option value="Enugu">Enugu</option>
+                      <option value="FCT">FCT</option>
+                      <option value="Gombe">Gombe</option>
+                      <option value="Imo">Imo</option>
+                      <option value="Jigawa">Jigawa</option>
+                      <option value="Kaduna">Kaduna</option>
+                      <option value="Kano">Kano</option>
+                      <option value="Katsina">Katsina</option>
+                      <option value="Kebbi">Kebbi</option>
+                      <option value="Kogi">Kogi</option>
+                      <option value="Kwara">Kwara</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Nasarawa">Nasarawa</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Ogun">Ogun</option>
+                      <option value="Ondo">Ondo</option>
+                      <option value="Osun">Osun</option>
+                      <option value="Oyo">Oyo</option>
+                      <option value="Plateau">Plateau</option>
+                      <option value="Rivers">Rivers</option>
+                      <option value="Sokoto">Sokoto</option>
+                      <option value="Taraba">Taraba</option>
+                      <option value="Yobe">Yobe</option>
+                      <option value="Zamfara">Zamafara</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">LGA</label>
+                    <select name="company_city" id="company_city" class="form-control select-lga" required>
+                    </select>
+                  </div>
+
+                  <label>Country of residence</label>
+                  <input type="text" name="country" placeholder="Please Enter Street name" id="company_country" autocomplete="on" required>
+
+                  <span class="text-danger text-left mb-3" id="msg14"></span>
+                </form>
+                <button class="btn-register-14">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile15" action="/auth/signup2">
+                  <div class="join-us">
+                    <h3>Executive management</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label>Enter 4 exetive names:</label>
+                  <input type="text" name="name" id="exetive_name1" placeholder="Enter First Name Surname "
+                    autocomplete="on" required>
+                  <input type="text" name="name" id="exetive_name2" placeholder="Enter First Name Surname "
+                    autocomplete="on" required>
+                  <input type="text" name="name" id="exetive_name3" placeholder="Enter First Name Surname "
+                    autocomplete="on" required>
+                  <input type="text" name="name" id="exetive_name4" placeholder="Enter First Name Surname "
+                    autocomplete="on" required>
+
+                    <span class="text-danger text-left mb-3" id="msg15"></span>
+                </form>
+                <button class="btn-register-15">Save & Continue</button>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="register-usr">
+            <div class="lft-pan">
+              <div class="form-box signup-form">
+                <div class="back join-us-desc prev-sec" id="prev">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.8625 3.225L13.3792 1.75L5.13751 10L13.3875 18.25L14.8625 16.775L8.08751 10L14.8625 3.225Z"
+                      fill="#8692A6" />
+                  </svg>
+                  <p>Back</b></p>
+                </div>
+                <form method="POST" id="complete_profile16">
+                  <div class="join-us">
+                    <h3>Upload Documents!</h3>
+                  </div>
+                  <div class="social-container">
+                    <p class="img-text join-us-desc">For the purpose of industry regulation, your details are required.
+                    </p>
+                  </div>
+                  <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
+                  <label class="required-field">Signature </label>
+                  <input type="file" name="signature" id="company_signature" placeholder="Select From Device " required>
+                  <label class="required-field">Photo</label>
+                  <input type="file" name="photo" id="company_photo" placeholder="Select From Device" required>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_term16" required>
+                    <label for="check_term16">I agree to terms & conditions</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_sign16" required>
+                    <label for="check_sign16">I agree to signature mandet</label>
+                  </div>
+                  <div class="checkbox">
+                    <input class="checktick" type="checkbox" id="check_telefax16" required>
+                    <label for="check_telefax16">I agree to Telefax Indemnity</label>
+                  </div>
+                  <span class="text-danger text-left mb-3" id="msg16"></span>
+                </form>
+                <button class="btn-register-16">Register Account</button>
+              </div>
+            </div>
+          </section>
+
+
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'accounts/js/lga.min.js' %}"></script>
+
+    <script>
+      function validDate(){
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date")[0].setAttribute('max', today);
+    }
+  </script>
+    {% endblock main-content %}

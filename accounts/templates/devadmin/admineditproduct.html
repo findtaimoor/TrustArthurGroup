@@ -1,0 +1,48 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Edit Product </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+
+        <tr>
+            <td><label for="">Select Type of User: </label></td>
+            <td> 
+                <select class="form-control" name="typeofuser" required>  
+                    {% for i in typeofuser %}
+                    <option value = "{{i}}" {% if product.typeofuser == i %} selected="selected" {% endif %}>{{i}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><label>Title of the Product:</label></td>
+            <td><input class="form-control" type="text" name="title" value="{{product.title}}" placeholder="Enter title" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Product Sub title:</label></td>
+            <td><input class="form-control" type="text" name="title2" value="{{product.title2}}" placeholder="Enter Sub title" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Product Image:</label></td>
+            <td><input class="form-control" type="file" name="productpic"/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

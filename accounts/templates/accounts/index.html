@@ -1,0 +1,561 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+
+{% block main-content %}
+
+
+    <!--=====================================-->
+    <!--=            Slider Start           =-->
+    <!--=====================================-->
+    <div class="slider-area slider-layout1">
+      <div class="slider-bg-img1" data-sal="zoom-in" data-sal-duration="1500" data-sal-delay="300">
+        <img src="../static/todo/img/my-img/fig4.png" alt="figure" />
+      </div>
+      <div class="slider-bg-img2">
+        <img src="../static/todo/img/my-img/fig3.png" alt="figure" data-sal="slide-up" data-sal-duration="1300"
+          data-sal-delay="700" />
+      </div>
+
+      <div class="bend niceties preview-1">
+        <div id="ensign-nivoslider-1" class="slides">
+          {% for i in banner %}
+          <img src="{{i.banner_image.url}}" alt="slider" width="1920" height="720"
+            title="#slider-direction-{{forloop.counter}}" />
+            {% endfor %}
+        </div>
+
+        {% for i in banner %}
+
+        <div id="slider-direction-{{forloop.counter}}" class="t-cn slider-direction">
+          <div class="slider-content s-tb slide-{{forloop.counter}}">
+            <div class="text-left title-container s-tb-c">
+              <div class="container bannerblur">
+                <h2 class="item-title">{{i.title}}
+                <div class="item-paragraph">
+                  {{i.description}}
+                </div>
+                </h2>
+                {% comment %} <ul class="item-btn">
+                  <li>
+                    <a href="#">Free Consulting<i class="fas fa-long-arrow-alt-right"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" class="circle-btn"><span class="circle-icon"><i class="fas fa-play-circle"></i>Watch The
+                        Video</span></a>
+                  </li>
+                </ul> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+    <!--=====================================-->
+    <!--=            Financo Start          =-->
+    <!--=====================================-->
+    <section class="financo-activities-wrap1">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-6 pr-4">
+            <div class="financo-activities-box1">
+              <div class="item-img-round">
+                <img src="../static/todo/img/figure/figure39.png" alt="figure" height="81" width="81" />
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig6.png" alt="figure" height="45" width="47" />
+                </div>
+              </div>
+              <h2 class="heading-title">
+                <a href="#">{{home.home_box1_title}}​</a>
+              </h2>
+              <p>
+                {{home.box1_description}}
+              </p>
+              <!-- <div class="item-button">
+                <a href="#" class="item-btn">+ <span>Read More</span></a>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 pr-4">
+            <div class="financo-activities-box1">
+              <div class="item-img-round">
+                <img src="../static/todo/img/figure/figure39.png" alt="figure" height="81" width="81" />
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig7.png" alt="figure" height="41" width="45" />
+                </div>
+              </div>
+              <h2 class="heading-title">
+                <a href="#">{{home.home_box2_title}}</a>
+              </h2>
+              <p>
+                {{home.box2_description}}
+              </p>
+              <!-- <div class="item-button">
+                <a href="#" class="item-btn">+ <span>Read More</span></a>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 pr-4">
+            <div class="financo-activities-box1 financo-activities-box3">
+              <div class="item-img-round">
+                <img src="../static/todo/img/figure/figure39.png" alt="figure" height="81" width="81" />
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig8.png" alt="figure" height="41" width="45" />
+                </div>
+              </div>
+              <h2 class="heading-title">
+                <a href="#">{{home.home_box3_title}}</a>
+              </h2>
+              <p>
+                {{home.box3_description}}
+              </p>
+              <!-- <div class="item-button">
+                <a href="#" class="item-btn">+ <span>Read More</span></a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            About-finnaco Start    =-->
+    <!--=====================================-->
+    <!-- <section class="about-finnaco-wrap1">
+      <div class="background-shape6">
+        <img src="../static/todo/img/figure/figure32.png" alt="figure" width="404" height="216" />
+      </div>
+      <div class="background-shape7">
+        <img src="../static/todo/img/figure/figure29.png" alt="figure" width="747" height="256" />
+      </div>
+      <div class="background-shape8">
+        <img src="../static/todo/img/my-img/figure33.png" alt="figure" width="783" height="439" />
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-12">
+            <div class="about-box1">
+              <p class="section-subtitle">About</p>
+              <h2 class="section-title">
+                {{home.about_head}}
+              </h2>
+              <p>
+                {{home.about_description}}
+              </p>
+              <div class="media">
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig10.png" alt="figure" width="47" height="71" />
+                </div>
+                <div class="media-body">
+                  <h3 class="heading-title">
+                    <a href="#">Mission</a>
+                  </h3>
+                  <p>
+                    {{home.about_mission}}
+                  </p>
+                </div>
+              </div>
+              <div class="media">
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig10.png" alt="figure" />
+                </div>
+                <div class="media-body">
+                  <h3 class="heading-title">
+                    <a href="#">Vision</a>
+                  </h3>
+                  <p>
+                    {{home.about_vision}}
+                  </p>
+                </div>
+              </div>
+              <div class="media">
+                <div class="item-img">
+                  <img src="../static/todo/img/my-img/fig14.png" alt="figure" width="51" height="66" />
+                </div>
+                <div class="media-body">
+                  <h3 class="heading-title">
+                    <a href="#">Our Commitment</a>
+                  </h3>
+                  <p>
+                    {{home.about_commitment}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-12">
+            <div class="about-box2">
+              <div class="about-img">
+                <img src="{{home.about_image.url}}" alt="figure" width="800" height="700">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!--=====================================-->
+    <!--=            Consulting Start       =-->
+    <!--=====================================-->
+    <section class="consulting-service-wrap1">
+      <div class="container">
+        <h2 class="section-title"><b>What We Do</b></h2>
+        <div class="row">
+          <div class="grd-info-tw">
+            <div class="info-in">
+              <div class="consulting-service2">
+                <p>
+                  Trust Arthur’s major driver is to create an enabling environment for investors who seek to participate
+                  in the risk-return paradox of Islamic finance and promote communal benefit for all stakeholders.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="grd-info">
+
+              {% for i in wwd %}
+                
+              
+              <div class="info-in">
+                <div class="consulting-service3" data-bg-image="../static/todo/img/my-img/comp3.png" width="555"
+                  height="299">
+                  <div class="media">
+                    <div class="item-img">
+                      <img src="{{i.icon_image.url}}" alt="figure" width="87" height="95" />
+                      <div class="service-img">
+                        <img src="{{i.icon_image_hover.url}}" alt="service" width="86" height="94" />
+                      </div>
+                    </div>
+                    <div class="media-body">
+                      <h3 class="title-heading">
+                        <a href="#">{{i.name}}​</a>
+                      </h3>
+                      <p class="blog-card-description">
+                        {{i.description}}
+                      </p>
+                      <!-- <div class="item-button">
+                        <a href="#" class="item-btn">Read More<i class="fas fa-long-arrow-alt-right"></i></a>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Progress-bar Start      =-->
+    <!--=====================================-->
+    <section class="progress-bar-wrap1">
+      <div class="container-fluid">
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-12">
+            <div class="progress-bar-box1 progress-bar-box3">
+              <h2 class="section-title">
+                Bank & Other Financial Institutions (BAFI) Awardee
+              </h2>
+              <p>
+                Awarded the BAFI Awards Best Non-Interest Finance Product of the year 2020 by Business Day​
+              </p>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="progress-box">
+                    <div class="circle-progress" data-value="0.95">
+                      <span></span>
+                      <label>Investment</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="progress-bar-box2 progress-bar-box3">
+              <div class="background-image5">
+                <img src="../static/todo/img/figure/figure38.png" alt="figure" width="475" height="553" />
+              </div>
+              <div class="item-img">
+                <img src="{% static 'todo/img/my-img/comp.jpg' %}" alt="service" width="960" height="555">
+                <!-- <div class="rgt-img" style="background-image: url(../static/todo/img/my-img/comp.jpg)"></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Banner Start           =-->
+    <!--=====================================-->
+    <section class="banner-wrap1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="banner-box1">
+              <div class="item-img">
+                <!-- <img src="{% static 'todo/img/my-img/bot-bld.jpg' %}" alt="blog" width="556"> -->
+                <div class="btm-img" style="background-image: url(../static/todo/img/my-img/bot-bld.jpg)"></div>
+              </div>
+              <div class="bannar-details">
+                <h3 class="heading-title">Need Any Help!</h3>
+                <div class="contact-box2">
+                  <div class="item-icon-box">
+                    <div class="item-icon">
+                      <i class="far fa-comments"></i>
+                    </div>
+                    <div class="banner-content">
+                      <div class="item-hotline">Hotline</div>
+                      <div class="item-number">+{{home.hotline}}</div>
+                    </div>
+                  </div>
+                  <div class="item-icon-box item-icon-box2">
+                    <div class="item-icon">
+                      <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="banner-content">
+                      <div class="item-hotline">Send Us An Email</div>
+                      <div class="item-number">{{home.email}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Project Start          =-->
+    <!--=====================================-->
+
+    <section class="project-wrap-layout1 carousel-img">
+      <div class="container">
+        <p class="section-subtitle">Explore Our Products and Offerings​</p>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="project-box2">
+              <p>
+                We offer a range of services to our esteemed customers to help achieve their set goals and meet their
+                target right in their comfort zone.​
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="owl-carousel owl-theme">
+
+        {% for i in explore %}
+          
+        
+        <div class="portfolio-box1">
+          <div class="item-img">
+            <a>
+              <img src="{{i.exp_image.url}}" alt="blog" class="blg-img">
+              <!-- <div class="blg-img" style="background-image: url(../static/todo/img/my-img/blg1.jpg)"></div> -->
+            </a>
+            <div class="item-content">
+              {% comment %} <div class="item-number">0{{forloop.counter}}</div> {% endcomment %}
+              <h3 class="heading-title">{{i.title}}</h3>
+              <p class="portfolio-para">
+                {{i.description}}
+              </p>
+              <div class="item-button">
+                <a class="item-btn read-more Readmore1">+ <span>Read More</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+      <div id="popup1" class="overlay">
+        <div class="popup">
+          <h2>Here i am</h2>
+          <a class="close" href="#">&times;</a>
+          <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Call-back Start        =-->
+    <!--=====================================-->
+    <section class="call-back-wrap">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-12">
+            <div class="call-back-box1">
+              <h3 class="section-title">Request A Call Back</h3>
+              <form class="message-box" method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" id="inputAddress1" name="name" placeholder="Name" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="email" class="form-control" id="inputAddress2" name="email" placeholder="Email" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="tel" class="form-control" id="inputAddress3" name= "phone" placeholder="Phone" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <textarea id="message" class="form-control" name="message"  placeholder="Message" cols="30"rows="4"></textarea>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="submit" class="item-btn" value="Submit Now" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="call-back-box2">
+              <div class="item-img">
+                <img src="{{home.contact_image.url}}" alt="blog" class="maincontact"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Location Start         =-->
+    <!--=====================================-->
+    <section class="location-wrap-layout1">
+      {% comment %} <div class="container">
+        <div class="item-heading">
+          <h2 class="section-heading">Trustbanc's Map</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="location-box">
+              <div class="item-img">
+                <img src="../static/todo/img/figure/figure10.png" alt="figure" width="805" height="377" />
+                <div class="map-icon">
+                  <ul>
+                    <li><i class="fas fa-map-marker-alt"></i></li>
+                    <li><i class="fas fa-map-marker-alt"></i></li>
+                    <li><i class="fas fa-map-marker-alt"></i></li>
+                    <li><i class="fas fa-map-marker-alt"></i></li>
+                    <li><i class="fas fa-map-marker-alt"></i></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </section>
+    <!--=====================================-->
+    <!--=            Testimonial Start      =-->
+    <!--=====================================-->
+    <section class="testimonial-wrap1">
+      <div class="container">
+        <div class="testimonial-box1">
+          <div class="slick-carousel slick-slider"
+            data-slick='{"arrows": true, "slidesToShow": 1, "autoplay": false, "vertical": true}'>
+
+            {% for i in testi %}
+              
+            <div class="slick-slide">
+              <div class="media">
+                <div class="item-img">
+                  <img src="{{i.testi_image.url}}" alt="blog" width="285" height="276" />
+                  <div class="shape-box">{{i.name}}</div>
+                </div>
+                <div class="media-body">
+                  <blockquote class="item-quotation">
+                    “{{i.description}}”​
+                  </blockquote>
+                  <div class="quotation-marks">
+                    <i class="fas fa-quote-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=          Personal Start           =-->
+    <!--=====================================-->
+    <section class="personal-info-wrap1">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-xl-4 col-lg-8">
+            <div class="personal-details">
+              <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-6">
+                  <div class="personal-info-box">
+                    <h2 class="section-title">Market Update ​</h2>
+                    <ul class="information-list">
+                      <li>
+                        {{home.market_update}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-6">
+                  <div class="personal-info-box">
+                    <h2 class="section-title">News</h2>
+                    <ul class="information-list">
+                      <li>
+                        {{home.news}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-6">
+                  <div class="personal-info-box">
+                    <h2 class="section-title">Sector News​</h2>
+                    <ul class="information-list">
+                      <li>
+                        {{home.sectornews}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-6">
+                  <div class="personal-info-box">
+                    <h2 class="section-title">Upcoming events</h2>
+                    <ul class="information-list">
+                      <li>
+                        {{home.upcomingevents}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-4">
+            <div class="location-img">
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7345796492364!2d3.4394978999999997!3d6.4281353999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53cb4e73455%3A0xdacbe43a52706828!2s163%20Sinari%20Daranijo%20St%2C%20Victoria%20Island%20106104%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sin!4v1657530154453!5m2!1sen!2sin" width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.733295603345!2d3.4286589999999997!3d6.4283000999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf52fe1f00001%3A0x7ee28a6cb957e704!2s11%20Oko%20Awo%20St%2C%20Victoria%20Island%20101241%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sin!4v1660824506100!5m2!1sen!2sin" width="800" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="figure-img1">
+        <img src="../static/todo/img/figure/figure5.png" alt="figure" width="872" height="724" />
+      </div>
+      <div class="figure-img2">
+        <img src="../static/todo/img/figure/figure6.png" alt="figure" width="487" height="269" />
+      </div>
+    </section>
+
+    
+
+{% endblock main-content %}

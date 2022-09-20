@@ -1,0 +1,79 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} SubProduct {% endblock title %}
+
+{% block main-content %}
+
+<style>
+
+    .noorder{
+        width: 50%;
+    }
+</style>
+
+
+        <link rel="stylesheet" href="{% static 'todo/css/product.css' %}" />
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="product-container sidediv">
+                        <div class="product-content">
+                            <div class="right-box">
+                                <div class="img">
+                                    <img src="../static/todo/img/product/Group.png" alt="note">
+                                    <img src="../static/todo/img/product/arrow.png" alt="click here">
+                                </div>
+                                <p><b>{{product.title}}</b></p>
+                                <p>{{product.title2}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="product-container">
+                        <div class="row">
+                            {% if subproduct %}
+                            
+                            {% for sp in subproduct %}
+                            
+                            <div class="col-md-12 mb-5">
+                                <a href="{% url 'productdetail' sp.id %}">
+                                    <div class="product-content row">
+                                        <div class="left-box col-md-6">
+                                            <img src="{{sp.sub_product_image.url}}" alt="product img" class="">
+                                        </div>
+                                        <div class="right-box col-md-6">
+                                            <div class="img">
+                                                <img src="../static/todo/img/product/Group.png" alt="note">
+                                                <img src="../static/todo/img/product/arrow.png" alt="click here">
+                                            </div>
+                                            <p><b>{{sp.sub_title}}</b></p>
+                                            <p>{{sp.sub_title2}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                    {% endfor %}
+        
+                    {% else %}
+                    <div class="container">
+                        <div class="text-center emptyadddiv">
+                            <img src="{% static 'accounts/images/noorders.png' %}" alt="" class="img-fluid noorder">
+                            <h4 class="mt-3 text-bold"> Sub Products are not available. </h4>
+                        </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+{% endblock main-content %}

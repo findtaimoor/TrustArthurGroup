@@ -1,0 +1,101 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<div class="m-4">
+    <h2 class=""> Product List</h2>
+<div id="toolbar">
+    <select class="form-control">
+            <option value="">Export Basic</option>
+            <option value="all">Export All</option>
+            <option value="selected">Export Selected</option>
+    </select>
+</div>
+
+<table id="table"
+         data-toggle="table"
+         data-search="true"
+         data-filter-control="true" 
+         data-show-export="true"
+         data-click-to-select="false"
+         data-toolbar="#toolbar"
+         data-pagination="true"
+         data-id-field="id"
+         data-pagination-pre-text="Previous"
+         data-pagination-next-text="Next"
+         data-page-list="[10, 25, 50, 100, all]"
+         data-detail-formatter="detailFormatter"
+         >
+<thead>
+    <tr>
+        <th data-field="state" data-checkbox="true"></th>
+        <th data-field="typeofuser" data-filter-control="select" data-sortable="true">Type of User</th>
+        <th data-field="title" data-filter-control="input" data-sortable="true">Title</th>
+        <th data-field="title2" data-filter-control="input" data-sortable="true">Another Title</th>
+        <th data-formatter="operateFormatter">Actions</th>
+    </tr>
+</thead>
+<tbody>
+
+    {% if product %}
+    
+    {% for i in product %}
+      
+    
+    <tr>
+        <td class="bs-checkbox "><input data-index="{{forloop.counter}}" name="btSelectItem" type="checkbox"></td>
+        <td>{{i.typeofuser|capfirst}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.title2}}</td>
+    </tr>
+
+    {% endfor %}
+
+    {% endif %}
+
+</tbody>
+</table>
+</div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js"></script>
+<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+<a href="">
+<script>
+    //exporte les données sélectionnées
+var $table = $('#table');
+    $(function () {
+        $('#toolbar').find('select').change(function () {
+            $table.bootstrapTable('refreshOptions', {
+                exportDataType: $(this).val()
+            });
+        });
+    })
+
+
+
+    function operateFormatter(value, row, index) {
+    return [
+      "<div class='text-center'><a href='' class='text-secondary'><i class='bx bx-edit'  style='font-size:22px;'></i></a>",
+        "<a href='' class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a></div>"
+    ].join('')
+  }
+
+
+
+</script>
+
+{% endblock main-content %}

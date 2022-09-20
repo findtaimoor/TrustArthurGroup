@@ -1,0 +1,121 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/mdb.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables-select.min.css' %}" />
+
+<style>
+
+@media(max-width: 768px) { 
+table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
+</style>
+
+<div class="m-4">
+    <h2 class=""> Corporate User List</h2>
+
+<table id="dtMaterialDesignExample" class="table table-striped table-responsive" cellspacing="0" width="100%">
+<thead>
+    <tr>
+        <th>User</th>
+        <th>Company Name</th>
+        <th>Company Number</th>
+        <th>Tax Id</th>
+        <th>Company Industry</th>
+        <th>Company Date</th>
+        <th>Phone No</th>
+        <th>Details</th>
+        {% comment %} <th data-field="NIN" data-filter-control="input" data-sortable="true">NIN</th>
+        <th data-field="BVN" data-filter-control="input" data-sortable="true">BVN</th>
+        <th data-field="houseno" data-filter-control="input" data-sortable="true">houseno</th>
+        <th data-field="street_name" data-filter-control="input" data-sortable="true">street_name</th>
+        <th data-field="city" data-filter-control="select" data-sortable="true">city</th>
+        <th data-field="states" data-filter-control="select" data-sortable="true">state</th>
+        <th data-field="country" data-filter-control="select" data-sortable="true">country</th>
+        <th data-field="em1" data-filter-control="input" data-sortable="true">Name 1</th>
+        <th data-field="em2" data-filter-control="input" data-sortable="true">Name 2</th>
+        <th data-field="em3" data-filter-control="input" data-sortable="true">Name 3</th>
+        <th data-field="em4" data-filter-control="input" data-sortable="true">Name 4</th> {% endcomment %}
+    </tr>
+</thead>
+<tbody>
+
+    {% if busers %}
+    
+    {% for i in busers %}
+      
+    
+    <tr>
+        <td>{{i.user|capfirst}}</td>
+        <td>{{i.company_name}}</td>
+        <td>{{i.company_number}}</td>
+        <td>{{i.tax_id}}</td>
+        <td>{{i.company_industry}}</td>
+        <td>{{i.company_date}}</td>
+        <td>{{i.phoneno}}</td>
+        <td><a href="{% url 'buserextradetials' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a></td>
+
+        {% comment %} <td>{{i.NIN}}</td>
+        <td>{{i.BVN}}</td>
+        <td>{{i.houseno}}</td>
+        <td>{{i.street_name}}</td>
+        <td>{{i.city}}</td>
+        <td>{{i.state}}</td>
+        <td>{{i.country}}</td>
+        <td>{{i.em1}}</td>
+        <td>{{i.em2}}</td>
+        <td>{{i.em3}}</td>
+        <td>{{i.em4}}</td> {% endcomment %}
+    </tr>
+
+    {% endfor %}
+
+    {% endif %}
+
+</tbody>
+</table>
+</div>
+</div>
+
+  <script src="{% static 'devadmin/js/addons/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/popper.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/bootstrap.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/mdb.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables-select.min.js' %}"></script>
+
+<script>
+
+
+ $('#dtMaterialDesignExample').DataTable();
+
+
+    $('#dtMaterialDesignExample_wrapper, #dt-material-checkbox_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter, #dt-material-checkbox_wrapper .dataTables_filter').find(
+      'input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length, #dt-material-checkbox_wrapper .dataTables_length').addClass(
+      'd-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
+    
+</script>
+
+{% endblock main-content %}

@@ -1,0 +1,68 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+
+    <style>td{
+      padding:20px;
+      }
+    </style>
+
+    <h2 class="m-4"> Edit Admin</h2>
+    <form method ="post">
+      {% csrf_token %}
+      <table>
+
+        <tr>
+          <td>
+            <label>Enter Email:</label>
+          </td>
+          <td>
+            <input class="form-control" type="email" name="email" value={{user.email}} placeholder="Enter Email" required>
+          </td>
+        </tr>
+
+        <tr>
+            <td><label for="subincidenttypes">Admin Types: </label></td>
+            <td>
+              {% if user.is_superuser == True %}
+                <input type="checkbox" id="superadmin" name="superadmin" value="superadmin" checked>
+                <label for="superadmin">Super Admin</label><br>
+              {% else %}
+                <input type="checkbox" id="superadmin" name="superadmin" value="superadmin">
+                <label for="superadmin">Super Admin</label><br>  
+              {% endif %}
+
+              {% if user.is_staff == True %}
+                <input type="checkbox" id="admin" name="admin" value="admin" checked>
+                <label for="admin">Admin</label><br>
+              {% else %}
+                <input type="checkbox" id="admin" name="admin" value="admin">
+                <label for="admin">Admin</label><br>
+              {% endif %}
+            </td>
+          </tr>
+
+        {% if msg %}
+        <tr>
+            <td>
+              <label class="text-danger">{{msg}}</label>
+            </td>
+        </tr>
+        {% endif %}
+
+        <tr>
+          <td>
+            <input class="form-control btn btn-success" type="submit" value="Submit">
+          </td>
+        </tr>
+
+      </table>
+    </form>
+    </div>
+    
+
+{% endblock main-content %}

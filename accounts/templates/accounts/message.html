@@ -1,0 +1,57 @@
+    {% if messages %}
+    {% for message in messages %}
+
+        {% if message in messages %}
+
+        {% if message.tags == 'success' %}
+            <script>
+                $.toast({
+                    heading: 'Success',
+                    text: '{{ message }}',
+                    showHideTransition: 'fade',
+                    icon: 'success',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    position: { left : 'auto', right : 10, top : 130, bottom : 'auto' },
+                })
+            </script>
+        {% elif message.tags == 'info' %}
+            <script>
+                $.toast({
+                    heading: 'Info',
+                    text: '{{ message }}',
+                    showHideTransition: 'fade',
+                    icon: 'info',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    position: { left : 'auto', right : 10, top : 130, bottom : 'auto' },
+                })
+            </script>
+        {% elif message.tags == 'warning' %}
+            <script>
+                $.toast({
+                    heading: 'Warning',
+                    text: '{{ message }}',
+                    showHideTransition: 'fade',
+                    icon: 'warning',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    position: { left : 'auto', right : 10, top : 130, bottom : 'auto' },
+                })
+            </script>
+        {% elif message.tags == 'error' %}
+            <script>
+                $.toast({
+                    heading: 'error',
+                    text: '{{ message }}',
+                    showHideTransition: 'fade',
+                    icon: 'error',
+                    allowToastClose: true,
+                    hideAfter: 3000,
+                    position: { left : 'auto', right : 10, top : 130, bottom : 'auto' },
+                })
+            </script>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,157 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/mdb.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables-select.min.css' %}" />
+
+<style>
+
+@media(max-width: 768px) { 
+table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
+</style>
+
+<div class="m-4">
+    <h2 class=""> Individuals and Joint User List</h2>
+
+<table id="dtMaterialDesignExample" class="table table-striped table-responsive" cellspacing="0" width="100%">
+<thead>
+    <tr>
+        <th>User</th>
+        <th>Fullname</th>
+        <th>Phone</th>
+        <th>Birthdate</th>
+        <th>Gender</th>
+        <th>Joint Account</th>
+        <th>Details</th>
+{% comment %} 
+        <th data-field="house_number" data-filter-control="input" data-sortable="true">house_number</th>
+        <th data-field="street_name" data-filter-control="select" data-sortable="true">street_name</th>
+        <th data-field="city" data-filter-control="select" data-sortable="true">city</th>
+        <th data-field="states" data-filter-control="select" data-sortable="true">state</th>
+        <th data-field="country" data-filter-control="select" data-sortable="true">country</th>
+        <th data-field="occupation" data-filter-control="select" data-sortable="true">occupation</th>
+        <th data-field="NIN" data-filter-control="input" data-sortable="true">NIN</th>
+        <th data-field="BVN" data-filter-control="input" data-sortable="true">BVN</th>
+
+        <th data-field="another_user" data-filter-control="input" data-sortable="true">Jointuser Username</th>
+        <th data-field="another_fullname" data-filter-control="input" data-sortable="true">Jointuser fullname</th>
+        <th data-field="another_phone" data-filter-control="input" data-sortable="true">Jointuser phone</th>
+        <th data-field="another_house_number" data-filter-control="input" data-sortable="true">Jointuser house_number</th>
+        <th data-field="another_street_name" data-filter-control="select" data-sortable="true">Jointuser street_name</th>
+        <th data-field="another_city" data-filter-control="select" data-sortable="true">Jointuser city</th>
+        <th data-field="another_states" data-filter-control="select" data-sortable="true">Jointuser state</th>
+        <th data-field="another_country" data-filter-control="select" data-sortable="true">Jointuser country</th>
+        <th data-field="another_birthdate" data-filter-control="input" data-sortable="true">Jointuser birthdate</th>
+        <th data-field="another_gender" data-filter-control="select" data-sortable="true">Jointuser gender</th>
+        <th data-field="another_occupation" data-filter-control="select" data-sortable="true">Jointuser occupation</th>
+
+        <th data-field="kin_name" data-filter-control="input" data-sortable="true">kin_name</th>
+        <th data-field="kin_relationship" data-filter-control="select" data-sortable="true">kin_relationship</th>
+        <th data-field="kin_phone" data-filter-control="input" data-sortable="true">kin_phone</th>
+        <th data-field="kin_house_number" data-filter-control="input" data-sortable="true">kin_house_number</th>
+        <th data-field="kin_street_name" data-filter-control="select" data-sortable="true">kin_street_name</th>
+        <th data-field="kin_city" data-filter-control="select" data-sortable="true">kin_city</th>
+        <th data-field="kin_state" data-filter-control="select" data-sortable="true">kin_state</th>
+        <th data-field="kin_country" data-filter-control="select" data-sortable="true">kin_country</th> {% endcomment %}
+
+    </tr>
+</thead>
+<tbody>
+
+    {% if ijusers %}
+    
+    {% for i in ijusers %}
+      
+    
+    <tr>
+        <td>{{i.individual_user.user|capfirst}}</td>
+        <td>{{i.individual_user.fullname|capfirst}}</td>
+        <td>{{i.individual_user.phone}}</td>
+        <td>{{i.individual_user.birthdate}}</td>
+        <td>{{i.individual_user.gender}}</td>
+        <td>{{i.individual_user.joint_account}}</td>
+        <td><a href="{% url 'ijuserextradetails' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a></td>
+{% comment %}         
+        <td>{{i.individual_user.house_number}}</td>
+        <td>{{i.individual_user.street_name}}</td>
+        <td>{{i.individual_user.city}}</td>
+        <td>{{i.individual_user.state}}</td>
+        <td>{{i.individual_user.country}}</td>
+        <td>{{i.individual_user.occupation}}</td>
+        <td>{{i.individual_user.NIN}}</td>
+        <td>{{i.individual_user.BVN}}</td>
+
+        <td>{{i.user|capfirst}}</td>
+        <td>{{i.another_name|capfirst}}</td>
+        <td>{{i.another_phone}}</td>
+        <td>{{i.another_house_number}}</td>
+        <td>{{i.another_street_name}}</td>
+        <td>{{i.another_city}}</td>
+        <td>{{i.another_state}}</td>
+        <td>{{i.another_country}}</td>
+        <td>{{i.another_birthdate}}</td>
+        <td>{{i.another_gender}}</td>
+        <td>{{i.another_occupation}}</td>
+
+        <td>{{i.individual_user.kin_name|capfirst}}</td>
+        <td>{{i.individual_user.kin_relationship}}</td>
+        <td>{{i.individual_user.kin_phone}}</td>
+        <td>{{i.individual_user.kin_house_number}}</td>
+        <td>{{i.individual_user.kin_street_name}}</td>
+        <td>{{i.individual_user.kin_city}}</td>
+        <td>{{i.individual_user.kin_state}}</td>
+        <td>{{i.individual_user.kin_country}}</td> {% endcomment %}
+    </tr>
+
+    {% endfor %}
+
+    {% endif %}
+
+</tbody>
+</table>
+</div>
+</div>
+
+  <script src="{% static 'devadmin/js/addons/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/popper.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/bootstrap.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/mdb.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables-select.min.js' %}"></script>
+
+<script>
+
+
+ $('#dtMaterialDesignExample').DataTable();
+
+
+    $('#dtMaterialDesignExample_wrapper, #dt-material-checkbox_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter, #dt-material-checkbox_wrapper .dataTables_filter').find(
+      'input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length, #dt-material-checkbox_wrapper .dataTables_length').addClass(
+      'd-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
+    
+</script>
+
+{% endblock main-content %}

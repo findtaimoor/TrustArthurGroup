@@ -1,0 +1,42 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Add News </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+    <table>
+
+        <tr>
+            <td><label>Title of News:</label></td>
+            <td><input class="form-control" type="text" name="title" placeholder="Enter title" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Description of News:</label></td>
+            <td><textarea class="form-control" name="description" rows="4" cols="50"  placeholder="Please description"></textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Link of Document:</label></td>
+            <td><input class="form-control" type="url" name="doc" placeholder="Enter link" required></td>
+        </tr>
+
+
+        <tr>
+            <td><label>News Image:</label></td>
+            <td><input class="form-control" type="file" name="newspic" required/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

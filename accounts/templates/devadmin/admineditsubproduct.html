@@ -1,0 +1,76 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Add Sub-Product </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+
+        <tr>
+            <td><label for="">Select Type of Product: </label></td>
+            <td> 
+                <select class="form-control" name="typeofproduct" required>  
+                    {% for i in product %}
+                    <option value = "{{i.title}}" {% if subproduct.product.title == i.title %} selected="selected" {% endif %}>{{ i.title| capfirst}}</option>
+                        {% comment %} <option value = "{{i.title}}" >{{ i.title| capfirst}}</option> {% endcomment %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><label>Title of the Sub-Product:</label></td>
+            <td><input class="form-control" type="text" name="subtitle"  value="{{subproduct.sub_title}}" placeholder="Enter title"  required></td>
+        </tr>
+
+        <tr>
+            <td><label>Brief Description of Sub product:</label></td>
+            <td><input class="form-control" type="text" name="subtitle2" value="{{subproduct.sub_title2}}" placeholder="Enter Sub title" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Add Price of the Sub-Product:</label></td>
+            <td><input class="form-control" type="number" name="selling_price" value="{{subproduct.selling_price}}" placeholder="Enter Price" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Duration of Product:</label></td>
+        </tr>
+        <tr>
+            <td><label>Year</label></td>
+            <td><input class="form-control" type="text" value="{{subproduct.duration_year}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_year" placeholder="Enter Years" required></td>
+        </tr>
+        <tr>
+            <td><label>Month</label></td>
+            <td><input class="form-control" type="text" value="{{subproduct.duration_month}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_month" placeholder="Enter Month" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Benifits: </label></td>
+            <td><textarea class="form-control" name="benifits" rows="4" cols="50"  placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" required>{{subproduct.benifits}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Plan Features: </label></td>
+            <td><textarea class="form-control" name="planfeatures" rows="4" cols="50" placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" required>{{subproduct.plan_feature}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Sub-Product Image:</label></td>
+            <td><input class="form-control" type="file" name="productpic"/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

@@ -1,0 +1,58 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Contact{% endblock title %}
+
+{% block main-content %}
+
+
+    <!--=====================================-->
+    <!--=           Contact Us Start          =-->
+    <!--=====================================-->
+    {% if msg %}
+    <div class="alert alert-danger" role="alert">
+      {{msg}}
+    </div>
+    {% endif %}
+    <section class="contact-box">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-6 col-md-12">
+            <div class="call-back-box1">
+              <h3 class="section-title">Request a Call Back</h3>
+              <form class="message-box" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" placeholder="Name" name="name" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="tel" class="form-control" placeholder="Phone" name="phone" required />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <textarea class="form-control" placeholder="Message" name="message" cols="30" rows="4"></textarea>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="submit" class="item-btn" value="Submit Now" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="call-back-box2">
+              <div class="item-img">
+                <img src="{{home.contact_image.url}}" alt="blog" class="maincontact"/>
+                {% comment %} <div class="call-img">
+                  <img src="../static/todo/img/figure/figure11.png" alt="figure" width="145" height="295" />
+                </div> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock main-content %}
