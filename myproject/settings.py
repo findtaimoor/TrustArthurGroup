@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from pickle import FALSE, TRUE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,3 +140,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PAYSTACK_SECRET_KEY = 'sk_test_f6c392df82cb9972b4169e13e8fea8863fa8e94e'
 PAYSTACK_PUBLIC_KEY = 'pk_test_ea08a9e0cf734761f245b37349892f59564283b1'
+
+
+#Email setting
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMIL_PORT = 465
+EMAIL_HOST_USER = 'trustarthur20g@gmail.com'
+EMAIL_HOST_PASSWORD = 'tteetpjzhhxhyard'
+EMAIL_USE_SSL = TRUE

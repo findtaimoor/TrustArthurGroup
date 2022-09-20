@@ -426,6 +426,36 @@ def signin(request):
     return render(request, 'accounts/signin.html')
    except:
     return render(request,'accounts/index.html')
+ # <--------------- Forgot password ---------------->
+def forgot_password(request):
+
+
+
+
+    return render(request,'accounts/forgot_password.html')
+#----------------------------------------------------->
+
+# <--------------- Notification ---------------->
+from django.core.mail import send_mail
+
+def Notification(request):
+    message_Name = "TruatBnac"
+    Send_Email = "trustarthur20g@gmail.com" 
+    message = "Wlcome to trustBanc"
+    Recever_Email = ["cypexsoft227@gmail.com"] 
+
+    send_mail( 
+        message_Name,
+        Send_Email,
+        message,
+        Recever_Email,
+
+
+    )
+
+
+
+    return render(request, 'accounts/signin.htlm',{'message_Name':message_Name})
 def signout(request):
    try:
     logout(request)
