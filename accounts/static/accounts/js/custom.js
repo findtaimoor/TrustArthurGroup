@@ -17,6 +17,7 @@ function get_quat(quantity, put_quantitiy, available_pro, sum_q){
      
     if(input_val < minimum_val || input_val > maximum_val)
     {
+     
       alert('Your quantity must be between Minimum or Available Product!')
       document.getElementById('checkout_btn').setAttribute('data-target', '#')
     }else{
@@ -26,8 +27,7 @@ function get_quat(quantity, put_quantitiy, available_pro, sum_q){
     
   }
 
-
-
-
+  
+  
 
 
