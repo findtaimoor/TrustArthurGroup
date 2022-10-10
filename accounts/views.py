@@ -17,6 +17,10 @@ import logging
 from .generic import *
 from django_globals import globals
 import uuid
+from http import server
+import smtplib
+
+
 
 
 # Create your views here.
@@ -424,7 +428,21 @@ def signin(request):
                 login(request, user)
                 request.session['vendor_email'] = email
                 messages.success(request,'You are now logged In Successfully.')
-              
+                
+                Send_Email = "trustauthurgroup@gmail.com"
+
+                msg_Lin = "\r\n".join([
+                    
+                "Subject:Login",
+                "",
+                "You are now logged In Successfully."
+                ])
+
+                server = smtplib.SMTP('smtp.gmail.com',587)
+                server.starttls()
+                server.login(Send_Email, 'kqfafblnualvhvhk')
+
+                mail=server.sendmail
                 
                 mail('trustauthurgroup@gmail.com',email,msg_Lin)
 
@@ -466,6 +484,16 @@ def change_p(request):
      ide = User.objects.get(email=email).id
      ide=str(ide)
      
+
+     Send_Email = "trustauthurgroup@gmail.com"
+
+
+     server = smtplib.SMTP('smtp.gmail.com',587)
+     server.starttls()
+     server.login(Send_Email, 'kqfafblnualvhvhk')
+     mail=server.sendmail
+
+
      if Email :
         ide = User.objects.get(email=email).id
         ide=str(ide)
@@ -575,6 +603,22 @@ def Notification(request):
      ide = User.objects.get(email=email).id
      ide=str(ide)
      
+
+
+
+     Send_Email = "trustauthurgroup@gmail.com"
+
+
+     server = smtplib.SMTP('smtp.gmail.com',587)
+     server.starttls()
+     server.login(Send_Email, 'kqfafblnualvhvhk')
+     mail=server.sendmail
+
+
+
+
+
+
      if Email :
         ide = User.objects.get(email=email).id
         ide=str(ide)
@@ -858,6 +902,17 @@ def adminedit(request,id):
             user.save()
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
+
+            Send_Email = "trustauthurgroup@gmail.com"
+
+
+            server = smtplib.SMTP('smtp.gmail.com',587)
+            server.starttls()
+            server.login(Send_Email, 'kqfafblnualvhvhk')
+
+            mail=server.sendmail
+
+
             mail(Send_Email,email,E_Message)
             return redirect('adminlist')
         else:
