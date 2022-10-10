@@ -29,12 +29,12 @@
                   {% if product.Total_S > product.Minemun_O %}
                      <p class="info-text first-latter-color" id="a-pro">Available Products:&nbsp;{{product.Total_S}}</p>
 
-                     <p class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
+                     <p id="minimum_lable" class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
                    
                      <p><label for="quantity">Quantity:</label>
                  
                        
-                       <input class="cus-qut" type="number" style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                       <input class="cus-qut"  type="number" style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
                   {%else%}
                     <p><span class="first-latter-color">Out of Stock</p>
                   {% endif %}
@@ -53,7 +53,7 @@
                         <button type="submit" class="next-btn" id="checkout-button">Quote</button>
                     </form>
                     {% if product.Total_S > product.Minemun_O %}
-                     <button type="button" class="next-btn" onclick="get_quat('_quantity','put_quantitiy','a-pro','sum_q')" data-toggle="modal" data-target="#exampleModalCenter">
+                     <button type="button" class="next-btn" onclick="validate_value()" id="checkout_btn" data-toggle="modal" data-target="#exampleModalCenter">
                          Checkout
                      </button>
                     {% else %}
