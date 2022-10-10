@@ -1,0 +1,65 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}News{% endblock title %}
+
+{% block main-content %}
+
+<style>
+    .next-btn{
+        font-weight: 700;
+        font-size: 20px;
+        padding: 5px 31px;
+        margin-right: 15px;
+        background-color: #EF0502;
+        border-radius: 20px;
+        border: none;
+        color: #fff;
+        margin-top: -1rem;
+    }
+</style>
+    <!--=====================================-->
+    <!--=           news Start          =-->
+    <!--=====================================-->
+
+      <div class="container">
+          <div class="row my-5">
+              {% if news %}
+                {% for blog in news  %}
+                    <div class="col-md-4">
+                        <div class="blog-card blog-card-blog">
+                            <div class="blog-card-image">
+                                <a href="#"> <img class="img" src="{{blog.newspic.url}}"> </a>
+                                <div class="ripple-cont"></div>
+                            </div>
+                            <div class="blog-table">
+                                {% comment %} <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> {{blog.categoryofblog}}</h6> {% endcomment %}
+                                <h4 class="blog-card-caption" style="color:#ef0502;">
+                                    {{blog.title}}
+                                </h4>
+                                <p class="blog-card-description">{{blog.description}}</p>
+                                <div class="ftr">
+                                    <div class="author">
+                                        {% comment %} <a href="#"> <img src="{{blog.user.propic.url}}" alt="..." class="avatar img-raised"> <span>{{blog.user.first_name}} {{blog.user.last_name}} | {{blog.user.user_type | capfirst}}</span> </a> {% endcomment %}
+                                        {% comment %} <a href="{% url 'deleteblog' blog.id %}" class="trash"><i class="fas fa-trash"></i></a> {% endcomment %}
+                                    </div>
+                                    <a href='{% if blog.doc != "None" %} {{blog.doc}}
+                                            {% else %}https://www.trustarthurgroup.com/news/{% endif %}'>
+                                     <button  class="next-btn">Document</button>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+              {% else %}
+                <div class="mt-5">
+                    <h1> No Blogs Available </h1>
+                </div>
+              {% endif %}
+
+            </div>
+        </div>
+
+{% endblock main-content %}

@@ -1,0 +1,50 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} Forgot password {% endblock title %}
+
+{% block main-content %}
+
+
+        <section class="login">
+            <div class="container">
+                <div class="row sign-grd2">
+                    <div class="col-md-6 lft-pan">
+                        <div class="form-box">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <h1>Enter your email</h1>
+                            
+                                <input type="email" placeholder="Email" name="email" required />
+                                 
+
+                               
+                                
+                                {% if msg %}
+                                    <span class="text-danger">{{msg}}</span>
+                                {% endif %}
+            
+                                <button type="submit">send link</button>
+
+                                
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 rgt-pan">
+                        <h1>Trust Authur Group</h1>
+                        <p>
+                            Hi there! Don’t have an
+                            account with us? Click on
+                            the button below to
+                            create an account and
+                            enjoy the range of
+                            services we offer.
+                        </p>
+                        <a href="{% url 'signup' %}" class="ghost">Create Account</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock main-content %}

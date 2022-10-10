@@ -1,0 +1,121 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4">Edit Home Info Section </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+        
+        <tr>
+            <td><label>Title of Box 1:</label></td>
+            <td><input class="form-control" type="text" name="home_box1_title"  value="{{home.home_box1_title}}" placeholder="Enter title" ></td>
+        </tr>
+
+        <tr>
+            <td><label>Description of Box 1: </label></td>
+            <td><textarea class="form-control" name="box1_description" rows="4" cols="50"  placeholder="Please Enter Description">{{home.box1_description}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Title of Box 2:</label></td>
+            <td><input class="form-control" type="text" name="home_box2_title"  value="{{home.home_box2_title}}" placeholder="Enter title"></td>
+        </tr>
+
+        <tr>
+            <td><label>Description of Box 2: </label></td>
+            <td><textarea class="form-control" name="box2_description" rows="4" cols="50"  placeholder="Please Enter Description">{{home.box2_description}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Title of Box 3:</label></td>
+            <td><input class="form-control" type="text" name="home_box3_title"  value="{{home.home_box3_title}}" placeholder="Enter title"></td>
+        </tr>
+
+        <tr>
+            <td><label>Description of Box 3: </label></td>
+            <td><textarea class="form-control" name="box3_description" rows="4" cols="50"  placeholder="Please Enter Description">{{home.box3_description}}</textarea></td>
+        </tr>
+
+
+        <!-- <tr>
+            <td><label>About Heading: </label></td>
+            <td><textarea class="form-control" name="about_head" rows="4" cols="50"  placeholder="Please Enter Heading">{{home.about_head}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>About Description:  </label></td>
+            <td><textarea class="form-control" name="about_description" rows="4" cols="50"  placeholder="Please Enter Description">{{home.about_description}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>About Mission:  </label></td>
+            <td><textarea class="form-control" name="about_mission" rows="4" cols="50"  placeholder="Please Enter Mission">{{home.about_mission}}</textarea></td>
+        </tr>
+
+
+        <tr>
+            <td><label>About Vision:  </label></td>
+            <td><textarea class="form-control" name="about_vision" rows="4" cols="50"  placeholder="Please Enter Vision">{{home.about_vision}}</textarea></td>
+        </tr>
+
+
+        <tr>
+            <td><label>About Commitment:  </label></td>
+            <td><textarea class="form-control" name="about_commitment" rows="4" cols="50"  placeholder="Please Enter Commitment">{{home.about_commitment}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>About Image:</label></td>
+            <td><input class="form-control" type="file" name="about_image"/></td>
+        </tr> -->
+
+        
+        <tr>
+            <td><label>Contact Image:</label></td>
+            <td><input class="form-control" type="file" name="contact_image"/></td>
+        </tr>
+
+        <tr>
+            <td><label>Hotline:</label></td>
+            <td><input class="form-control" type="tel" name="hotline"  value="{{home.hotline}}" placeholder="Enter Hotline"></td>
+        </tr>
+
+        <tr>
+            <td><label>Email:</label></td>
+            <td><input class="form-control" type="email" name="email"  value="{{home.email}}" placeholder="Enter title"></td>
+        </tr>
+
+        <tr>
+            <td><label>Market Update:</label></td>
+            <td><input class="form-control" type="text" name="market_update"  value="{{home.market_update}}" placeholder="Enter Market Update"></td>
+        </tr>
+
+        <tr>
+            <td><label>News:</label></td>
+            <td><input class="form-control" type="text" name="news"  value="{{home.news}}" placeholder="Enter News"></td>
+        </tr>
+
+        <tr>
+            <td><label>Sector News:</label></td>
+            <td><input class="form-control" type="text" name="sectornews"  value="{{home.sectornews}}" placeholder="Enter Sector News"></td>
+        </tr>
+
+        <tr>
+            <td><label>Upcoming Events:</label></td>
+            <td><input class="form-control" type="text" name="upcomingevents"  value="{{home.upcomingevents}}" placeholder="Enter Upcoming Events"></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

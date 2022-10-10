@@ -1,0 +1,249 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock title %}
+
+{% block main-content %}
+
+
+    <!--=====================================-->
+    <!--=            About Start            =-->
+    <!--=====================================-->
+    <section class="about-wrap-layout1">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="about-box4">
+              {% comment %} <p class="heading-subtitle">About</p> {% endcomment %}
+              <h2 class="heading-title">
+                About
+              </h2>
+              <p>
+                {{about.about_description}}
+              </p>
+              <p>
+                {{about.about_description2}}
+              </p>
+              <p>
+                {{about.about_description3}}
+              </p>
+              <!-- <div class="about-layout">
+                <div class="media">
+                  <div class="item-img about-img2">
+                    <img src="../static/todo/img/my-img/fig12.png" alt="figure" width="44" height="46" />
+                  </div>
+                  <div class="media-body">
+                    <div class="item-content">
+                      {% comment %} <h3 class="item-title">Lorem ipsum dolor</h3> {% endcomment %}
+                      <p>
+                        {{about.box1_description}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="about-layout">
+                <div class="media">
+                  <div class="item-img">
+                    <img src="../static/todo/img/my-img/fig10.png" alt="figure" width="40" height="40" />
+                  </div>
+                  <div class="media-body">
+                    <div class="item-content">
+                      {% comment %} <h3 class="item-title">Lorem ipsum dolor</h3> {% endcomment %}
+                      <p>
+                        {{about.box2_description}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="about-box5">
+              <div class="item-img">
+                <img src="{{about.about_image.url}}" alt="about"  class="abt-img">
+                <!-- <div class="abt-img" style="background-image: url(../static/todo/img/my-img/abt-rgt.jpg)"></div> -->
+                <div class="background-image1">
+                  <img src="../static/todo/img/figure/figure73.png" alt="figure" width="167" height="167" />
+                </div>
+                <div class="background-image2">
+                  <img src="../static/todo/img/figure/figure74.png" alt="figure" width="121" height="104" />
+                </div>
+                <div class="background-image3">
+                  <img src="../static/todo/img/figure/figure75.png" alt="figure" width="139" height="417" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Company-value Start    =-->
+    <!--=====================================-->
+    <section class="company-value-wrap">
+      <div class="container">
+        <div class="item-content">
+          <h2 class="section-title">Company Core Values</h2>
+          <p>
+            {% comment %} Bookan unknown printer took a galley of type and scrambled make It
+            has survived not only five centuries. {% endcomment %}
+          </p>
+        </div>
+        <div class="row">
+          {% for i in ccv %}
+            
+          <div class="col-lg-6">
+            <div class="company-value-box">
+              <div class="media">
+                <div class="item-img">
+                  <img src="{{i.core_image.url}}" alt="" class="comp-img">
+                  <!-- <div class="comp-img" style="background-image: url(../static/todo/img/my-img/comp1.jpg)"></div> -->
+                </div>
+                <div class="media-body">
+                  {% comment %} <h3 class="heading-title">Lorem Ipsum</h3> {% endcomment %}
+                  <p>{{i.description}}</p>
+                  <div class="item-button">
+                    <a href="#" class="item-btn">Read More<i class="fas fa-long-arrow-alt-right"></i></a>
+                  </div>
+                  <div class="item-number">0{{forloop.counter}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+          
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Team Start             =-->
+    <!--=====================================-->
+    <section class="team-wrap-layout1">
+      <div class="background-image2">
+        <img src="../static/todo/img/figure/figure14.png" alt="figure" width="490" height="945" />
+      </div>
+      <div class="background-image3">
+        <img src="../static/todo/img/figure/figure15.png" alt="figure" width="501" height="" />
+      </div>
+      <div class="container">
+        <div class="section-heading">
+          {% comment %} <p class="item-subtitle">Our Team Members</p> {% endcomment %}
+          <h2 class="heading-title">Our Team Members</h2>
+          <p>
+            TrustBanc Group is
+            governed by a set of skillful and
+            innovative professionals, who are
+            zealous in elevating the firm. They are
+            led by principles of professionalism,
+            reliability, and transparency with a
+            vision of growing a stable and
+            profitable business.
+          </p>
+          <!-- <div class="row"> -->
+
+            <div class="teamdiv">
+            {% for i in members %}
+              
+              <div class="team-box1 trigger_popup_fricc">
+                <div class="item-shape"></div>
+                <div class="item-img">
+                  <a href="#"><img src="{{i.member_image.url}}" alt="team" width="510" height="500" /></a>
+                </div>
+                <div class="item-content">
+                  <h3 class="item-title"><a href="#">{{i.name}}</a></h3>
+                  <h4 class="item-subtitle">{{i.profession}}</h4>
+                  <h6 class="item-subtitle blog-card-description text-justify">{{i.description}}</h6>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+              
+          <!-- </div> -->
+        </div>
+      </div>
+
+      
+      
+    </section>
+    <!--=====================================-->
+    <!--=            Call-back Start        =-->
+    <!--=====================================-->
+    <section class="call-back-wrap call-back-wrap2">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-lg-6">
+            <div class="call-back-box1">
+              <h3 class="section-title">Request A Call Back</h3>
+              <form class="message-box">
+                <div class="row">
+                  <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" placeholder="Name" />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" placeholder="Email" />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <input type="text" class="form-control" placeholder="Phone" />
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <textarea name="comment" id="message" class="form-control" placeholder="Message" cols="30"
+                      rows="4"></textarea>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    <a href="#" class="item-btn">Submit Now</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="call-back-box2">
+              <div class="item-img">
+                <img src="{{home.contact_image.url}}" alt="blog" class="maincontact"/>
+                {% comment %} <div class="call-img">
+                  <img src="../static/todo/img/figure/figure11.png" alt="figure" width="145" height="295" />
+                </div> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================================-->
+    <!--=            Testimonial Start      =-->
+    <!--=====================================-->
+    <section class="testimonial-wrap3">
+      <div class="container">
+        <div class="testimonial-box3">
+          <div class="slick-carousel slick-slider"
+            data-slick='{"arrows": true, "slidesToShow": 1, "autoplay": false, "autoplaySpeed": 2000}'>
+            
+            {% for i in testi %}
+
+            <div class="slick-slide">
+              <div class="testimonial-content">
+                <div class="item-img-round">
+                  <img src="{{i.testi_image.url}}" alt="about" width="80" height="80" />
+                </div>
+                <blockquote class="item-quote">
+                  “{{i.description}}”
+                </blockquote>
+                <h2 class="heading-title">{{i.name}}</h2>
+                <h3 class="heading-subtitle">{{i.profession}}</h3>
+              </div>
+            </div>
+              
+            {% endfor %}
+
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  {% endblock main-content %}

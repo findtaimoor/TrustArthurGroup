@@ -1,0 +1,91 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/mdb.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables-select.min.css' %}" />
+
+<div class="m-4"  >
+    <h2 class=""> Sub-Product List</h2>
+ <div  style="overflow-x:auto;"> 
+   <table id="dtMaterialDesignExample" class="table table-striped">
+   
+     <thead>
+        <tr>
+            <th>Product</th>
+            <th>Sub Product Title</th>
+            <th>Brief Description of Sub product</th>
+            <th>Sub Product Price</th>
+            <th>Total Stock</th>
+            <th>Minemun Order</th>
+            <th>Duration</th>
+            <th>Benifits</th>
+            <th>Plan Features</th>
+            <th>Actions</th>
+        </tr>
+     </thead> 
+     <tbody>
+        {% if subproduct %}
+        {% for i in subproduct %}
+        <tr>
+            <td>{{i.product.title}}</td>
+            <td>{{i.sub_title}}</td>
+            <td>{{i.sub_title2}}</td>
+            <td>{{i.selling_price}}</td>
+            <td>{{i.Total_S}}</td>
+            <td>{{i.Minemun_O}}</td>
+            <td>{{i.duration_year}} Years {{i.duration_month}} Months</td>
+            <td>{{i.benifits|linebreaks}}</td>
+            <td>{{i.plan_feature|linebreaks}}</td>  
+            <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a></td>
+        </tr>
+        
+
+        {% endfor %}
+
+        {% endif %}
+
+     </tbody>
+    
+   </table>
+ </div>
+</div>
+
+
+  <script src="{% static 'devadmin/js/addons/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/popper.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/bootstrap.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/mdb.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables-select.min.js' %}"></script>
+
+<script>
+
+
+ $('#dtMaterialDesignExample').DataTable();
+
+
+    $('#dtMaterialDesignExample_wrapper, #dt-material-checkbox_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter, #dt-material-checkbox_wrapper .dataTables_filter').find(
+      'input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length, #dt-material-checkbox_wrapper .dataTables_length').addClass(
+      'd-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
+    
+</script>
+
+{% endblock main-content %}

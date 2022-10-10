@@ -1,0 +1,147 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/mdb.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables.min.css' %}" />
+<link rel="stylesheet" href="{% static 'devadmin/css/addons/datatables-select.min.css' %}" />
+
+<style>
+
+@media(max-width: 768px) { 
+table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+}
+</style>
+
+<div class="m-4">
+    <h2 class=""> Corporate User Detail</h2>
+
+<table id="dtMaterialDesignExample" class="table table-striped table-responsive" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+        <td>User:</td>
+        <td>{{busers.user|capfirst}}</td>
+    </tr>
+    <tr>
+      <td>Company Name:</td>
+      <td>{{busers.company_name}}</td>
+    </tr>
+      <tr>
+        <td>Company Number:</td>
+        <td>{{busers.company_number}}</td>
+      </tr>
+      <tr>
+        <td>Tax Id:</td>
+        <td>{{busers.tax_id}}</td>
+      </tr>
+      <tr>
+        <td>Company Industry:</td>
+        <td>{{busers.company_industry}}</td>
+      </tr>
+      <tr>
+        <td>Company Date:</td>
+        <td>{{busers.company_date}}</td>
+      </tr>
+        <tr>
+        <td>Phoneno:</td>
+        <td>{{busers.phoneno}}</td>
+      </tr>
+      <tr>
+        <td>NIN:</td>
+        <td>{{busers.NIN}}</td>
+        
+      </tr>
+      <tr>
+        <td>BVN:</td>
+        <td>{{busers.BVN}}</td>
+      </tr>
+      <tr>
+        <td>Houseno:</td>
+        <td>{{busers.houseno}}</td>
+      </tr>
+      <tr>
+        <td>Street Name:</td>
+        <td>{{busers.street_name}}</td>
+      </tr>
+      <tr>
+        <td>City:</td>
+        <td>{{busers.city}}</td>
+      </tr>
+      <tr>
+        <td>State:</td>
+        <td>{{busers.state}}</td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td>{{busers.country}}</td>
+      </tr>
+      <tr>
+        <td>Name 1:</td>
+        <td>{{busers.em1}}</td>
+      </tr>
+      <tr>
+        <td>Name 2:</td>
+        <td>{{busers.em2}}</td>
+      </tr>
+      <tr>
+        <td>Name 3:</td>
+        <td>{{busers.em3}}</td>
+      </tr>
+      <tr>
+        <td>Name 4:</td>
+        <td>{{busers.em4}}</td>
+      </tr>
+      <tr>
+        <td>Uploaded Image:</td>
+        <td><img src="{{busers.photo.url}}" alt="" srcset="" width="300" height="200"></td>
+      </tr>
+      <tr>
+        <td>Uploaded Signautre:</td>
+        <td><img src="{{busers.signature.url}}" alt="" srcset="" width="300" height="200"></td>
+      </tr>
+
+</tbody>
+</table>
+</div>
+</div>
+
+  <script src="{% static 'devadmin/js/addons/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/popper.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/bootstrap.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/mdb.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables.min.js' %}"></script>
+  <script src="{% static 'devadmin/js/addons/datatables-select.min.js' %}"></script>
+
+<script>
+
+
+ $('#dtMaterialDesignExample').DataTable();
+
+
+    $('#dtMaterialDesignExample_wrapper, #dt-material-checkbox_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_filter, #dt-material-checkbox_wrapper .dataTables_filter').find(
+      'input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dtMaterialDesignExample_wrapper .dataTables_length, #dt-material-checkbox_wrapper .dataTables_length').addClass(
+      'd-flex flex-row');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').removeClass(
+      'custom-select custom-select-sm form-control form-control-sm');
+    $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
+    $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
+    
+</script>
+
+{% endblock main-content %}

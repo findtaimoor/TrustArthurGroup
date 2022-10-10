@@ -1,0 +1,938 @@
+$PrimaryCol: #302E2F;
+$secondaryCol: #EF0502;
+$secondaryColTw: #bc7831;
+$PrimaryGrd: linear-gradient(40deg, #cb8033, #bc7831);
+$secondaryGrd: linear-gradient(40deg, #114d7f, #286ea8);
+$comnCol: #ffffff;
+$comnDrkCol: #000000;
+
+@mixin bcImg {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.rt-sticky {
+    z-index: 999 !important;
+}
+
+.financo-activities-box1 .item-img-round:before {
+    content: url(../img/my-img/fig9.png) !important;
+}
+
+.header-topbar-layout1 {
+    background-color: $PrimaryCol  !important;
+}
+
+.topbar-right ul .topbar-social a {
+    color: $comnCol  !important;
+}
+
+.topbar-right ul .topbar-social a:hover {
+    color: $secondaryCol  !important;
+}
+
+.topbar-left .header-button a {
+    color: $secondaryCol  !important;
+}
+
+.topbar-right .header-right-button {
+    display: flex;
+}
+
+.topbar-right .header-right-button .header-btn.s-up {
+    // background-image: linear-gradient(30deg, #0c333b, #000000, #0c333b) !important;
+    background-image: $secondaryGrd  !important;
+}
+
+.topbar-right .header-right-button .header-btn:hover {
+    // background-image: linear-gradient(#da251e, #ff413a) !important;
+    background-image: $PrimaryGrd  !important;
+    opacity: 85% !important;
+}
+
+.header-menu {
+    .lgo-img {
+        @include bcImg();
+        width: 182px;
+        height: 29px;
+    }
+}
+
+.header-menu.rt-sticky {
+    .lgo-img {
+        @include bcImg();
+        width: 182px;
+        height: 29px;
+    }
+}
+
+.lgo-img-t {
+    @include bcImg();
+    width: 182px;
+    height: 29px;
+}
+
+.topbar-right .header-right-button .header-btn {
+    background-image: $PrimaryGrd  !important;
+    background-color: transparent !important;
+}
+
+#preloader {
+    background-image: url(../img/my-img/trustbank_arthur.png) !important;
+}
+
+.financo-activities-box1:hover .item-button .item-btn:after {
+    background-color: $PrimaryCol  !important;
+}
+
+.financo-activities-box1 .item-button .item-btn:after {
+    background-color: $secondaryCol  !important;
+}
+
+.slider-area .slider-content .item-btn li a:after {
+    background-image: $PrimaryGrd  !important;
+}
+
+.slider-area .slider-content .item-btn li a:hover:before {
+    color: white !important;
+    background-color: white !important;
+}
+
+.grd-info {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.grd-info.grd-info-tw {
+    grid-template-columns: 1fr 2fr;
+}
+
+.grd-info.grd-info-th {
+    grid-template-columns: 1fr 1fr;
+}
+
+.consulting-service3 .media:hover .media-body .item-button .item-btn {
+    background-color: $PrimaryCol  !important;
+    border-color: $PrimaryCol  !important;
+}
+
+.progress-bar-box1 .progress-box .circle-progress {
+    justify-content: center !important;
+}
+
+.progress-bar-box1 .progress-box .circle-progress span {
+    transform: translateX(-27px) !important;
+    top: 33% !important;
+    // left: 50%!important;
+}
+
+.progress-bar-box1 .progress-box .circle-progress label {
+    bottom: 32px !important;
+    left: 41% !important;
+    margin-bottom: 10px !important;
+}
+
+.progress-bar-box1 {
+    text-align: center;
+}
+
+.rgt-img {
+    @include bcImg();
+    width: 800px;
+    height: 550px;
+}
+
+.banner-box1 {
+    background-color: $PrimaryCol  !important;
+}
+
+.banner-box1:after {
+    background: rgba(250, 54, 10, 0.8) !important;
+}
+
+.banner-box1:before {
+    background: rgba(17, 77, 127, 0.11) !important;
+}
+
+.banner-box1 .bannar-details .contact-box2 .item-icon-box2:after {
+    background-color: #326a98 !important;
+}
+
+.portfolio-box1 .item-content .item-button .item-btn:after {
+    background-color: $secondaryCol  !important;
+}
+
+.portfolio-box1 .item-content .heading-subtitle:after {
+    background-color: $PrimaryCol  !important;
+}
+
+.portfolio-box1 .item-content .heading-subtitle:before {
+    background-color: #ed9895;
+}
+
+.portfolio-box1 .item-img:before {
+    background-image: linear-gradient(to top, $PrimaryCol, transparent) !important;
+}
+
+.company-profit-box1 .item-button .item-btn:after {
+    background: linear-gradient(to right, $secondaryCol, $secondaryColTw) !important;
+}
+
+.slider-area .nivo-directionNav a.nivo-prevNav {
+    left: 3% !important;
+}
+
+.slider-area .nivo-directionNav a.nivo-nextNav {
+    left: 3% !important;
+}
+
+.build-img {
+    @include bcImg();
+    // width: 680px;
+    width: 80%;
+    height: 470px;
+    margin: auto;
+}
+
+.about-box2 {
+    padding-left: 0 !important;
+    // padding-top: 50px!important;
+}
+
+.banner-box1 .item-img .btm-img {
+    @include bcImg();
+    width: 580px;
+    height: 200px;
+    clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 102%);
+}
+
+.blg-img {
+    @include bcImg();
+    width: 380px;
+    height: 433px;
+}
+
+.offcanvas-logo .lgo-img {
+    @include bcImg();
+    width: 182px;
+    height: 29px;
+}
+
+.logo-mobile .lgo-img-t {
+    width: 125px;
+    height: 20px;
+}
+
+.abt-img {
+    @include bcImg();
+    width: 500px;
+    height: 600px;
+    border-radius: 0px 50px 0px 50px;
+    margin-top: 10px;
+}
+
+.comp-img {
+    @include bcImg();
+    width: 235px;
+    height: 250px;
+    transition: all 0.3s ease-in;
+}
+
+.company-value-box .media:hover .item-img .comp-img {
+    transform: translateY(-20px);
+    transition: all 0.3s ease-out;
+}
+
+// =====================
+// Sign In
+// =====================
+section.login.signup {
+    .lft-pan {
+        border-radius: 0 8px 8px 0 !important;
+    }
+
+    .rgt-pan {
+        border-radius: 8px 0 0 8px !important;
+    }
+}
+
+section.login {
+    padding: 80px 0 50px;
+
+    button {
+        border-radius: 20px;
+        border: 1px solid $PrimaryCol;
+        background-color: $PrimaryCol;
+        color: $comnCol;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        width: 100%;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .sign-grd {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+
+        .lft-pan {
+            border-radius: 8px 0 0 8px;
+            padding: 50px 0;
+            background-color: #fbfbfb;
+
+            button {
+                border-radius: 100px;
+                padding: 10px;
+                font-size: 14px;
+                margin-top: 20px;
+            }
+
+            button:hover {
+                background-color: $secondaryCol;
+                border-color: $comnCol
+            }
+        }
+
+        .rgt-pan {
+            // background-color: $PrimaryCol;
+            @include bcImg();
+            background-image: url(../img/my-img/signin.jpg);
+            border-radius: 0 8px 8px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            z-index: 1;
+            overflow: hidden;
+            position: relative;
+            color: $comnCol;
+
+            h1 {
+                color: $comnCol;
+            }
+
+            a.ghost {
+                background-color: transparent;
+                border-color: $comnCol;
+                transition: .3s;
+                width: auto;
+                padding: 5px 30px;
+                border: 1px solid $comnCol;
+                color: $comnCol;
+                border-radius: 100px;
+            }
+
+            a.ghost:hover {
+                background-color: $comnCol;
+                color: $PrimaryCol;
+                border-color: $PrimaryCol;
+            }
+        }
+
+        .rgt-pan::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: .9;
+            width: 100%;
+            height: 100%;
+            background: -webkit-linear-gradient(to right, $PrimaryCol, $secondaryCol);
+            background: linear-gradient(to right, $PrimaryCol, $secondaryCol);
+        }
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    .social-container {
+        a {
+            color: #0c333b;
+            transition: .3s;
+        }
+
+        a:hover {
+            background-color: $PrimaryCol;
+            color: $comnCol;
+            border-color: $PrimaryCol;
+        }
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+    }
+
+    form:focus {
+        outline: none !important;
+        border: 1px solid #0c333b !important;
+    }
+
+    .overlay-panel {
+        h1 {
+            color: $comnCol;
+            font-weight: bold;
+        }
+    }
+
+    input {
+        background-color: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    a.forgot {
+        margin: 20px 0;
+        color: $PrimaryCol;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: none;
+        position: relative;
+        overflow: hidden;
+        width: 1000px;
+        max-width: 100%;
+        min-height: auto;
+    }
+
+    .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: all 0.6s ease-in-out;
+    }
+
+    .sign-in-container {
+        left: 0;
+        width: 50%;
+        z-index: 2;
+    }
+
+    .container.right-panel-active .sign-in-container {
+        transform: translateX(100%);
+    }
+
+    .sign-up-container {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+        animation: show 0.6s;
+    }
+
+    @keyframes show {
+
+        0%,
+        49.99% {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        50%,
+        100% {
+            opacity: 1;
+            z-index: 5;
+        }
+    }
+
+    .overlay-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: transform 0.6s ease-in-out;
+        z-index: 1;
+    }
+
+    .container.right-panel-active .overlay-container {
+        transform: translateX(-100%);
+    }
+
+    .overlay {
+        background: $PrimaryCol;
+        @include bcImg();
+        color: #FFFFFF;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .container.right-panel-active .overlay {
+        transform: translateX(50%);
+    }
+
+    .overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .overlay-left {
+        transform: translateX(-20%);
+    }
+
+    .container.right-panel-active .overlay-left {
+        transform: translateX(0);
+    }
+
+    .overlay-right {
+        right: 0;
+        transform: translateX(0);
+    }
+
+    .container.right-panel-active .overlay-right {
+        transform: translateX(20%);
+    }
+
+    .social-container {
+        margin: 20px 0;
+    }
+
+    .social-container a {
+        border: 1px solid #DDDDDD;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+    }
+}
+
+.testimonial-wrap3 {
+    background-image: url(../img/my-img/fig2.png) !important;
+}
+
+.consulting-service3 .media:hover .media-body .item-button .item-btn {
+    background-color: $secondaryCol  !important;
+}
+
+.scrollup {
+    background-image: $secondaryGrd  !important;
+}
+
+.scrollup:after {
+    background-image: $secondaryGrd  !important;
+}
+
+.about-box4 .about-layout:hover .media .item-img:before {
+    background-color: #d4e7f4 !important;
+}
+
+.about-box5 .item-img:after {
+    border-bottom: 65px solid $PrimaryCol  !important;
+}
+
+// ---------------------
+@media only screen and (max-width: 575px) {
+    section.login.signup {
+        .lft-pan {
+            border-radius: 0 0 8px 8px !important;
+        }
+
+        .rgt-pan {
+            border-radius: 8px 8px 0 0 !important;
+        }
+    }
+
+    section.login {
+        .sign-grd {
+            grid-template-columns: 1fr;
+
+            .lft-pan {
+                border-radius: 8px 8px 0 0;
+            }
+
+            .rgt-pan {
+                padding-top: 50px;
+                padding-bottom: 50px;
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    }
+
+    .comp-img {
+        margin: auto;
+    }
+
+    .abt-img {
+        width: 390px;
+        height: 280px;
+    }
+
+    .slider-area .nivo-directionNav a.nivo-prevNav,
+    .slider-area .nivo-directionNav a.nivo-nextNav {
+        width: 25px !important;
+        height: 25px !important;
+        left: auto !important;
+        right: 3% !important;
+    }
+
+    .slider-area .nivo-directionNav a.nivo-nextNav {
+        top: 50% !important;
+    }
+
+    .grd-info {
+        grid-template-columns: 1fr !important;
+
+        .media {
+            margin-bottom: 3px !important;
+        }
+    }
+
+    .grd-info.grd-info-tw {
+        padding-left: 18px;
+    }
+
+    .banner-box1 {
+        flex-direction: column;
+    }
+
+    .banner-box1 .item-img .btm-img {
+        width: 388px;
+        clip-path: none;
+    }
+
+    .rgt-img {
+        width: 430px;
+        height: 430px;
+    }
+
+    .blg-img {
+        width: 100%;
+    }
+}
+
+.call-back-box1 .message-box .form-group .item-btn {
+    background-color: $PrimaryCol  !important;
+}
+
+.call-back-box1 .message-box .form-group .item-btn:hover {
+    background-color: $secondaryCol  !important;
+    color: $comnCol  !important;
+}
+
+.testimonial-box1 .slick-slide .media .shape-box:before {
+    background-color: $PrimaryCol  !important;
+}
+
+.testimonial-box1 .slick-arrow:hover:before {
+    color: $secondaryCol  !important;
+}
+
+.footer-right .input-group .input-group-append button {
+    background-color: $PrimaryCol  !important;
+}
+
+.footer-right .input-group .input-group-append button:hover {
+    background-color: rgb(95, 95, 95);
+    color: $secondaryCol  !important;
+}
+
+.project-wrap-layout1 .section-subtitle:before {
+    background-color: #ff5755 !important;
+}
+
+.project-wrap-layout1 .section-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.company-profit-box1 .section-subtitle {
+    color: $PrimaryCol  !important;
+}
+
+.company-profit-box1 .section-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.company-profit-box1 .section-subtitle::before {
+    background-color: #ff5755 !important;
+}
+
+.location-wrap-layout1 .item-heading .item-subtitle {
+    color: $PrimaryCol  !important;
+}
+
+.location-box .map-icon ul li {
+    color: $secondaryCol  !important;
+}
+
+// @keyframes pulse {
+//     0% {
+//         box-shadow: 0 0 0 0 $PrimaryCol!important;
+//     }
+//     70% {
+//         box-shadow: 0 0 0 20px $PrimaryCol!important;
+//     }
+//     100% {
+//         box-shadow: 0 0 0 0 rgba(33, 234, 12, 0)!important;
+//     }
+// }
+.scrollup {
+    background-color: $PrimaryCol  !important;
+    background-image: none !important;
+}
+
+.scrollup:hover {
+    background-color: $secondaryCol  !important;
+    background-image: none !important;
+}
+
+.personal-details .personal-info-box .section-title:after {
+    background-color: $secondaryCol  !important;
+}
+
+.personal-details .personal-info-box .section-title:before {
+    background-color: #ff5755 !important;
+}
+
+.footer-middle .footer-title:after {
+    background-color: $secondaryCol  !important;
+}
+
+.footer-middle .footer-title:before {
+    background-color: #ff5755 !important;
+}
+
+.footer-right .footer-title:after {
+    background-color: $secondaryCol  !important;
+}
+
+.footer-right .footer-title:before {
+    background-color: #ff5755 !important;
+}
+
+.topbar-right .header-right-button .header-btn {
+    background-image: none !important;
+    background-color: $secondaryCol  !important;
+    border: 1px solid transparent !important;
+}
+
+.topbar-right .header-right-button .header-btn:hover {
+    color: $comnCol  !important;
+    background-color: rgb(97, 97, 97) !important;
+    // border: 1px solid $comnCol!important;
+    background-image: none !important;
+}
+
+.topbar-right .header-right-button .header-btn.s-up {
+    background-image: none !important;
+    background-color: $PrimaryCol  !important;
+}
+
+.about-box1 .section-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.about-box1 .section-subtitle:before {
+    background-color: #ff5755 !important;
+}
+
+.consulting-service3 .media .media-body .item-button .item-btn i {
+    color: $secondaryCol  !important;
+}
+
+.banner-box1 .bannar-details .contact-box2 .item-icon-box2:after {
+    background-color: $secondaryCol  !important;
+}
+
+.project-wrap-layout1 .section-subtitle {
+    color: $PrimaryCol  !important;
+}
+
+.call-back-box1 .section-title:after {
+    background-color: $secondaryCol  !important;
+}
+
+.call-back-box1 .section-title:before {
+    background-color: #ff5755 !important;
+}
+
+.header-menu nav.template-main-menu>ul>li>a:hover {
+    color: $secondaryCol  !important;
+}
+
+.scrollup:after {
+    background-image: none !important;
+    background-color: $secondaryCol;
+}
+
+.footer-left .footer-social ul li a:hover {
+    background-color: $secondaryCol  !important;
+}
+
+.portfolio-box1 .item-content .heading-subtitle:before {
+    background-color: #ff5755 !important;
+}
+
+.portfolio-box1 .item-content .heading-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.slider-area .slider-content .item-btn li a i {
+    color: $secondaryCol  !important;
+}
+
+.slider-area .slider-content .item-subtitle {
+    color: $secondaryCol  !important;
+}
+
+.slider-area .slider-content .item-title:before {
+    background-color: $secondaryCol  !important;
+}
+
+.slider-area .nivo-directionNav a.nivo-prevNav:hover {
+    background-color: $PrimaryCol  !important;
+}
+
+.slider-area .nivo-directionNav a.nivo-nextNav:hover {
+    background-color: $PrimaryCol  !important;
+}
+
+.header-action-layout1 ul .header-number .media .item-icon {
+    color: $secondaryCol  !important;
+}
+
+.topbar-left .header-button a i {
+    color: $secondaryCol  !important;
+}
+
+.slider-area .slider-content .item-btn li a:after {
+    background-image: none !important;
+    background-color: $secondaryCol  !important;
+}
+
+.consulting-service-wrap1 .section-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.consulting-service-wrap1 .section-subtitle:before {
+    background-color: #ff5755 !important;
+}
+
+.consulting-service-wrap1 .section-subtitle {
+    color: $PrimaryCol  !important;
+}
+
+.offcanvas-menu-wrap .offcanvas-content .offcanvas-menu .nav-item a:hover {
+    color: $secondaryCol  !important;
+}
+
+.offcanvas-menu-wrap .close-btn {
+    color: $secondaryCol  !important;
+}
+
+.offcanvas-menu-wrap .offcanvas-content .offcanvas-footer .offcanvas-social li a:hover {
+    color: $secondaryCol  !important;
+}
+
+.team-box1 .team-social {
+    background-color: $secondaryCol  !important;
+}
+
+.team-box1:hover:before {
+    background-color: $secondaryCol  !important;
+}
+
+.team-box1:hover:after {
+    border-color: #ff5755 !important;
+}
+
+.about-box4 .heading-subtitle:after {
+    background-color: $secondaryCol  !important;
+}
+
+.about-box4 .heading-subtitle:before {
+    background-color: #ff5755 !important;
+}
+
+.company-value-box .media .media-body .item-button .item-btn:hover {
+    background-color: $secondaryCol  !important;
+}
+
+.company-value-box .media .media-body .item-button .item-btn:hover {
+    border-color: 1px solid $secondaryCol  !important;
+}
+
+.company-value-box .media .media-body .item-button .item-btn i {
+    color: $secondaryCol  !important;
+}
+
+.company-value-box .media .media-body .item-button .item-btn:hover i {
+    color: $comnCol  !important
+}
+
+.company-value-box .media .media-body .item-button .item-btn:hover {
+    border-color: $secondaryCol  !important;
+}
+
+.team-wrap-layout1 .section-heading .item-subtitle {
+    color: $PrimaryCol  !important;
+}
+
+.testimonial-box3 .slick-arrow:before {
+    color: $PrimaryCol  !important;
+}
+
+.about-box4 .about-layout:before {
+    background-color: $secondaryCol  !important;
+}
+
+.testimonial-wrap3 {
+    background-image: url('../img/my-img/figure72.png') !important;
+}
+
+.progress-bar-box1 {
+    background-image: url('../img/my-img/figure36.png') !important;
+}
+
+.consulting-service3 .media .media-body .item-button .item-btn:hover i {
+    color: white !important;
+    margin-left: 12px;
+}
+
+.nivo-caption .item-btn:hover li a i {
+    color: white !important;
+}

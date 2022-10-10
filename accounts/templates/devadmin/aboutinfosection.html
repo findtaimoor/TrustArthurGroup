@@ -1,0 +1,43 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4">Edit About Info Section </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+        
+        <tr>
+            <td><label>About Description:  </label></td>
+            <td><textarea class="form-control" name="about_description" rows="7" cols="50"  placeholder="Please Enter Description">{{about.about_description}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>About Description Para 2:  </label></td>
+            <td><textarea class="form-control" name="about_description2" rows="7" cols="50"  placeholder="Please Enter Description 2">{{about.about_description2}}</textarea></td>
+        </tr>
+
+
+        <tr>
+            <td><label>About Description Para 3:  </label></td>
+            <td><textarea class="form-control" name="about_description3" rows="7" cols="50"  placeholder="Please Enter Description 3">{{about.about_description3}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>About Image:</label></td>
+            <td><input class="form-control" type="file" name="about_image"/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

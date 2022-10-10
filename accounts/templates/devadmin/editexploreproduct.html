@@ -1,0 +1,38 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Edit Explore Product </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+        
+        <tr>
+            <td><label>Title of Explore Product:</label></td>
+            <td><input class="form-control" type="text" name="title" placeholder="Enter title" value="{{explore.title}}" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Description:</label></td>
+            <td><textarea class="form-control" name="description" rows="4" cols="50" placeholder="Enter Description" required>{{explore.description}}</textarea></td>
+        </tr>
+
+
+        <tr>
+            <td><label>Image:</label></td>
+            <td><input class="form-control" type="file" name="exp_image"/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

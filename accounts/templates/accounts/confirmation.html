@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}
+
+{% block main-content %}
+
+    {% if payment_status == 'success' %}
+
+        {{payment_status}}
+
+    {% else %}
+
+    <p>Something went wrong</p>
+
+    {% endif %}
+
+
+{% endblock main-content %}

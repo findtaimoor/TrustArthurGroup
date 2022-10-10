@@ -1,0 +1,52 @@
+1. Notification via email on login (every user) ==> Done
+a. Notify user via email (You have logged into your system) ==>Done
+b. Give an option to go login and change password if you are not the person. ==> Done
+This should apply to all users including admin ==>Done
+
+
+
+c. Implement "Forgot Password"/ Password Reset ==>Done
+d. Remove the social media login options ==>Done
+
+
+Add missing fields in product
+Show cost on each product
+Show buy button on each product after that take to payment screen
+    add two options 
+        via bank    
+        via card
+
+        
+
+
+
+
+Products
+Products are built on a diminishing number pattern.
+2 Products (Sukuk and Notes) are built in such a way as following
+
+
+
+Admin creates new Notes or Sukuk Product
+In admin panel
+a. Admin adds product name ==>Done
+b. Admin adds total number of units available for sale of the product. ==> No
+c. Admin adds cost per unit ==>Done
+dc. Admin adds minimum unit applicable (minimum units customer can buy) ==> NO
+e. Admin adds process function (validate payment, accept purchase, manage purchase)
+
+
+
+User
+a. User sees the product and the cost per unit ==>Done
+b. User buys product either via payment platform or Offline Payment==>No
+c. If payment gateway product is sold immedately ==>No
+d. If payment by bank transfer (offline payment) then product is sold on hold till admin approves purchase
+
+
+
+Once payment is approved. Customer gets email acknowledging payment with all details of ==> No
+a. Product ==>
+b. Product details==>
+c. Duration of product/Maturity date
+d. Amount paid==>No

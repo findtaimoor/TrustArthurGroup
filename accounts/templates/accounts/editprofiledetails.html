@@ -1,0 +1,644 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<style>
+    .d-grid{
+        border-bottom: 2px solid #000;
+        margin: 10px;
+    }
+    .d-grid a{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .d-grid a:hover{
+        padding: 10px 40px;
+        color: #fff!important;
+        background-color: #EF0502;
+        border-radius: 20px;
+    }
+</style>
+
+<div class="container my-5 ordersec">
+    <div class="row">
+    <!-- <h3 class="mb-3">Welcome {{request.user|capfirst}}</h3> -->
+     <div class="col-md-2 border-right">
+      <ul class="list-unstyled">
+        {% if request.user.is_superuser %}
+        <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
+        <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
+        {% else %}   
+        <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
+        <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
+        <li class="d-grid"><a href="{% url 'editprofiledetails' %}" class="btn">Details</a></li>
+        {% endif %}
+      </ul>
+     </div>
+
+     <div class="col-md-8 offset-md-1">
+
+        <div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="mt-3">Edit Your Details </h2>
+        
+        {% if cuser.typeofuser == 'corporate' %}
+
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table class="text-left">
+        
+        <tr>
+            <td><label>Email:</label></td>
+            <td><input class="form-control" type="text" name="email"  value="{{cuser.user.email}}" disabled></td>
+        </tr>
+
+        <tr>
+            <td><label>Company name:</label></td>
+            <td><input class="form-control" type="text" name="company_name"  value="{{cuser.company_name}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Company Registration number: </label></td>
+            <td><input class="form-control" type="text" name="company_number"  value="{{cuser.company_number}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Tax id:</label></td>
+            <td><input class="form-control" type="text" name="tax_id"  value="{{cuser.tax_id}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Industry: </label></td>
+            <td><select class="select form-control" name="company_industry" id="company_Industry">
+                <option value="Test">Test</option>
+                <option value="Test">Test</option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td><label>Date of incorporation:</label></td>
+            <td><input type="date" class="form-control" name="company_date" value="{{cuser.company_date|date:'Y-m-d'}}" onclick="companyDate()"></td>
+        </tr>
+
+        <tr>
+            <td><label>National Identity Number: </label></td>
+            <td><input class="form-control" type="text" name="NIN" value="{{cuser.NIN}}"></td>
+        </tr>
+
+
+        <tr>
+            <td><label>Bank Verification Number: </label></td>
+            <td><input class="form-control" type="text" name="BVN" value="{{cuser.BVN}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Phone number: </label></td>
+            <td><input class="form-control" type="tel" name="phone"  value="{{cuser.phoneno}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+        </tr>
+
+        <tr>
+            <td><label>House or Building number: </label></td>
+            <td><input class="form-control" type="text" name="house_number"  value="{{cuser.houseno}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Street name: </label></td>
+            <td><input class="form-control" type="text" name="street_name"  value="{{cuser.street_name}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>LGA: </label></td>
+            <td><input class="form-control" type="text" name="city"  value="{{cuser.city}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>State: </label></td>
+            <td><input class="form-control" type="text" name="state"  value="{{cuser.state}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Country of residence: </label></td>
+            <td><input class="form-control" type="text" name="country"  value="{{cuser.country}}"></td>
+        </tr>
+
+
+        <tr>
+            <td><label>Enter 4 exetive names:: </label></td>
+        </tr>
+        <tr>
+            <td><label>Name 1:</label></td>
+            <td><input class="form-control" type="text" name="name1"  value="{{cuser.em1}}"></td>
+        </tr>
+
+        <tr>
+            <td><label>Name 2:</label></td>
+            <td><input class="form-control" type="text" name="name2"  value="{{cuser.em2}}"></td>
+        </tr>
+        
+        <tr>
+            <td><label>Name 3:</label></td>
+            <td><input class="form-control" type="text" name="name3"  value="{{cuser.em3}}"></td>
+        </tr>
+        
+        <tr>
+            <td><label>Name 4:</label></td>
+            <td><input class="form-control" type="text" name="name4"  value="{{cuser.em4}}"></td>
+        </tr>    
+
+        <tr>
+            <td><label>Signature: </label></td>
+            <td><input class="form-control" type="file" name="signature"></td>
+            <td><img src="{{cuser.signature.url}}" width="150" height="150" alt="" srcset=""></td>
+        </tr>
+        <tr>
+            <td><label>Photo: </label></td>
+            <td><input class="form-control" type="file" name="photo"></td>
+            <td><img src="{{cuser.photo.url}}" width="150" height="150" alt="" srcset=""></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+
+    {% else %}
+
+        {% if cuser %}
+          
+    <form method ="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+<table class="text-left">
+
+    <tr>
+        <td><label>Email:</label></td>
+        <td><input class="form-control" type="text" name="email"  value="{{cuser.user.email}}" disabled></td>
+    </tr>
+    
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="fullname"  value="{{cuser.fullname}}"></td>
+    </tr>
+    
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="phone"  value="{{cuser.phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="house_number"  value="{{cuser.house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="street_name"  value="{{cuser.street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="city"  value="{{cuser.city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="state"  value="{{cuser.state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="country"  value="{{cuser.country}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Date of birth:</label></td>
+        <td><input type="date" class="form-control" name="birthdate" value="{{cuser.birthdate|date:'Y-m-d'}}" onclick="birthDate()"></td>
+    </tr>
+
+    <tr>
+        <td><label>Gender: </label></td>
+        <td><select class="select form-control" name="gender" id="usr_gender">              
+              <!-- <option value="Male">Male</option>
+              <option value="Female">Female</option> -->
+              {% for i in gender %}
+              <option value = "{{i}}" {% if cuser.gender == i %} selected="selected" {% endif %}>{{i}}</option>              
+              {% endfor %}
+        </select></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Occupation: </label></td>
+        <td><select class="select form-control" name="occupation" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>National Identity Number: </label></td>
+        <td><input class="form-control" type="text" name="NIN"  value="{{cuser.NIN}}"></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Bank Verification Number: </label></td>
+        <td><input class="form-control" type="text" name="BVN"  value="{{cuser.BVN}}"></td>
+    </tr>
+
+    
+    <tr>
+        <td><label>Signature: </label></td>
+        <td><input class="form-control" type="file" name="individual_signature"></td>
+        <td><img src="{{cuser.individual_signature.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+    <tr>
+        <td><label>Photo: </label></td>
+        <td><input class="form-control" type="file" name="individual_photo"></td>
+        <td><img src="{{cuser.individual_photo.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+
+    {% if juser %}
+
+    <tr>
+        <td><h4> Another Member Details</h4></td>
+    </tr>
+
+    <tr>
+        <td><label>Email:</label></td>
+        <td><input class="form-control" type="text" name="email"  value="{{juser.user.email}}" disabled></td>
+    </tr>
+
+    
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="another_name"  value="{{juser.another_name}}"></td>
+    </tr>
+      
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="another_phone"  value="{{juser.another_phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="another_house_number"  value="{{juser.another_house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="another_street_name"  value="{{juser.another_street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="another_city"  value="{{juser.another_city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="another_state"  value="{{juser.another_state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="another_country"  value="{{juser.another_country}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Date of birth:</label></td>
+        <td><input type="date" class="form-control" name="another_birthdate" id="date" value="{{juser.another_birthdate|date:'Y-m-d'}}" onclick="anotherBirthdate()"></td>
+    </tr>
+
+    <tr>
+        <td><label>Gender: </label></td>
+        <td><select class="select form-control" name="another_gender" id="usr_gender">
+            {% for i in gender %}
+                <option value = "{{i}}" {% if juser.gender == i %} selected="selected" {% endif %}>{{i}}</option>              
+            {% endfor %}
+            </select></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Occupation: </label></td>
+        <td><select class="select form-control" name="another_occupation" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>Signature: </label></td>
+        <td><input class="form-control" type="file" name="another_signature"></td>
+        <td><img src="{{juser.another_signature.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+    <tr>
+        <td><label>Photo: </label></td>
+        <td><input class="form-control" type="file" name="another_photo"></td>
+        <td><img src="{{juser.another_photo.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+
+    {% endif %}
+
+    <tr>
+        <td><h4> Kin Member Details</h4></td>
+    </tr>
+    
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="kin_name"  value="{{cuser.kin_name}}"></td>
+    </tr>
+      
+    <tr>
+        <td><label>Next of kin relationship: </label></td>
+        <td><select class="select form-control" name="kin_relationship" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="kin_phone"  value="{{cuser.kin_phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="kin_house_number"  value="{{cuser.kin_house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="kin_street_name"  value="{{cuser.kin_street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="kin_city"  value="{{cuser.kin_city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="kin_state"  value="{{cuser.kin_state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="kin_country"  value="{{cuser.kin_country}}"></td>
+    </tr>
+
+    <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+</table>
+
+</form>
+
+    {% else %}
+
+    <form method ="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+<table class="text-left">
+
+    <tr>
+        <td><label>Email:</label></td>
+        <td><input class="form-control" type="text" name="email"  value="{{auser.user.email}}" disabled></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="another_name"  value="{{auser.another_name}}"></td>
+    </tr>
+      
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="another_phone"  value="{{auser.another_phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="another_house_number"  value="{{auser.another_house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="another_street_name"  value="{{auser.another_street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="another_city"  value="{{auser.another_city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="another_state"  value="{{auser.another_state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="another_country"  value="{{auser.another_country}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Date of birth:</label></td>
+        <td><input type="date" class="form-control" name="another_birthdate" id="date" value="{{auser.another_birthdate|date:'Y-m-d'}}" onclick="anotherBirthdate()"></td>
+    </tr>
+
+    <tr>
+        <td><label>Gender: </label></td>
+        <td><select class="select form-control" name="another_gender" id="usr_gender">
+            {% for i in gender %}
+                <option value = "{{i}}" {% if auser.gender == i %} selected="selected" {% endif %}>{{i}}</option>              
+            {% endfor %}
+            </select></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Occupation: </label></td>
+        <td><select class="select form-control" name="another_occupation" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>Signature: </label></td>
+        <td><input class="form-control" type="file" name="another_signature"></td>
+        <td><img src="{{auser.another_signature.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+    <tr>
+        <td><label>Photo: </label></td>
+        <td><input class="form-control" type="file" name="another_photo"></td>
+        <td><img src="{{auser.another_photo.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+
+    
+    <tr>
+        <td><h4> Another Member Details</h4></td>
+    </tr>
+    
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="fullname"  value="{{auser.individual_user.fullname}}"></td>
+    </tr>
+    
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="phone"  value="{{auser.individual_user.phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="house_number"  value="{{auser.individual_user.house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="street_name"  value="{{auser.individual_user.street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="city"  value="{{auser.individual_user.city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="state"  value="{{auser.individual_user.state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="country"  value="{{auser.individual_user.country}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Date of birth:</label></td>
+        <td><input type="date" class="form-control" name="birthdate" value="{{auser.individual_user.birthdate|date:'Y-m-d'}}" onclick="birthDate()"></td>
+    </tr>
+
+    <tr>
+        <td><label>Gender: </label></td>
+        <td><select class="select form-control" name="gender" id="usr_gender">
+            {% for i in gender %}
+                <option value = "{{i}}" {% if auser.gender == i %} selected="selected" {% endif %}>{{i}}</option>              
+            {% endfor %}
+            </select></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Occupation: </label></td>
+        <td><select class="select form-control" name="occupation" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>National Identity Number: </label></td>
+        <td><input class="form-control" type="text" name="NIN"  value="{{auser.individual_user.NIN}}"></td>
+    </tr>
+
+
+    <tr>
+        <td><label>Bank Verification Number: </label></td>
+        <td><input class="form-control" type="text" name="BVN"  value="{{auser.individual_user.BVN}}"></td>
+    </tr>
+
+    
+    <tr>
+        <td><label>Signature: </label></td>
+        <td><input class="form-control" type="file" name="individual_signature"></td>
+        <td><img src="{{auser.individual_user.individual_signature.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+    <tr>
+        <td><label>Photo: </label></td>
+        <td><input class="form-control" type="file" name="individual_photo"></td>
+        <td><img src="{{auser.individual_user.individual_photo.url}}" width="150" height="150" alt="" srcset=""></td>
+    </tr>
+
+    <tr>
+        <td><h4> Kin Member Details</h4></td>
+    </tr>
+    
+    <tr>
+        <td><label>Your Full name:</label></td>
+        <td><input class="form-control" type="text" name="kin_name"  value="{{auser.individual_user.kin_name}}"></td>
+    </tr>
+      
+    <tr>
+        <td><label>Next of kin relationship: </label></td>
+        <td><select class="select form-control" name="kin_relationship" id="usr_occupation">
+            <option value="Test">Test</option>
+            <option value="Test">Test</option>
+          </select></td>
+    </tr>
+
+    <tr>
+        <td><label>Phone number: </label></td>
+        <td><input class="form-control" type="tel" name="kin_phone"  value="{{auser.individual_user.kin_phone}}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></td>
+    </tr>
+
+    <tr>
+        <td><label>House or Building number: </label></td>
+        <td><input class="form-control" type="text" name="kin_house_number"  value="{{auser.individual_user.kin_house_number}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Street name: </label></td>
+        <td><input class="form-control" type="text" name="kin_street_name"  value="{{auser.individual_user.kin_street_name}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td><input class="form-control" type="text" name="kin_city"  value="{{auser.individual_user.kin_city}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>State: </label></td>
+        <td><input class="form-control" type="text" name="kin_state"  value="{{auser.individual_user.kin_state}}"></td>
+    </tr>
+
+    <tr>
+        <td><label>Country of residence: </label></td>
+        <td><input class="form-control" type="text" name="kin_country"  value="{{auser.individual_user.kin_country}}"></td>
+    </tr>
+
+    <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+</table>
+
+</form>
+
+
+    {% endif %}
+    {% endif %}
+</div>
+</div>
+
+<script>
+    function companyDate(){
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementsByName("company_date")[0].setAttribute('max', today);
+  }
+  function birthDate(){
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementsByName("birthdate")[0].setAttribute('max', today);
+  }
+  function anotherBirthdate(){
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementsByName("another_birthdate")[0].setAttribute('max', today);
+  }
+  </script>
+
+
+{% endblock main-content %}

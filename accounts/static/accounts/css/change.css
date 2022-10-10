@@ -1,0 +1,218 @@
+.login{
+    height: 90vh;
+    display: flex;
+    align-content: center;
+    
+    
+    
+}
+.login-item{
+    /* width: 100px; */
+    display: flex;
+    flex-direction: column;
+    /* border:solid 1px rgb(51, 21, 187); */
+    align-items: center;
+    width: 33%;
+    margin: auto;
+    padding: 30px 0px;
+    border-radius: 7px;
+    background-color: white;
+    box-shadow: 2px 2px 7px grey, -1px -3px 7px #ffffff;
+}
+    
+    
+  
+
+    
+
+.input{
+    width:350px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #5b5b5b;
+    font-weight: 400;
+    padding: 3px 9px;
+}
+.login-btn{
+    margin-top: 10px;
+    background-color:#28a745;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 6px 25px;
+}
+.login-heading{
+    color: #494949;
+    font-weight: 400;
+}
+body{
+    background-color: #f1f1f1;;
+}
+@media only screen and (max-width: 1086px){
+    
+.input{
+    width:335px;
+    
+}
+}
+@media only screen and (max-width: 1046px){
+    
+    .input{
+        width:320px;
+        
+    }
+}
+@media only screen and (max-width: 1046px){
+    
+    .input{
+        width:300px;
+        
+    }
+}
+@media only screen and (max-width: 963px){
+    
+    .input{
+        width:280px;
+        
+    }
+}
+@media only screen and (max-width: 872px){
+    
+    .input{
+        width:260px;
+        
+    }
+}
+@media only screen and (max-width: 812px){
+    
+    .input{
+        width:240px;
+        
+    }
+    .login-heading{
+      font-size: 27px;
+    }
+}
+@media only screen and (max-width: 752px){
+    
+    .input{
+        width:220px;
+        
+    }
+    .login-heading{
+      font-size: 25px;
+    }
+    .login-btn{
+     
+        padding: 6px 25px;
+    }
+}
+@media only screen and (max-width: 692px){
+    
+    .input{
+        width:200px;
+        
+    }
+    .login-heading{
+      font-size: 25px;
+    }
+    .login-btn{
+     
+        padding: 6px 25px;
+    }
+}
+@media only screen and (max-width: 634px){
+    
+    .input{
+        width:180px;
+        font-size: 15px;
+        
+    }
+    .login-heading{
+      font-size: 24px;
+    }
+    .login-btn{
+     
+        padding: 5px 24px;
+    }
+}
+@media only screen and (max-width: 574px){
+    
+    .input{
+        width:160px;
+        font-size: 13px;
+        
+    }
+    .login-heading{
+      font-size: 22px;
+    }
+    .login-btn{
+     
+        padding: 4px 23px;
+    }
+}
+@media only screen and (max-width: 518px){
+    
+    .input{
+        width:140px;
+        font-size: 11px;
+        
+    }
+    .login-heading{
+      font-size: 19px;
+    }
+    .login-btn{
+     
+        padding: 2px 21px;
+    }
+    .login-item{
+        
+        padding: 20px 0px;
+      
+    }
+       
+}
+@media only screen and (max-width: 450px){
+    
+    .input{
+        width:120px;
+        font-size: 9px;
+        
+    }
+    .login-heading{
+      font-size: 16px;
+    }
+    .login-btn{
+     
+        padding: 1px 10px;
+        font-size: 13px;
+    }
+    .login-item{
+        
+        padding: 19px 0px;
+      
+    }
+       
+}
+@media only screen and (max-width: 388px){
+    
+    .input{
+        width:110px;
+        font-size: 9px;
+        
+    }
+    .login-heading{
+      font-size: 13px;
+    }
+    .login-btn{
+     
+        padding: 1px 8px;
+        font-size: 13px;
+    }
+    .login-item{
+        
+        padding: 15px 0px;
+      
+    }
+       
+}

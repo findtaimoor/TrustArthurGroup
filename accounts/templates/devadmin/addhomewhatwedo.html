@@ -1,0 +1,43 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Add What We Do </h2>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+        
+        <tr>
+            <td><label>Name:</label></td>
+            <td><input class="form-control" type="text" name="name" placeholder="Enter Name" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Description:</label></td>
+            <td><textarea class="form-control" name="description" rows="4" cols="50" placeholder="Enter Description" required></textarea></td>
+        </tr>
+
+
+        <tr>
+            <td><label>Icon Image:</label></td>
+            <td><input class="form-control" type="file" name="icon_image" required/></td>
+        </tr>
+        
+        <tr>
+            <td><label>Icon Image Hover:</label></td>
+            <td><input class="form-control" type="file" name="icon_image_hover" required/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}
