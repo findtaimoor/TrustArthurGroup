@@ -429,7 +429,15 @@ def signin(request):
                 request.session['vendor_email'] = email
                 messages.success(request,'You are now logged In Successfully.')
                 
-                Send_Email = "trustauthurgroup@gmail.com"
+
+                Send_Email = "trustauthurgroup6@gmail.com"
+
+
+                server = smtplib.SMTP('smtp.gmail.com',587)
+                server.starttls()
+                server.login(Send_Email, 'adatctjttkgyfjns')
+                mail=server.sendmail
+
 
                 msg_Lin = "\r\n".join([
                     
@@ -438,13 +446,9 @@ def signin(request):
                 "You are now logged In Successfully."
                 ])
 
-                server = smtplib.SMTP('smtp.gmail.com',587)
-                server.starttls()
-                server.login(Send_Email, 'kqfafblnualvhvhk')
-
-                mail=server.sendmail
                 
-                mail('trustauthurgroup@gmail.com',email,msg_Lin)
+                
+                mail(Send_Email,email,msg_Lin)
 
                 return redirect('home')
                     
@@ -485,12 +489,12 @@ def change_p(request):
      ide=str(ide)
      
 
-     Send_Email = "trustauthurgroup@gmail.com"
+     Send_Email = "trustauthurgroup6@gmail.com"
 
 
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
-     server.login(Send_Email, 'kqfafblnualvhvhk')
+     server.login(Send_Email, 'adatctjttkgyfjns')
      mail=server.sendmail
 
 
@@ -500,7 +504,7 @@ def change_p(request):
         a="""Trouble signing in?
          Resetting your password is easy.
          Just press the button below and follow the instructions. Well have you up and running in no time.
-         "http://127.0.0.1:8000/Forgotpassword/"""+ide+"""
+         "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
          If you did not make this request then please ignore this email."""
          
         msg_chapass = "\r\n".join([
@@ -608,7 +612,7 @@ def Notification(request):
 
      Send_Email = "trustauthurgroup@gmail.com"
 
-
+    
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
      server.login(Send_Email, 'kqfafblnualvhvhk')
@@ -618,14 +622,15 @@ def Notification(request):
 
 
 
-
+    
+        
      if Email :
         ide = User.objects.get(email=email).id
         ide=str(ide)
         a="""Trouble signing in?
          Resetting your password is easy.
          Just press the button below and follow the instructions. Well have you up and running in no time.
-         "http://127.0.0.1:8000/Forgotpassword/"""+ide+"""
+         "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
          If you did not make this request then please ignore this email."""
          
         msg_chapass = "\r\n".join([
@@ -634,13 +639,17 @@ def Notification(request):
                     "",
                     a
                     ]) 
-
+         
+        
         
         mail(Send_Email,email,msg_chapass)
-        messages.success(request,'Email sent')
-        return redirect('dev')
+        
+        
+        return render(request,'devadmin/login.html')
+        
      else:
         msg = 'Email Not Exists!'
+        print(msg)
         return render(request, 'devadmin/changepass.html',{'msg':msg})          
     
   return render(request,'devadmin/login.html')
