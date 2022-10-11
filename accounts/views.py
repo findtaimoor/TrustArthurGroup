@@ -610,12 +610,12 @@ def Notification(request):
 
 
 
-     Send_Email = "trustauthurgroup@gmail.com"
-
-    
+     Send_Email = "trustauthurgroup6@gmail.com"
+     
+     
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
-     server.login(Send_Email, 'kqfafblnualvhvhk')
+     server.login(Send_Email, 'adatctjttkgyfjns')
      mail=server.sendmail
 
 
@@ -912,12 +912,12 @@ def adminedit(request,id):
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
 
-            Send_Email = "trustauthurgroup@gmail.com"
+            Send_Email = "trustauthurgroup6@gmail.com"
 
 
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'kqfafblnualvhvhk')
+            server.login(Send_Email, 'adatctjttkgyfjns')
 
             mail=server.sendmail
 
