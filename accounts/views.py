@@ -481,7 +481,7 @@ def change_password(request,id):
     
 #<----------------------------------------------------->
 def change_p(request):
-
+   try:
     if request.method =="POST":
      email = request.POST.get('email')
      Email=User.objects.filter(email=email).exists()
@@ -519,10 +519,13 @@ def change_p(request):
         messages.success(request,'Email sent')
         return redirect('signin')
      else:
-        msg = 'Email Not Exists!'
-        return render(request, 'accounts/changepass.html',{'msg':msg})          
+        msg = 'User Not Exists!!2!'
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
+   except:
+        msg = 'User Not Exists!!2!'
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
     
-    return render(request,'accounts/changepass.html')
+   return render(request,'accounts/changepass.html')
 
 #<------------------------------------------------------>
 
