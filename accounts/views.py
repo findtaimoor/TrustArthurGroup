@@ -519,11 +519,11 @@ def change_p(request):
         messages.success(request,'Email sent')
         return redirect('signin')
      else:
-        msg = 'User Not Exists!!2!'
-        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
+        msg = 'Email Not Exists!!'
+        return render(request, 'accounts/changepass.html',{'msg':msg})          
    except:
-        msg = 'User Not Exists!!2!'
-        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
+        msg = 'Email Not Exists!!!'
+        return render(request, 'accounts/changepass.html',{'msg':msg})          
     
    return render(request,'accounts/changepass.html')
 
@@ -651,10 +651,10 @@ def Notification(request):
         return render(request,'devadmin/login.html')
         
      else:
-        msg = 'User Not Exists!!2!'
+        msg = 'Email Not Exists!!'
         return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
  except:
-        msg = 'User Not Exists!!2!'
+        msg = 'Email Not Exists!!!'
         return render(request, 'devadmin/forgotpassword.html',{'msg':msg}) 
 
  return render(request,'devadmin/forgotpassword.html')
