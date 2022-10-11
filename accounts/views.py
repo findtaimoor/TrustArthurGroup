@@ -600,7 +600,7 @@ def changepassword(request,id):
 # <--------------- Notification ---------------->
 
 def Notification(request):
- 
+ try:
   if request.method =="POST":
      email = request.POST.get('email')
      Email=User.objects.filter(email=email).exists()
@@ -648,11 +648,13 @@ def Notification(request):
         return render(request,'devadmin/login.html')
         
      else:
-        msg = 'Email Not Exists!'
-        print(msg)
+        msg = 'User Not Exists!!2!'
         return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
-    
-  return render(request,'devadmin/forgotpassword.html')
+ except:
+        msg = 'User Not Exists!!2!'
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg}) 
+
+ return render(request,'devadmin/forgotpassword.html')
 def signout(request):
    try:
     logout(request)
