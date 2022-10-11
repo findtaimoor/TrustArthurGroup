@@ -498,7 +498,7 @@ def change_p(request):
      mail=server.sendmail
 
 
-     if Email :
+     if Email:
         ide = User.objects.get(email=email).id
         ide=str(ide)
         a="""Trouble signing in?
@@ -600,7 +600,7 @@ def changepassword(request,id):
 # <--------------- Notification ---------------->
 
 def Notification(request):
- try:
+ 
   if request.method =="POST":
      email = request.POST.get('email')
      Email=User.objects.filter(email=email).exists()
@@ -650,12 +650,9 @@ def Notification(request):
      else:
         msg = 'Email Not Exists!'
         print(msg)
-        return render(request, 'devadmin/changepass.html',{'msg':msg})          
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
     
-  return render(request,'devadmin/login.html')
- except:
-    messages.error(request,'Emial not exsit')
-    return render(request,'devadmin/forgotpassword.html')
+  return render(request,'devadmin/forgotpassword.html')
 def signout(request):
    try:
     logout(request)
