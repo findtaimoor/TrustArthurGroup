@@ -625,7 +625,7 @@ def Notification(request):
         
         server = smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
-        server.login(Send_Email, 'datctjttkgyfjns')
+        server.login(Send_Email, 'guikbfhhgugkpzts')
         mail=server.sendmail
 
 
@@ -654,7 +654,7 @@ def Notification(request):
             
             mail(Send_Email,email,msg_chapass)
             
-            print('aliiiiii')
+            print('yes')
             return redirect('dev')
      except Exception as e:
         print(e)
