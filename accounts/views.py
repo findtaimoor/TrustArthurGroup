@@ -429,7 +429,7 @@ def signin(request):
                 request.session['vendor_email'] = email
                 messages.success(request,'You are now logged In Successfully.')
                 
-                Send_Email = "trustauthurgroup@gmail.com"
+                Send_Email = "trustauthurgroup6@gmail.com"
 
                 msg_Lin = "\r\n".join([
                     
@@ -437,14 +437,14 @@ def signin(request):
                 "",
                 "You are now logged In Successfully."
                 ])
-
+                
                 server = smtplib.SMTP('smtp.gmail.com',587)
                 server.starttls()
-                server.login(Send_Email, 'kqfafblnualvhvhk')
+                server.login(Send_Email, 'cishxijpxzqnbhea')
 
                 mail=server.sendmail
                 
-                mail('trustauthurgroup@gmail.com',email,msg_Lin)
+                mail('trustauthurgroup6@gmail.com',email,msg_Lin)
 
                 return redirect('home')
                     
@@ -485,12 +485,12 @@ def change_p(request):
      ide=str(ide)
      
 
-     Send_Email = "trustauthurgroup@gmail.com"
+     Send_Email = "trustauthurgroup6@gmail.com"
 
 
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
-     server.login(Send_Email, 'kqfafblnualvhvhk')
+     server.login(Send_Email, 'cishxijpxzqnbhea')
      mail=server.sendmail
 
 
@@ -606,12 +606,12 @@ def Notification(request):
 
 
 
-     Send_Email = "trustauthurgroup@gmail.com"
+     Send_Email = "trustauthurgroup6@gmail.com"
 
-
+     
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
-     server.login(Send_Email, 'kqfafblnualvhvhk')
+     server.login(Send_Email, 'cishxijpxzqnbhea')
      mail=server.sendmail
 
 
@@ -903,12 +903,12 @@ def adminedit(request,id):
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
 
-            Send_Email = "trustauthurgroup@gmail.com"
+            Send_Email = "trustauthurgroup6@gmail.com"
 
 
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'kqfafblnualvhvhk')
+            server.login(Send_Email, 'cishxijpxzqnbhea')
 
             mail=server.sendmail
 
