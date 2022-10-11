@@ -1,5 +1,6 @@
 from ast import Or
 from calendar import month
+from copy import error
 import datetime
 import email
 from functools import total_ordering
@@ -435,7 +436,7 @@ def signin(request):
                 try:
                     server = smtplib.SMTP('smtp.gmail.com',587)
                     server.starttls()
-                    server.login(Send_Email, 'adatctjttkgyfjns')
+                    server.login(Send_Email, 'cphyxxuzctcdlekw')
                     mail=server.sendmail
 
 
@@ -449,9 +450,10 @@ def signin(request):
                     
                     
                     mail(Send_Email,email,msg_Lin)
-
+                    print('yes')
                     return redirect('home')
-                except:
+                except Exception as e :
+                    print(e)
                     return redirect('home')       
             else:
                 msg = 'User Not Exists!!2!'
@@ -495,7 +497,7 @@ def change_p(request):
      try:
         server = smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
-        server.login(Send_Email, 'adatctjttkgyfjns')
+        server.login(Send_Email, 'cphyxxuzctcdlekw')
         mail=server.sendmail
 
 
@@ -652,9 +654,11 @@ def Notification(request):
             
             mail(Send_Email,email,msg_chapass)
             
-            
+            print('aliiiiii')
             return redirect('dev')
-     except:
+     except Exception as e:
+        print(e)
+        print("noooo")
         return redirect('dev')
          
      else:
@@ -777,7 +781,7 @@ def dev(request):
                     try:
                         server = smtplib.SMTP('smtp.gmail.com',587)
                         server.starttls()
-                        server.login(Send_Email, 'adatctjttkgyfjns')
+                        server.login(Send_Email, 'cphyxxuzctcdlekw')
                         mail=server.sendmail
 
 
@@ -789,9 +793,10 @@ def dev(request):
                         ])
  
                         mail(Send_Email,email,msg_Lin)
+                        
                         return redirect('dashboard')
                     except:
-
+                     
                      return redirect('dashboard')
                 else:
                     messages.error(request,'User Not Exists!!!')
@@ -951,7 +956,7 @@ def adminedit(request,id):
 
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'adatctjttkgyfjns')
+            server.login(Send_Email, 'cphyxxuzctcdlekw')
 
             mail=server.sendmail
 
