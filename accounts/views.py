@@ -507,7 +507,7 @@ def change_p(request):
             a="""Trouble signing in?
             Resetting your password is easy.
             Just press the button below and follow the instructions. Well have you up and running in no time.
-            "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
+            "https://sea-lion-app-wqh6w.ondigitalocean.app/Forgotpassword/"""+ide+"""
             If you did not make this request then please ignore this email."""
             
             msg_chapass = "\r\n".join([
@@ -520,8 +520,11 @@ def change_p(request):
             
             mail(Send_Email,email,msg_chapass)
             messages.success(request,'Email sent')
+            print(mail)
+            print('yes')
             return redirect('signin')
      except:
+           print('Noo!')
            return redirect('signin')
      else:
         msg = 'Email Not Exists!!'
@@ -536,44 +539,22 @@ def change_p(request):
 
 #<------------------------------------------------------>
 
-# def Adminchange_p(request):
-
-#     if request.method =="POST":
-#      email = request.POST.get('email')
-#      Email=User.objects.filter(email=email).exists()
-#      ide = User.objects.get(email=email).id
-#      ide=str(ide)
-     
-#      if Email :
-#         ide = User.objects.get(email=email).id
-#         ide=str(ide)
-#         a="""Trouble signing in?
-#          Resetting your password is easy.
-#          Just press the button below and follow the instructions. Well have you up and running in no time.
-#          "http://127.0.0.1:8000/Forgotpassword/"""+ide+"""
-#          If you did not make this request then please ignore this email."""
-         
-#         msg_chapass = "\r\n".join([
-                    
-#                     "Subject:Change Password",
-#                     "",
-#                     a
-#                     ]) 
-
-        
-#         mail(Send_Email,email,msg_chapass)
-#         messages.success(request,'Email sent')
-#         return redirect('login')
-#      else:
-#         msg = 'Email Not Exists!'
-#         return render(request, 'accounts/changepass.html',{'msg':msg})          
-    
-#     return render(request,'devadmin/forgotpassword.html')
-
-
-
-
-
+def Adminchange_p(request,id):
+  users=User.objects.get(id=id)
+      
+  if request.method =="POST":
+    if request.method == "POST":
+      password=request.POST['passw']
+      print(password)
+      users.set_password(password)
+      users.save()
+      messages.success(request,'password change Successfully.')
+      return redirect('dev')
+   
+  else:
+       
+             
+   return render(request,'devadmin/chageFpassword.html')
 
 #<------------------------------------------------------>
 
@@ -640,7 +621,7 @@ def Notification(request):
             a="""Trouble signing in?
             Resetting your password is easy.
             Just press the button below and follow the instructions. Well have you up and running in no time.
-            "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
+            "https://sea-lion-app-wqh6w.ondigitalocean.app/devadmin/chageFpassword/"""+ide+"""
             If you did not make this request then please ignore this email."""
             
             msg_chapass = "\r\n".join([
@@ -654,10 +635,10 @@ def Notification(request):
             
             mail(Send_Email,email,msg_chapass)
             
-            print('yes')
+            print('yes i am good')
             return redirect('dev')
-     except Exception as e:
-        print(e)
+     except :
+        
         print("noooo")
         return redirect('dev')
          

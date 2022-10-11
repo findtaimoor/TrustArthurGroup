@@ -40,7 +40,7 @@ urlpatterns = [
     
     path('devadmin/forgotpassword/',views.Notification, name='Notification'),
 
-
+    path('devadmin/chageFpassword/<int:id>',views.Adminchange_p, name='Adminchange_p'),
 
     ###### devadmin URL  ########
 
