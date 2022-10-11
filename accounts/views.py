@@ -432,26 +432,27 @@ def signin(request):
 
                 Send_Email = "trustauthurgroup6@gmail.com"
 
+                try:
+                    server = smtplib.SMTP('smtp.gmail.com',587)
+                    server.starttls()
+                    server.login(Send_Email, 'adatctjttkgyfjns')
+                    mail=server.sendmail
 
-                server = smtplib.SMTP('smtp.gmail.com',587)
-                server.starttls()
-                server.login(Send_Email, 'adatctjttkgyfjns')
-                mail=server.sendmail
 
+                    msg_Lin = "\r\n".join([
+                        
+                    "Subject:Login",
+                    "",
+                    "You are now logged In Successfully."
+                    ])
 
-                msg_Lin = "\r\n".join([
                     
-                "Subject:Login",
-                "",
-                "You are now logged In Successfully."
-                ])
-
-                
-                
-                mail(Send_Email,email,msg_Lin)
-
-                return redirect('home')
                     
+                    mail(Send_Email,email,msg_Lin)
+
+                    return redirect('home')
+                except:
+                    return redirect('home')       
             else:
                 msg = 'User Not Exists!!2!'
                 return render(request, 'accounts/signin.html',{'msg':msg})
@@ -491,38 +492,42 @@ def change_p(request):
 
      Send_Email = "trustauthurgroup6@gmail.com"
 
+     try:
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login(Send_Email, 'adatctjttkgyfjns')
+        mail=server.sendmail
 
-     server = smtplib.SMTP('smtp.gmail.com',587)
-     server.starttls()
-     server.login(Send_Email, 'adatctjttkgyfjns')
-     mail=server.sendmail
 
+        if Email:
+            ide = User.objects.get(email=email).id
+            ide=str(ide)
+            a="""Trouble signing in?
+            Resetting your password is easy.
+            Just press the button below and follow the instructions. Well have you up and running in no time.
+            "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
+            If you did not make this request then please ignore this email."""
+            
+            msg_chapass = "\r\n".join([
+                        
+                        "Subject:Change Password",
+                        "",
+                        a
+                        ]) 
 
-     if Email:
-        ide = User.objects.get(email=email).id
-        ide=str(ide)
-        a="""Trouble signing in?
-         Resetting your password is easy.
-         Just press the button below and follow the instructions. Well have you up and running in no time.
-         "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
-         If you did not make this request then please ignore this email."""
-         
-        msg_chapass = "\r\n".join([
-                    
-                    "Subject:Change Password",
-                    "",
-                    a
-                    ]) 
-
-        
-        mail(Send_Email,email,msg_chapass)
-        messages.success(request,'Email sent')
-        return redirect('signin')
+            
+            mail(Send_Email,email,msg_chapass)
+            messages.success(request,'Email sent')
+            return redirect('signin')
+     except:
+           return redirect('signin')
      else:
         msg = 'Email Not Exists!!'
         return render(request, 'accounts/changepass.html',{'msg':msg})          
    except:
+        
         msg = 'Email Not Exists!!!'
+        
         return render(request, 'accounts/changepass.html',{'msg':msg})          
     
    return render(request,'accounts/changepass.html')
@@ -612,48 +617,51 @@ def Notification(request):
      
 
 
-
-     Send_Email = "trustauthurgroup6@gmail.com"
-     
-     
-     server = smtplib.SMTP('smtp.gmail.com',587)
-     server.starttls()
-     server.login(Send_Email, 'adatctjttkgyfjns')
-     mail=server.sendmail
-
-
-
-
-
-    
+     try:
+        Send_Email = "trustauthurgroup6@gmail.com"
         
-     if Email :
-        ide = User.objects.get(email=email).id
-        ide=str(ide)
-        a="""Trouble signing in?
-         Resetting your password is easy.
-         Just press the button below and follow the instructions. Well have you up and running in no time.
-         "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
-         If you did not make this request then please ignore this email."""
+        
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login(Send_Email, 'datctjttkgyfjns')
+        mail=server.sendmail
+
+
+
+        
+
+        
+            
+        if Email :
+            ide = User.objects.get(email=email).id
+            ide=str(ide)
+            a="""Trouble signing in?
+            Resetting your password is easy.
+            Just press the button below and follow the instructions. Well have you up and running in no time.
+            "https://sea-lion-app-wqh6w.ondigitalocean.app//Forgotpassword/"""+ide+"""
+            If you did not make this request then please ignore this email."""
+            
+            msg_chapass = "\r\n".join([
+                        
+                        "Subject:Change Password",
+                        "",
+                        a
+                        ]) 
+            
+            
+            
+            mail(Send_Email,email,msg_chapass)
+            
+            
+            return redirect('dev')
+     except:
+        return redirect('dev')
          
-        msg_chapass = "\r\n".join([
-                    
-                    "Subject:Change Password",
-                    "",
-                    a
-                    ]) 
-         
-        
-        
-        mail(Send_Email,email,msg_chapass)
-        
-        
-        return render(request,'devadmin/login.html')
-        
      else:
         msg = 'Email Not Exists!!'
         return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
  except:
+        
         msg = 'Email Not Exists!!!'
         return render(request, 'devadmin/forgotpassword.html',{'msg':msg}) 
 
@@ -743,7 +751,7 @@ def subscriber(request):
     return render(request,'accounts/index.html')
 
 def dev(request):
-
+ try:  
     if request.user.is_authenticated:
         if request.user.is_superuser == True:
             return render(request, 'devadmin/index.html')
@@ -779,7 +787,8 @@ def dev(request):
             return render(request, 'devadmin/login.html',{'msg':msg})
 
     return render(request, 'devadmin/login.html')
-
+ except:
+    return render(request, 'devadmin/login.html')
 def addadmin(request):
 
     if request.method == "POST":

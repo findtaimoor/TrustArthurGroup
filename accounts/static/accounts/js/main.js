@@ -105,6 +105,7 @@ const togglePassword6 = document.querySelector('#togglePassword6');
 
 
 
+
 const inputField = document.getElementById("company_email");
 
 $(document).ready(function(){
