@@ -763,11 +763,13 @@ def dev(request):
                     messages.success(request,'You are now logged In.')
                     return redirect('dashboard')
                 else:
+                    messages.error(request,'User Not Exists!!!')
                     msg = 'User Not Exists!!!'
                     return render(request, 'devadmin/login.html',{'msg':msg})    
                 
             else:
                 msg = 'User Not Exists!!!'
+                messages.error(request,'User Not Exists!!!')
                 return render(request, 'devadmin/login.html',{'msg':msg})
         
         else:
