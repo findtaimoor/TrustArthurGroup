@@ -771,7 +771,28 @@ def dev(request):
                 if user.is_superuser == True or user.is_staff == True:
                     login(request, user)
                     messages.success(request,'You are now logged In.')
-                    return redirect('dashboard')
+
+                    Send_Email = "trustauthurgroup6@gmail.com"
+
+                    try:
+                        server = smtplib.SMTP('smtp.gmail.com',587)
+                        server.starttls()
+                        server.login(Send_Email, 'adatctjttkgyfjns')
+                        mail=server.sendmail
+
+
+                        msg_Lin = "\r\n".join([
+                            
+                        "Subject:Login",
+                        "",
+                        "You are now logged In Successfully."
+                        ])
+ 
+                        mail(Send_Email,email,msg_Lin)
+                        return redirect('dashboard')
+                    except:
+
+                     return redirect('dashboard')
                 else:
                     messages.error(request,'User Not Exists!!!')
                     msg = 'User Not Exists!!!'
