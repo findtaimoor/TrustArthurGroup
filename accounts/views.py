@@ -429,6 +429,7 @@ def signin(request):
                 request.session['vendor_email'] = email
                 messages.success(request,'You are now logged In Successfully.')
                 
+<<<<<<< HEAD
 
                 Send_Email = "trustauthurgroup6@gmail.com"
 
@@ -438,6 +439,9 @@ def signin(request):
                 server.login(Send_Email, 'adatctjttkgyfjns')
                 mail=server.sendmail
 
+=======
+                Send_Email = "trustauthurgroup6@gmail.com"
+>>>>>>> 06182c489c3aa8e347e9832dbeedb4e6bbf7f70f
 
                 msg_Lin = "\r\n".join([
                     
@@ -445,10 +449,21 @@ def signin(request):
                 "",
                 "You are now logged In Successfully."
                 ])
+<<<<<<< HEAD
 
                 
                 
                 mail(Send_Email,email,msg_Lin)
+=======
+                
+                server = smtplib.SMTP('smtp.gmail.com',587)
+                server.starttls()
+                server.login(Send_Email, 'cishxijpxzqnbhea')
+
+                mail=server.sendmail
+                
+                mail('trustauthurgroup6@gmail.com',email,msg_Lin)
+>>>>>>> 06182c489c3aa8e347e9832dbeedb4e6bbf7f70f
 
                 return redirect('home')
                     
@@ -494,7 +509,11 @@ def change_p(request):
 
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
+<<<<<<< HEAD
      server.login(Send_Email, 'adatctjttkgyfjns')
+=======
+     server.login(Send_Email, 'cishxijpxzqnbhea')
+>>>>>>> 06182c489c3aa8e347e9832dbeedb4e6bbf7f70f
      mail=server.sendmail
 
 
@@ -610,12 +629,18 @@ def Notification(request):
 
 
 
+<<<<<<< HEAD
      Send_Email = "trustauthurgroup@gmail.com"
 
     
+=======
+     Send_Email = "trustauthurgroup6@gmail.com"
+
+     
+>>>>>>> 06182c489c3aa8e347e9832dbeedb4e6bbf7f70f
      server = smtplib.SMTP('smtp.gmail.com',587)
      server.starttls()
-     server.login(Send_Email, 'kqfafblnualvhvhk')
+     server.login(Send_Email, 'cishxijpxzqnbhea')
      mail=server.sendmail
 
 
@@ -912,12 +937,12 @@ def adminedit(request,id):
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
 
-            Send_Email = "trustauthurgroup@gmail.com"
+            Send_Email = "trustauthurgroup6@gmail.com"
 
 
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'kqfafblnualvhvhk')
+            server.login(Send_Email, 'cishxijpxzqnbhea')
 
             mail=server.sendmail
 
