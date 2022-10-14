@@ -688,13 +688,16 @@ def subproduct(request,id):
 def productdetail(request,id):
    try:
     product = SubProduct.objects.get(id=id)
+    global uui
+    uui = str(uuid.uuid1())
+    uui = uui[:6]
 
     subproductall = SubProduct.objects.filter(product=product.product)
     s = {}
     s1 = "abc:wertasdfgfdsvb sdf asdfg#def:asdf qwert asdfg asdf"
     for i in s1.split('#'):
         s.update({i.split(":")[0]:i.split(":")[1]})
-    return render(request, 'accounts/productDetail.html',{'dic':s,'product':product,'subproductall':subproductall})
+    return render(request, 'accounts/productDetail.html',{'dic':s,'product':product,'subproductall':subproductall,'uui':uui})
 
    except:
     return render(request,'accounts/index.html')
@@ -1665,8 +1668,7 @@ def offlinepayment(request):
         product_title = product.sub_title
         price = product.selling_price
         
-        uui = str(uuid.uuid1())
-        uui = uui[:6]
+        
         
       
   

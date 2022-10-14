@@ -26,7 +26,6 @@ function get_quat(quantity, put_quantitiy, available_pro, sum_q){
     }
     
   }
-
   
   
 

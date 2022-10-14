@@ -113,6 +113,8 @@
                               <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
                               <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
                               <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>
+                              <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{ uui }}</h4>
+                              
                               <form action="{% url 'offlinepayment' %}"  method="POST">
                                 {% csrf_token %}
                                 
