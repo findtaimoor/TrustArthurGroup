@@ -431,12 +431,12 @@ def signin(request):
                 messages.success(request,'You are now logged In Successfully.')
                 
 
-                Send_Email = "trustauthurgroup1@gmail.com"
+                Send_Email = "trustarthur@cypexsoft.com"
 
                 try:
-                    server = smtplib.SMTP('smtp.gmail.com',587)
+                    server = smtplib.SMTP('mail.cypexsoft.com',587)
                     server.starttls()
-                    server.login(Send_Email, 'guikbfhhgugkpzts')
+                    server.login(Send_Email, '}l{$B.]%=W5L')
                     mail=server.sendmail
 
 
@@ -492,12 +492,12 @@ def change_p(request):
      ide=str(ide)
      
 
-     Send_Email = "trustauthurgroup1@gmail.com"
+     Send_Email = "trustarthur@cypexsoft.com"
 
      try:
-        server = smtplib.SMTP('smtp.gmail.com',587)
+        server = smtplib.SMTP('mail.cypexsoft.com',587)
         server.starttls()
-        server.login(Send_Email, 'guikbfhhgugkpzts')
+        server.login(Send_Email, '}l{$B.]%=W5L')
         mail=server.sendmail
 
 
@@ -601,12 +601,12 @@ def Notification(request):
 
 
      try:
-        Send_Email = "trustauthurgroup1@gmail.com"
+        Send_Email = "trustarthur@cypexsoft.com"
         
         
-        server = smtplib.SMTP('smtp.gmail.com',587)
+        server = smtplib.SMTP('mail.cypexsoft.com',587)
         server.starttls()
-        server.login(Send_Email, 'guikbfhhgugkpzts')
+        server.login(Send_Email, '}l{$B.]%=W5L')
         mail=server.sendmail
 
 
@@ -760,12 +760,12 @@ def dev(request):
                     login(request, user)
                     messages.success(request,'You are now logged In.')
 
-                    Send_Email = "trustauthurgroup1@gmail.com"
+                    Send_Email = "trustarthur@cypexsoft.com"
 
                     try:
-                        server = smtplib.SMTP('smtp.gmail.com',587)
+                        server = smtplib.SMTP('mail.cypexsoft.com',587)
                         server.starttls()
-                        server.login(Send_Email, 'guikbfhhgugkpzts')
+                        server.login(Send_Email, '}l{$B.]%=W5L')
                         mail=server.sendmail
 
 
@@ -935,12 +935,12 @@ def adminedit(request,id):
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
 
-            Send_Email = "trustauthurgroup1@gmail.com"
+            Send_Email = "trustarthur@cypexsoft.com"
 
 
-            server = smtplib.SMTP('smtp.gmail.com',587)
+            server = smtplib.SMTP('mail.cypexsoft.com',587)
             server.starttls()
-            server.login(Send_Email, 'guikbfhhgugkpzts')
+            server.login(Send_Email, '}l{$B.]%=W5L')
 
             mail=server.sendmail
 
