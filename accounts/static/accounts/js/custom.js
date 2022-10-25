@@ -1,5 +1,9 @@
+let check = false;
+
 function get_quat(quantity, put_quantitiy, available_pro , sum_q)
 {
+  if(quantity != null){
+  
   get_quantity = document.getElementById(quantity).value;
   document.getElementById(put_quantitiy).value = get_quantity;
 
@@ -10,7 +14,8 @@ function get_quat(quantity, put_quantitiy, available_pro , sum_q)
   
   sum_product = get_availablePro - get_quantity ;
   document.getElementById(sum_q).value = sum_product;
-    
+  check = true;
+  }  
 }
 
 
@@ -37,21 +42,27 @@ function validate_value()
 
 function calc() 
 {
-  var price = document.getElementById("price_pu").innerText.replace ( /[^\d.]/g, '' );
-  var noTickets = document.getElementById("_quantity").value;
+  
+  var price = document.getElementById("price_pu");
+  if(price != null){
+    price = price.innerText.replace ( /[^\d.]/g, '' )
+  }
+  var noTickets = document.getElementById("_quantity")
+  if(noTickets!=null){
+    noTickets = noTickets.value
+  }
   var total = parseFloat(price) * noTickets
   console.log("total price: " + total)
-  if (!isNaN(total))
+  if (!isNaN(total)){
     document.getElementById("total").innerText = total
     document.getElementById("total_p").value = total
     document.getElementById("total_price").value = total
     console.log(document.getElementById("total_p").value) 
-}
-
-setTimeout(function(){
+  }
   
-}, 1000); 
-calc();
+}
+calc()
+
 
 
 
