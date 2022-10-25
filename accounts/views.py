@@ -275,11 +275,10 @@ def orders(request):
    except:
     return render(request,'accounts/index.html')
 def customerquote(request):
-   try:
+   
     cq = Quote.objects.filter(user=request.user)
     return render(request, 'accounts/quote.html',{'cq':cq})
-   except:
-    return render(request,'accounts/index.html')
+   
 def customerquotedelete(request,id):
    try:
     quote = Quote.objects.get(pk=id)
@@ -291,15 +290,13 @@ def customerquotedelete(request,id):
 
 @csrf_exempt
 def signup(request):
-   
+   try:
     if request.user.is_authenticated:
         return redirect('home')
-
+    
     if request.method == "POST":
-
-        typeofuser = request.POST['typeofuser']
-
         
+        typeofuser = request.POST['typeofuser']
 
         if typeofuser == 'corporate':
 
@@ -325,7 +322,7 @@ def signup(request):
             em4 = request.POST['name4']
             signature = request.FILES['signature']
             photo = request.FILES['photo']
-            print(city)
+            
             userb = User.objects.create_user(username, company_email, password)
             userb.is_active=True
 
@@ -333,18 +330,17 @@ def signup(request):
 
             BusinessRegister(user = userb,typeofuser=typeofuser,company_name=company_name,company_number=company_number,tax_id=tax_id,
             company_industry=company_industry,company_date=company_date,NIN=NIN,BVN=BVN,phoneno=phoneno,houseno=houseno,
-            street_name=street_name,city=city, state=state,country=country, em1=em1,em2=em2,em3=em3, em4=em4,
+            street_name=street_name,city=city, state=state,country=country, em1=em1,em2=em2,em3=em3, em4=em4, 
             signature=signature,photo=photo).save()
-
+        
         if typeofuser == 'individual':
 
             individual_email = request.POST['individual_email']
-            
             username = individual_email[:individual_email.index('@')]
             password = request.POST['password']
-            f_name = request.POST['usr1_name']
-            l_name = request.POST['usr2_name']
-            phone = request.POST['phone']   
+            f_name = request.POST['fullname']
+            l_name = request.POST['fullname']
+            phone = request.POST['phone']
             house_number = request.POST['house_number']
             street_name = request.POST['street_name']
             city = request.POST['city']
@@ -367,7 +363,7 @@ def signup(request):
             kin_city = request.POST['kin_city']
             kin_state = request.POST['kin_state']
             kin_country = request.POST['kin_country']
-
+            
 
             useri = User.objects.create_user(username, individual_email, password)
             useri.is_active=True
@@ -383,7 +379,7 @@ def signup(request):
             street_name=street_name,city=city, state=state,country=country, birthdate=birthdate,
             gender=gender,occupation=occupation,NIN=NIN,BVN=BVN,
             joint_account=joint_account,individual_signature=individual_signature,individual_photo=individual_photo,
-            kin_name=kin_name,kin_relationship=kin_relationship,kin_phone=kin_phone, kin_house_number=kin_house_number,
+            kin_name=kin_name,kin_relationship=kin_relationship,kin_phone=kin_phone, kin_house_number=kin_house_number, 
             kin_street_name=kin_street_name,kin_city=kin_city,kin_state=kin_state,kin_country=kin_country)
 
             indiregi.save()
@@ -401,7 +397,7 @@ def signup(request):
                 another_country = request.POST['another_country']
                 another_birthdate = request.POST['another_birthdate']
                 another_gender = request.POST['another_gender']
-                another_occupation = request.POST['another_occupation']     
+                another_occupation = request.POST['another_occupation']
                 another_signature = request.FILES['another_signature']
                 another_photo =   request.FILES['another_photo']
 
@@ -418,9 +414,11 @@ def signup(request):
                 another_occupation=another_occupation,another_signature=another_signature,another_photo=another_photo)
 
                 another.save()
-
+        
     return render(request, 'accounts/signup.html')
-   
+   except:
+    return render(request,'accounts/index.html')
+
 def signin(request):
    
     if request.user.is_authenticated:
@@ -1964,9 +1962,9 @@ def call_back_url(request):
 #     order.payment_status = session.payment_status
 #     order.save()
 
-def quotepayment(request,id):
+def quotepayment(request):
 
-    
+        
     
     return render (request,'accounts/quotepayment.html')
 
