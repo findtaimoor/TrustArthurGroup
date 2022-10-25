@@ -1,0 +1,45 @@
+{% extends 'devadmin/base.html' %}
+{% load static %}
+{% block title %}Admin{% endblock title %}
+
+{% block main-content %}
+
+<div class="row">
+        <style>td{padding:20px;} </style>
+        <h2 class="m-4"> Edit Board Member </h2>
+        
+
+        <h1>asdf:{{b_member.Profession}}</h1>
+        
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    <table>
+        
+        <tr>
+            <td><label>Namedss:{{b_member.name}}</label></td>
+            <td><input class="form-control" type="text" name="name" placeholder="Enter title" value="{{b_member.name}}" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Profession:</label></td>
+            <td><input class="form-control" type="text" name="profession" placeholder="Enter Profession" value="{{b_member.profession}}" required></td>
+        </tr>
+
+        <tr>
+            <td><label>Description:</label></td>
+            <td><textarea class="form-control" name="description" rows="4" cols="50" placeholder="Enter Description" required>{{b_member.description}}</textarea></td>
+        </tr>
+
+        <tr>
+            <td><label>Image:</label></td>
+            <td><input class="form-control" type="file" name="member_image"/></td>
+        </tr>
+
+        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
+    </table>
+
+    </form>
+</div>
+
+{% endblock main-content %}

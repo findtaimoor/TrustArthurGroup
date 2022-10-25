@@ -23,10 +23,14 @@
             <th>Brief Description of Sub product</th>
             <th>Sub Product Price</th>
             <th>Total Stock</th>
-            <th>Minemun Order</th>
+            <th>Minimum Order</th>
+            <th>Scope</th>
             <th>Duration</th>
             <th>Benifits</th>
             <th>Plan Features</th>
+            <th>Rate</th>
+            <th>Principle</th>
+            <th>Start Date</th>
             <th>Actions</th>
         </tr>
      </thead> 
@@ -40,9 +44,13 @@
             <td>{{i.selling_price}}</td>
             <td>{{i.Total_S}}</td>
             <td>{{i.Minemun_O}}</td>
+            <td>{{i.Scope}}</td>
             <td>{{i.duration_year}} Years {{i.duration_month}} Months</td>
             <td>{{i.benifits|linebreaks}}</td>
-            <td>{{i.plan_feature|linebreaks}}</td>  
+            <td>{{i.plan_feature|linebreaks}}</td>
+            <td>{{i.Rate}}</td>
+            <td>{{i.Principle}}</td>
+            <td>{{i.Date}}</td>  
             <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a></td>
         </tr>
         

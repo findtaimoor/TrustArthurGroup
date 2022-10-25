@@ -93,12 +93,13 @@
      </div>
     <div class="col-md-10">
         {% if cq %}
-        <table id="example" class="table display nowrap mt-3" style="width:100%">
+        <table id="example" class="table display nowrap mt-3" style="width:100%" onload="validate_value()">
             <thead>
                 <tr>
                     <th>Product Title</th>
                     <th>SubProduct Title</th>
-                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
                     <th>Quote Date</th>
                     <th>Action</th>
                   </tr>
@@ -108,9 +109,12 @@
               <tr>
                   <td>{{i.product.product.title}}</td>
                   <td>{{i.product.sub_title}}</td>
-                  <td>{{i.product.selling_price}}</td>
+                  <td>{{i.quote_quantity}}</td>
+                  <td>{{i.total_p}}</td>
                   <td>{{i.quote_date}}</td>
-                  <td><a href="{% url 'customerquotedelete' i.id %}" class='text-danger'><i class='fas fa-trash'  style='font-size:22px;'></i></a></td>
+                  <td><a href="{% url 'customerquotedelete' i.id %}" class='text-danger'><i class='fas fa-trash'  style='font-size:22px;'></i></a>
+                      <a href="{% url 'quotepayment' %}" class = "text-danger"><i class="bi bi-bag-fill" style = 'font-size:22px;'></i></a>
+                  </td>
                 </tr>
               {% endfor %}
               </tbody>

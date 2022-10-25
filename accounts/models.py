@@ -30,16 +30,20 @@ class BusinessRegister(models.Model):
     em4 = models.CharField(max_length=200)
     signature = models.ImageField(upload_to='businesssignpic')
     photo = models.ImageField(upload_to='businessprofilepic')
+    
+    print(company_name)
 
     def str(self):
         return str(self.id)
 
 
 class  IndividualRegister(models.Model):
-    
+   try:
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     typeofuser = models.CharField(max_length=200, default="None")
-    fullname = models.CharField(max_length=200)
+    f_name = models.CharField(max_length=200)
+    l_name = models.CharField(max_length=200)
+
     phone = models.PositiveIntegerField()
     house_number = models.CharField(max_length=200)
     street_name = models.CharField(max_length=500)
@@ -65,9 +69,11 @@ class  IndividualRegister(models.Model):
     kin_state = models.CharField(max_length=200)
     kin_country = models.CharField(max_length=200)
 
+    
     def str(self):
         return str(self.id)
-
+   except Exception as e:
+    print(e)
 
 class  AnotherJoinAccountRegister(models.Model):
     
@@ -107,26 +113,29 @@ class Product(models.Model):
 
 
 class SubProduct(models.Model):
-
+ try:
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     sub_title = models.CharField(max_length=200)
     sub_title2 = models.CharField(max_length=200)
     # product_detail_title = models.TextField()
     duration_year = models.CharField(max_length=200,default='None')
     duration_month = models.CharField(max_length=200,default='None')
-    selling_price = models.FloatField()
-    
-    benifits = models.TextField()
-    plan_feature = models.TextField()
+    selling_price = models.IntegerField()
+    Principle = models.IntegerField()
+    Rate = models.IntegerField()
+    Date = models.DateField()
+    benifits = models.TextField(default='None')
+    plan_feature = models.TextField(default='None')
     sub_product_image = models.ImageField(upload_to='subproductpic')
-    Total_S = models.FloatField()
-    Minemun_O = models.FloatField()
-
+    Total_S = models.FloatField(default='None')
+    Minemun_O = models.FloatField(default='None')
+    Scope =  models.TextField()
     
 
     def str(self):
         return str(self.id)
-
+ except Exception as e:
+    print(e)
 
 class OrderPlaced(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -151,6 +160,8 @@ class Quote(models.Model):
     product = models.ForeignKey(SubProduct, on_delete=models.SET_NULL, default= None, null=True)
     quote_date_time = models.DateTimeField(auto_now_add =True)
     quote_date = models.DateField(auto_now_add =True)
+    quote_quantity = models.IntegerField()
+    total_p = models.IntegerField()
 
     def str(self):
         return str(self.id)
@@ -272,6 +283,14 @@ class AboutTeamMembers(models.Model):
     description = models.TextField()
     member_image = models.ImageField(upload_to='home/teammembers')
 
+    def str(self):
+        return str(self.id)
+class AboutBoardMembers(models.Model):
+    name = models.CharField(max_length=200)
+    profession = models.CharField(max_length=200)
+    description = models.TextField()
+    member_image = models.ImageField(upload_to='home/boardmembers')
+    
     def str(self):
         return str(self.id)
 

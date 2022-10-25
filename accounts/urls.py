@@ -21,7 +21,7 @@ urlpatterns = [
     path('customerquote/', views.customerquote, name='customerquote'),
     path('customerquotedelete/<int:id>', views.customerquotedelete, name='customerquotedelete'),
     path('editprofiledetails/', views.editprofiledetails, name='editprofiledetails'),
-
+    path('quotepayment/<int:id>',views.quotepayment,name='quotepayment'),
 
     path('checkout/', views.checkout, name='checkout'),
     # path('payment/<int:id>', views.call_back_url, name='payment'),
@@ -132,6 +132,10 @@ urlpatterns = [
     path('devadmin/editaboutteammember/<int:id>', views.editaboutteammember, name='editaboutteammember'),
     path('devadmin/deleteaboutteammember/<int:id>', views.deleteaboutteammember, name='deleteaboutteammember'),
 
+    path('devadmin/aboutboardmember/', views.aboutboardmembers, name='aboutboardmembers'),
+    path('devadmin/addaboutboardmember/', views.addaboutboardmember, name='addaboutboardmember'),
+    path('devadmin/editaboutboardmember/<int:id>', views.editaboutboardmember, name='editaboutboardmember'),
+    path('devadmin/deleteaboutboardmember/<int:id>', views.deleteaboutboardmember, name='deleteaboutboardmember'),
 
     re_path(r'^validate_username/$', views.validate_username, name='validate_username'),
     

@@ -1,0 +1,168 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} Product Detail {% endblock title %}
+
+{% block main-content %}
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+        <link rel="stylesheet" href="{% static 'todo/css/product_detail.css' %}" />
+
+        <div class="container">
+        <section class="container_product">
+            <div class="left-box">
+                <p class="info-text">{{product.sub_title}}</p>
+                <img src="{{product.sub_product_image.url}}" alt="our product img">
+                <h3>Benefits:</h3>
+                {% comment %} {% for key,value in dic.items %}
+                <p><span class="first-latter-color">{{key}}:</span> {{value}}</p>
+                {% endfor %} {% endcomment %}
+
+                <p><span class="first-latter-color">{{product.benifits|linebreaks}}</p>
+
+                <h3>Plan Features:</h3>
+
+                <p><span class="first-latter-color">{{product.plan_feature|linebreaks}}</p>
+
+                  <p class="info-text">Duration:&nbsp;{{product.duration_year}} Years {{product.duration_month}} Month</p>
+
+                   
+                  {% if product.Total_S > product.Minemun_O %}
+                     <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
+
+                     <p id="minimum_lable" class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
+
+                     <p id="price_pu" class="info-test" >Price per unit:&nbsp;{{product.selling_price}}</p>
+                   
+                     
+                     <p><label for="quantity">Quantity:</label>
+                    
+                    
+                    
+                      <input class="cus-qut"  type="number" onload="calc()" onchange="calc()"  style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                     
+                     {%else%}
+                    <p><span class="first-latter-color">Out of Stock</p>
+                  {% endif %}
+                    
+                  <p class="info-text first-latter-color" >Total price: <b>$<span id="total">0</span></b></p>
+                 
+
+                <div class="btn">
+
+                    {% if request.user.is_authenticated %}
+
+                     {% if product.Total_S > product.Minemun_O %}
+
+                    <form action="{% url 'quote' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" id="quan" name="u_quan">
+                        <input type="hidden" value="{{product.id}}" name="product-id">
+                        <input type="hidden" id='total_p' name="total_p"> 
+                        <button type="submit" class="next-btn" id="checkout-button">Quote</button>
+                    </form>
+
+                    <button type="button" class="next-btn" data-toggle="modal" data-target="#exampleModalCenter">
+                        Checkout
+                    </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h2 class="modal-title" id="exampleModalLongTitle">Mode Of Payment</h2>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{% url 'checkout' %}" method="POST">
+                                <!-- <form id="paymentForm"> -->
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{product.id}}" name="product-id">
+                                    <button type="submit" class="next-btn" id="checkout-button">Online Payment</button>
+                                    <!-- <button type="submit" class="next-btn" id="checkout-button" onclick="payWithPaystack()">Online Payment</button> -->
+
+                                </form>
+                                <!-- <form action="{% url 'offlinepayment' %}" method="POST"> -->
+                                    <!-- {% csrf_token %} -->
+                                    <!-- <input type="hidden" value="{{product.id}}" name="product-id"> -->
+                                    <button type="submit" class="next-btn" id="checkout-button" data-toggle="modal" data-target="#exampleModalCenter2">Offline Payment</button>
+                                <!-- </form> -->
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h2 class="modal-title" id="exampleModalLongTitle">Payment Details</h2>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body mt-3 text-center">
+                              <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
+                              <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
+                              <h4 style="color:#EF0502; font-weight: bold;">Lotus bank</h4>
+                              <form action="{% url 'offlinepayment' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{product.id}}" name="product-id">
+                                <button type="submit" class="next-btn" id="checkout-button">Okay</button>
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    {% else %}
+
+                    <a href="{% url 'signin' %}">
+                        <button  class="next-btn">Quote</button>
+                      </a>
+
+                      <a href="{% url 'signin' %}">
+                        <button class="next-btn">Checkout</button>
+                      </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="right-box">
+                <h3>Our Products</h3>
+                {% if subproductall %}
+                {% for s in subproductall %}
+                {% if s.sub_title == product.sub_title %}
+                    <button style="background-color: #EF0502; border-radius: 20px;" > <a href="{% url 'productdetail' s.id %}" style="color: #fff;"> {{s.sub_title}}</a></button>
+                {% else %}
+                    <button> <a href="{% url 'productdetail' s.id %}"> {{s.sub_title}}</a></button>
+                {% endif %}
+
+                {% endfor %}
+                {% endif %}
+
+                <div class="contact-us">
+                    <p>We are ready.</p>
+                    <h2>How Can <br> We Help<br> You?</h2>
+                    <button class="contact-btn">Contact Now</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+{% endblock main-content %}

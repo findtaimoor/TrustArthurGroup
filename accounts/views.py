@@ -4,6 +4,9 @@ from copy import error
 import datetime
 import email
 from functools import total_ordering
+from urllib import request
+from urllib.request import Request
+from wsgiref.util import request_uri
 from django.conf import settings
 from django.shortcuts import render,redirect, reverse
 from .models import *
@@ -16,7 +19,7 @@ from django.db.models import Q
 from django import utils
 import logging
 from .generic import *
-from django_globals import globals
+
 import uuid
 from http import server
 import smtplib
@@ -38,12 +41,14 @@ def validate_username(request):
 import re
 
 def home(request):
+
     home = HomeInfoSection.objects.all().last()
     banner = HomeBanner.objects.all()
+    
     wwd = HomeWhatWeDo.objects.all()
+ 
     explore = HomeExploreProducts.objects.all()
     testi = HomeTestinomials.objects.all()
-
     return render(request, 'accounts/index.html',{'home':home,'banner':banner,'wwd':wwd,'explore':explore,'testi':testi})
 
 def about(request):
@@ -53,7 +58,8 @@ def about(request):
     ccv = AboutCompanyCore.objects.all()
     testi = AboutTestinomials.objects.all()
     members = AboutTeamMembers.objects.all()
-    return render(request, 'accounts/about.html',{'home':home,'about':about,'ccv':ccv,'testi':testi,'members':members})
+    b_members = AboutBoardMembers.objects.all()
+    return render(request, 'accounts/about.html',{'home':home,'about':about,'ccv':ccv,'testi':testi,'members':members,'b_members':b_members})
    except:
      return render(request,'accounts/index.html')
 def news(request):
@@ -248,7 +254,8 @@ def editprofiledetails(request):
             return redirect('editprofiledetails')
 
         return render(request, 'accounts/editprofiledetails.html',{'auser':auser,'gender':gender})
-   except:
+   except Exception as e:
+    print (e)
     return render(request,'accounts/index.html')
 
 
@@ -284,13 +291,15 @@ def customerquotedelete(request,id):
 
 @csrf_exempt
 def signup(request):
-   try:
+   
     if request.user.is_authenticated:
         return redirect('home')
 
     if request.method == "POST":
 
         typeofuser = request.POST['typeofuser']
+
+        
 
         if typeofuser == 'corporate':
 
@@ -316,7 +325,7 @@ def signup(request):
             em4 = request.POST['name4']
             signature = request.FILES['signature']
             photo = request.FILES['photo']
-
+            print(city)
             userb = User.objects.create_user(username, company_email, password)
             userb.is_active=True
 
@@ -330,10 +339,12 @@ def signup(request):
         if typeofuser == 'individual':
 
             individual_email = request.POST['individual_email']
+            
             username = individual_email[:individual_email.index('@')]
             password = request.POST['password']
-            fullname = request.POST['fullname']
-            phone = request.POST['phone']
+            f_name = request.POST['usr1_name']
+            l_name = request.POST['usr2_name']
+            phone = request.POST['phone']   
             house_number = request.POST['house_number']
             street_name = request.POST['street_name']
             city = request.POST['city']
@@ -368,7 +379,7 @@ def signup(request):
             else:
                 joint_account = False
 
-            indiregi = IndividualRegister(user = useri,typeofuser=typeofuser,fullname=fullname,phone=phone,house_number=house_number,
+            indiregi = IndividualRegister(user = useri,typeofuser=typeofuser,f_name=f_name,l_name=l_name,phone=phone,house_number=house_number,
             street_name=street_name,city=city, state=state,country=country, birthdate=birthdate,
             gender=gender,occupation=occupation,NIN=NIN,BVN=BVN,
             joint_account=joint_account,individual_signature=individual_signature,individual_photo=individual_photo,
@@ -390,7 +401,7 @@ def signup(request):
                 another_country = request.POST['another_country']
                 another_birthdate = request.POST['another_birthdate']
                 another_gender = request.POST['another_gender']
-                another_occupation = request.POST['another_occupation']
+                another_occupation = request.POST['another_occupation']     
                 another_signature = request.FILES['another_signature']
                 another_photo =   request.FILES['another_photo']
 
@@ -409,8 +420,7 @@ def signup(request):
                 another.save()
 
     return render(request, 'accounts/signup.html')
-   except:
-    return render(request,'accounts/index.html')
+   
 def signin(request):
    
     if request.user.is_authenticated:
@@ -456,10 +466,10 @@ def signin(request):
                     print(e)
                     return redirect('home')       
             else:
-                msg = 'User Not Exists!!2!'
+                msg = 'User Not Exists!!!'
                 return render(request, 'accounts/signin.html',{'msg':msg})
         else:
-                msg = 'User Not Exists1!!'
+                msg = 'User Not Exists!!'
                 return render(request, 'accounts/signin.html',{'msg':msg})
 
     return render(request, 'accounts/signin.html')
@@ -691,6 +701,9 @@ def productdetail(request,id):
     global uui
     uui = str(uuid.uuid1())
     uui = uui[:6]
+    print(uui)
+ 
+  
 
     subproductall = SubProduct.objects.filter(product=product.product)
     s = {}
@@ -699,7 +712,8 @@ def productdetail(request,id):
         s.update({i.split(":")[0]:i.split(":")[1]})
     return render(request, 'accounts/productDetail.html',{'dic':s,'product':product,'subproductall':subproductall,'uui':uui})
 
-   except:
+   except Exception as e:
+    print(e)
     return render(request,'accounts/index.html')
 
 def contact(request):
@@ -1052,30 +1066,39 @@ def admindeleteproduct(request,id):
 
 
 def adminaddsubproduct(request):
-
+  try:
     product = Product.objects.all()
 
     if request.method == "POST":
         titleofproduct = request.POST['typeofproduct']
+        
         product = Product.objects.get(title=titleofproduct)
         sub_title = request.POST['subtitle']
         sub_title2 = request.POST['subtitle2']
+        
         selling_price = request.POST['selling_price']
         Total_stock =   request.POST['Total']
+      
+        Rate = request.POST['Rate'] 
+        Principle = request.POST['Principle'] 
+        Date = request.POST['Date']
+        
         Minemun_Order = request.POST['Minemum']
         duration_month = request.POST['duration_month']
         duration_year = request.POST['duration_year']
         benifits = request.POST['benifits']
         plan_feature = request.POST['planfeatures']
-        sub_product_image = request.FILES['productpic']
-        SubProduct(product=product, sub_title=sub_title, sub_title2=sub_title2, selling_price=selling_price, Total_S=Total_stock, Minemun_O=Minemun_Order,
-        benifits=benifits,plan_feature=plan_feature,sub_product_image=sub_product_image,duration_month=duration_month,
+        sub_product_image = request.FILES['productpic'] 
+        Scope = request.POST['scopeofproduct']
+        SubProduct(product=product, sub_title=sub_title, sub_title2=sub_title2, selling_price=selling_price, Total_S=Total_stock, Minemun_O=Minemun_Order,Rate=Rate,
+        benifits=benifits,plan_feature=plan_feature,sub_product_image=sub_product_image,duration_month=duration_month, Scope=Scope,Principle=Principle,Date=Date,
         duration_year=duration_year).save()
         messages.success(request, 'SubProduct Added Successfully.')
         return redirect('adminsubproductlist')
 
     return render(request, 'devadmin/addsubproduct.html',{'product':product})
-
+  except Exception as e:
+    print(e)
 def admineditsubproduct(request,id):
     product = Product.objects.all()
     subproduct = SubProduct.objects.get(id=id)
@@ -1524,7 +1547,13 @@ def aboutteammember(request):
     member = AboutTeamMembers.objects.all()
     return render(request, 'devadmin/aboutteammember.html',{'member':member})
    except:
-    return render(request,'accounts/index.html')
+    return render(request,'devadmin/aboutteammember.html')
+
+def aboutboardmembers(request):
+    print("aboutboardmembers")
+    b_member = AboutBoardMembers.objects.all()
+    print(b_member)
+    return render(request, 'devadmin/aboutboardmember.html',{'b_member':b_member})
 
 def addaboutteammember(request):
    try:
@@ -1539,8 +1568,20 @@ def addaboutteammember(request):
 
     return render(request, 'devadmin/addaboutteammember.html')
    except:
-    return render(request,'accounts/index.html')
+    return render(request,'devadmin/addaboutteammember.html')
 
+def addaboutboardmember(request):
+
+    if request.method == "POST":
+        name = request.POST['name']
+        profession = request.POST['profession']
+        description = request.POST['description']
+        member_image = request.FILES['member_image']
+        AboutBoardMembers(name=name,profession=profession ,description=description,member_image=member_image).save()
+        messages.success(request, 'Added Successfully.')
+        return redirect('aboutboardmembers')    
+
+    return render(request, 'devadmin/addaboutboardmember.html')
 
 def editaboutteammember(request,id):
    try:
@@ -1555,21 +1596,53 @@ def editaboutteammember(request,id):
 
         member.save()
         messages.success(request, 'Updated Successfully.')
-        return redirect('aboutteammember')
+        return redirect('aboutboardmember')
 
     return render(request, 'devadmin/editaboutteammember.html',{'member':member})
-   except:
-    return render(request,'accounts/index.html')
+   except Exception as e:
+    print (e)
+    return render(request,'devadmin/editaboutteammember.html')
+
+
+def editaboutboardmember(request,id):
+   try:
+    b_member = AboutBoardMembers.objects.get(id=id)
+    print('farhan')
+    if request.method == 'POST':
+        b_member.name= request.POST.get('name','')
+        b_member.profession= request.POST.get('profession','')
+        b_member.description= request.POST.get('description','')
+        member_image = request.FILES.get('member_image')
+        if member_image is not None:
+            b_member.member_image = member_image
+
+        b_member.save()
+        messages.success(request, 'Updated Successfully.')
+        return redirect('aboutboardmembers')
+
+    return render(request, 'devadmin/addaboutboardmember.html',{'member':b_member})
+   except Exception as e:
+    
+    print(e)
+
+
+
 
 def deleteaboutteammember(request,id):
-   try:
+   
     pi = AboutTeamMembers.objects.get(pk=id)
     pi.delete()
     messages.success(request,'Deleted Succesfully.')
     return redirect('aboutteammember')
-   except:
-    return render(request,'accounts/index.html')
-
+   
+def deleteaboutboardmember(request,id):
+   
+    pi = AboutBoardMembers.objects.get(pk=id)
+    print(pi)
+    pi.delete()
+    messages.success(request,'Deleted Succesfully.')
+    return redirect('aboutboardmembers')
+   
 
 
 def quote(request):
@@ -1577,18 +1650,30 @@ def quote(request):
     if request.method == "POST":
         user = request.user
         productid = request.POST['product-id']
+          
+        quan = request.POST['u_quan']
+
+
+
+        Total_p = request.POST['total_p']
+        print(Total_p)
+        
         product_check = SubProduct.objects.get(id=productid)
         if(product_check):
-            if(Quote.objects.filter(user=user,product_id = productid)):
+            if(Quote.objects.filter(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )):
                 messages.info(request, 'Its Already Quoted.')
             else:
-                Quote.objects.create(user=user,product_id = productid)
+
+                Quote.objects.create(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )
                 messages.success(request, 'Quoted Successfully.')
         else:
             messages.error("No Such Product")
 
     return redirect('customerquote')
-   except:
+   except Exception as e:
+
+    print(e)
+
     return render(request,'accounts/index.html')
 
 
@@ -1652,7 +1737,7 @@ def admindeletenews(request,id):
 
 from dateutil.relativedelta import relativedelta
 def offlinepayment(request):
-   
+#   try:
     if request.method == "POST":
         global productid
         productid = request.POST['product-id']
@@ -1660,7 +1745,8 @@ def offlinepayment(request):
         qua = request.POST['U_product']
         global total_quan
         total_quan = request.POST['product_quantity']
-        # print(total_q)
+        global total_price 
+        total_price = request.POST['total_price']
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
             quote = Quote.objects.get(user=request.user,product_id = productid)
@@ -1670,27 +1756,30 @@ def offlinepayment(request):
         
         
         
+
       
   
         now = datetime.date.today()
         duedate = now + relativedelta(months = int(product.duration_month))
         duedate = duedate + relativedelta(years = int(product.duration_year))
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=price,
-                                            payment_id = uui, quantity= qua , modeofpayment='offline',payment_status='pending',
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,
+                                            payment_id = uui,quantity=qua,modeofpayment='offline',payment_status='pending',
                                             due_date=duedate)
         order.save()
         #SubProduct.objects.filter(id = productid).update(Total_S=Totsl_S-U_Product)
         messages.success(request,'Your Request is Submitted. Trustbanc Contact you as soon as.')
         return redirect('orders')
-   
+#   except Exception as e:
+#     print(e)
+#     return redirect('orders')
 
 import requests
 import json
 from django.http import HttpResponseRedirect
 def checkout(request):
-
+   
     host = request.get_host()
-    print(host)
+    
     if request.method == "POST":
         global productid
         productid = request.POST['product-id']
@@ -1701,11 +1790,6 @@ def checkout(request):
         
 
         
-       # quantity = request.POST['product_quantity']
-       # print  (quantity)
-        
-        
-    
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
             quote = Quote.objects.get(user=request.user,product_id = productid)
@@ -1737,7 +1821,8 @@ def checkout(request):
         # )
 
         # return redirect(checkout_session.url, code=303)
-
+   
+      
         def init_payment(request):
 
             url = 'https://api.paystack.co/transaction/initialize'
@@ -1746,10 +1831,12 @@ def checkout(request):
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json',
                 }
+            print(price)
             datum = {
                 "email": request.user.email,
                 "amount": int(price) * 100
                 }
+                
             x = requests.post(url, data=json.dumps(datum), headers=headers)
             if x.status_code != 200:
                 return str(x.status_code)
@@ -1808,7 +1895,9 @@ def call_back_url(request):
        OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(quantity=U_Product)
        if OrderPlaced.objects.filter(payment_status='paid'):
          SubProduct.objects.filter(id=productid).update(Total_S=R_Product)
-         print(R_Product)
+         print(
+            
+         )
          print(productid)
         
        
@@ -1875,5 +1964,9 @@ def call_back_url(request):
 #     order.payment_status = session.payment_status
 #     order.save()
 
+def quotepayment(request,id):
 
+    
+    
+    return render (request,'accounts/quotepayment.html')
 

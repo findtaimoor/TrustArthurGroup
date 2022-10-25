@@ -80,7 +80,7 @@
       </div>
     </section>
     <!--=====================================-->
-    <!--=            Company-value Start    =-->
+    <!--=   Company-value Start    =-->
     <!--=====================================-->
     <section class="company-value-wrap">
       <div class="container">
@@ -119,7 +119,7 @@
       </div>
     </section>
     <!--=====================================-->
-    <!--=            Team Start             =-->
+    <!--=           TEAM Start             =-->
     <!--=====================================-->
     <section class="team-wrap-layout1">
       <div class="background-image2">
@@ -169,6 +169,61 @@
       
       
     </section>
+  <!--=====================================-->
+  <!--=            board Start             =-->
+  <!--=====================================-->
+  <section class="team-wrap-layout1">
+    <div class="background-image2">
+      <img src="../static/todo/img/figure/figure14.png" alt="figure" width="490" height="945" />
+    </div>
+    <div class="background-image3">
+      <img src="../static/todo/img/figure/figure15.png" alt="figure" width="501" height="" />
+    </div>
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="heading-title">Our Board Members</h2>
+        <p>
+          TrustBanc Group is
+          governed by a set of skillful and
+          innovative professionals, who are
+          zealous in elevating the firm. They are
+          led by principles of professionalism,
+          reliability, and transparency with a
+          vision of growing a stable and
+          profitable business.
+        </p>
+        <!-- <div class="row"> -->
+
+          <div class="teamdiv">
+            
+
+            
+            {% for i in b_members %}
+          
+            <div class="team-box1 trigger_popup_fricc">
+              <div class="item-shape"></div>
+              <div class="item-img">
+                <a href="#"><img src="{{i.member_image.url}}" alt="team" width="510" height="500" /></a>
+              </div>
+              <div class="item-content">
+                <h3 class="item-title"><a href="#">{{i.name}}</a></h3>
+                <h4 class="item-subtitle">{{i.profession}}</h4>
+                <h6 class="item-subtitle blog-card-description text-justify">{{i.description}}</h6>
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+
+            
+        <!-- </div> -->
+      </div>
+    </div>
+
+    
+    
+  </section>
+
     <!--=====================================-->
     <!--=            Call-back Start        =-->
     <!--=====================================-->

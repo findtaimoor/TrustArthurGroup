@@ -1,0 +1,113 @@
+<html>
+
+
+<body>
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- 
+    <script>
+        $(document).ready(function () {
+            $('#myselection').on('change', function () {
+                var demovalue = $(this).val();
+
+                if (demovalue == "Wadiah Portfolio") {
+                    // /alert(demovalue)
+                    $("#div.normal").hide();
+                    $("#div.wadia").show();
+                }
+                else
+                {
+
+                    $("#div.normal").show();
+                    $("#div.wadia").hide();
+
+                }
+
+            });
+        });
+    </script>  -->
+
+
+
+
+    <select id="myselection">
+
+        <option value="Trust Arthur Shari’ah Mutual Fund">Trust Arthur Shari’ah Mutual Fund</option>
+
+        <option value="Notes ">Notes </option>
+
+        <option value="Notes (Personal)">Notes (Personal)</option>
+
+        <option value="Wadiah Portfolio">Wadiah Portfolio</option>
+
+        <option value="Notes (Corporate)">Notes (Corporate)</option>
+
+
+    </select>
+
+    <div id="normal" style='display:none;'>
+        Normal fields
+    </div>
+
+    <div id="wadia" style='display:none;'>
+        Wadia Fields
+    </div>
+
+    <!-- <style>
+        .myDiv {
+            display: none;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #normal {
+            border: 1px solid red;
+        }
+
+        #wadia {
+            border: 1px solid green;
+        }
+
+        #showThree {
+            border: 1px solid blue;
+        }
+    </style> -->
+
+    <script type="text/javascript">
+        function ShowHideDiv() {
+            // alert('call')
+            var normal = document.getElementById("normal");
+            var wadia = document.getElementById("wadia");
+
+           
+            $('#myselection').on('change', function () {
+
+                var demovalue = $(this).val();
+                if (demovalue == "Wadiah Portfolio") {
+                    $("#normal").css('display', 'none' );
+                    $("#wadia").css('display', 'block' );
+                }
+                else
+                {
+
+                    $("#normal").css('display', 'block' );
+                    $("#wadia").css('display', 'none' );
+
+                }
+
+
+                
+            });
+
+            // normal.style.display = "show";
+            // alert(normal.style.display)
+
+
+        }
+        ShowHideDiv()
+    </script>
+
+</body>
+
+</html>
