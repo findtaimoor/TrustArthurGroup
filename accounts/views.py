@@ -332,6 +332,34 @@ def signup(request):
             company_industry=company_industry,company_date=company_date,NIN=NIN,BVN=BVN,phoneno=phoneno,houseno=houseno,
             street_name=street_name,city=city, state=state,country=country, em1=em1,em2=em2,em3=em3, em4=em4, 
             signature=signature,photo=photo).save()
+           
+            #---Send mail_--
+            Send_Email = "trustauthurgroup1@gmail.com"
+            server = smtplib.SMTP('smtp.gmail.com',587)
+            server.starttls()
+            server.login(Send_Email, 'boqtvrxfowhsoxsk')
+            mail=server.sendmail
+
+
+            if company_email:
+                ide = User.objects.get(email=email).id
+                ide=str(ide)
+                a="""Your Email registered successfully"""
+                
+                msg_chapass = "\r\n".join([
+                            
+                            "Subject:Change Password",
+                            "",
+                            a
+                            ]) 
+
+                
+                mail(Send_Email,email,msg_chapass)
+                messages.success(request,'Email sent')
+                print(mail)
+                print('yes')
+
+
         
         if typeofuser == 'individual':
 
