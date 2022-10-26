@@ -21,7 +21,8 @@ urlpatterns = [
     path('customerquote/', views.customerquote, name='customerquote'),
     path('customerquotedelete/<int:id>', views.customerquotedelete, name='customerquotedelete'),
     path('editprofiledetails/', views.editprofiledetails, name='editprofiledetails'),
-    path('quotepayment/',views.quotepayment,name='quotepayment'),
+    path('quotepayment/<int:id>',views.quotepayment,name='quotepayment'),
+    path('quotepaynow/<int:id>',views.quotepaynow,name="quotepaynow"),
 
     path('checkout/', views.checkout, name='checkout'),
     # path('payment/<int:id>', views.call_back_url, name='payment'),

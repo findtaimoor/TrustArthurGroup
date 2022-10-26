@@ -1,0 +1,123 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Orders{% endblock title %}
+{% block main-content %}
+
+
+   
+    <div class="container px-4">
+        <div class="m-4 row gx-5 text-center">
+            <div class="card-header border-0 bg-white header-elements-inline">
+                <h4 class="card-title"><i class=""></i> Your Quote</h4>
+            {% for i in cp %}
+            </div>
+             <div class="col-8">
+                <div class="p-3 border bg-white border-0">
+                    <h4 class="mb-4"><i class="icon-circles"></i> Select your payment option.(Amount:{{i.total_p}}) </h4>
+                    <div class="alert alert-success" role="alert">
+                        Your Transaction Id for this transaction is 1234832947
+                    </div>
+                    <div class="card">
+
+                        <div class="card-body bg-light">
+                            <form action="{% url 'checkout' %}" method="POST">
+                                {% csrf_token %}
+                                <div class=" p-3 rounded">
+                                    <div class="custom-control custom-radio mb-2">
+                                        <input type="radio" class="" onclick="offline_pay()" name="cr-l" id="cr_l_s_s"
+                                        checked="">
+                                    <label class="font-weight-bold" for="cr_l_s_s">Bank Transfer in any of the following
+                                        Bank.</label>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="custom-control custom-radio mb-3">
+                                        
+                                        <input type="hidden" value="{{i.product.id}}" name="product-id">
+                                        <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
+                                        <input type="hidden" value="{{i.total_p}}" name="total_price">
+                                        <input type="hidden" value="{{i.product.Total_S}}" name="avail_pro">
+                                        <input type="radio" onclick="online_pay()" class="custom-control-input" name="cr-l" id="cr_l_s_u">
+                                        <label class="custom-control-label mr-2" for="cr_l_s_u"><img class="ml-4"
+                                                src="{% static 'accounts/images/paystack-logo.png' %}" height="80px" width="160px"
+                                                alt=""></label>
+                                       
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class=" mb-3">
+                                        <div class="mb-2">
+                                            <label class="font-weight-bold" >Payment
+                                                Refference</label>
+                                        </div>
+                                        <input type="text" class="bg-light text-center border border-light" value="{{uuio}}" name="transaction_id" id="transaction_id" readonly>
+
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-success" style="text-align: center ;" id="online_payment">Proceed</button>
+                            </form>
+                            <div class="text-center">
+                                
+                                <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>
+                            </div>
+                            
+                        </div>
+                        <script>
+                            function offline_pay(){
+                                document.getElementById("online_payment").style.display = "none";
+                                document.getElementById("offline_payment").style.display = "block";
+
+                            }
+                            function online_pay(){
+                                document.getElementById("online_payment").style.display = "block";
+                                document.getElementById("offline_payment").style.display = "none";
+                            }
+                            offline_pay();
+
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- model -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalLongTitle"  >Payment Details</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mt-3 text-center">
+              <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
+              <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
+              <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
+              <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{ uui }}</h4>
+                
+              <form action="{% url 'offlinepayment' %}"   method="POST">
+                {% csrf_token %}
+           
+                <input type="hidden" value="{{i.product.Total_S}}" name="avail_pro" >
+                
+                <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
+                
+                
+                <input type="hidden"  name="total_price" value="{{i.total_p}}">
+                <input type="hidden" value="{{i.product.id}}" name="product-id">
+                <div class="text-center">
+                                
+                    <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>
+                </div>
+              </form>
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div> 
+    <!-- /javascript files -->
+    {% endblock main-content %} 

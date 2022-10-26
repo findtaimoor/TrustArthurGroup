@@ -69,7 +69,7 @@ def news(request):
     except:
         return render(request, 'accounts/index.html')
 def editprofiledetails(request):
-   try:
+ 
     gender = ['Male','Female']
     if IndividualRegister.objects.filter(user=request.user).exists():
         cuser = IndividualRegister.objects.get(user=request.user)
@@ -197,6 +197,7 @@ def editprofiledetails(request):
             messages.success(request,'Updated Succesfully.')
             return redirect('editprofiledetails')
         return render(request, 'accounts/editprofiledetails.html',{'cuser':cuser})
+ 
 
     elif AnotherJoinAccountRegister.objects.filter(user=request.user).exists():
         auser = AnotherJoinAccountRegister.objects.get(user=request.user)
@@ -254,9 +255,7 @@ def editprofiledetails(request):
             return redirect('editprofiledetails')
 
         return render(request, 'accounts/editprofiledetails.html',{'auser':auser,'gender':gender})
-   except Exception as e:
-    print (e)
-    return render(request,'accounts/index.html')
+ 
 
 
 
@@ -1094,7 +1093,8 @@ def admindeleteproduct(request,id):
 def adminaddsubproduct(request):
   try:
     product = Product.objects.all()
-
+    dat=datetime.date.today()
+    print(dat)
     if request.method == "POST":
         titleofproduct = request.POST['typeofproduct']
         
@@ -1107,7 +1107,10 @@ def adminaddsubproduct(request):
       
         Rate = request.POST['Rate'] 
         Principle = request.POST['Principle'] 
-        Date = request.POST['Date']
+        # Date = request.POST['Date']
+        Date = dat
+        
+        
         
         Minemun_Order = request.POST['Minemum']
         duration_month = request.POST['duration_month']
@@ -1122,7 +1125,7 @@ def adminaddsubproduct(request):
         messages.success(request, 'SubProduct Added Successfully.')
         return redirect('adminsubproductlist')
 
-    return render(request, 'devadmin/addsubproduct.html',{'product':product})
+    return render(request, 'devadmin/addsubproduct.html',{'product':product,'dat':dat})
   except Exception as e:
     print(e)
 def admineditsubproduct(request,id):
@@ -1764,21 +1767,35 @@ def admindeletenews(request,id):
 from dateutil.relativedelta import relativedelta
 def offlinepayment(request):
 #   try:
+
     if request.method == "POST":
         global productid
         productid = request.POST['product-id']
+        product = SubProduct.objects.get(id=productid)
         global qua
         qua = request.POST['U_product']
-        global total_quan
-        total_quan = request.POST['product_quantity']
         global total_price 
         total_price = request.POST['total_price']
+        # global total_quan
+        # total_quan = request.POST['product_quantity']
+        global total_quan
+        try:
+         
+         total_quan = request.POST['product_quantity']
+         print(total_quan)
+        except:
+         
+         total_quan = product.Total_S - int(total_price)
+         print(total_quan)
+        
+
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
             quote = Quote.objects.get(user=request.user,product_id = productid)
             quote.delete()
         product_title = product.sub_title
         price = product.selling_price
+        
         
         
         
@@ -1807,12 +1824,14 @@ def checkout(request):
     host = request.get_host()
     
     if request.method == "POST":
+        
         global productid
         productid = request.POST['product-id']
         global R_Product
         R_Product = request.POST['avail_pro']
         global U_Product
         U_Product = request.POST['U_product']
+        
         
 
         
@@ -1857,10 +1876,11 @@ def checkout(request):
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json',
                 }
-            print(price)
+            pro = (int(U_Product))
+            
             datum = {
                 "email": request.user.email,
-                "amount": int(price) * 100
+                "amount": int(price*pro) * 100
                 }
                 
             x = requests.post(url, data=json.dumps(datum), headers=headers)
@@ -1990,9 +2010,20 @@ def call_back_url(request):
 #     order.payment_status = session.payment_status
 #     order.save()
 
-def quotepayment(request):
+def quotepayment(request,id):
 
+ 
+ cq = Quote.objects.filter(id=id)
         
     
-    return render (request,'accounts/quotepayment.html')
+ return render (request,'accounts/quotepayment.html',{'cq':cq})
+def quotepaynow(request,id):
+ 
+ cp = Quote.objects.filter(id=id)
+ global uuio
+ uuio = str(uuid.uuid1())
+ uuio = uuio[:6]
+ print(uuio)
+
+ return render(request,'accounts/quotepaynow.html',{'cp':cp,'uuio':uuio})
 

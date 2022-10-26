@@ -113,7 +113,7 @@
                   <td>{{i.total_p}}</td>
                   <td>{{i.quote_date}}</td>
                   <td><a href="{% url 'customerquotedelete' i.id %}" class='text-danger'><i class='fas fa-trash'  style='font-size:22px;'></i></a>
-                      <a href="{% url 'quotepayment' %}" class = "text-danger"><i class="bi bi-bag-fill" style = 'font-size:22px;'></i></a>
+                      <a href="{% url 'quotepayment' i.id %}" class = "text-danger"><i class="bi bi-bag-fill" style = 'font-size:22px;'></i></a>
                   </td>
                 </tr>
               {% endfor %}
