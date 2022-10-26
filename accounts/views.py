@@ -402,6 +402,34 @@ def signup(request):
             else:
                 joint_account = False
 
+
+            Send_Email = "trustauthurgroup1@gmail.com"
+            server = smtplib.SMTP('smtp.gmail.com',587)
+            server.starttls()
+            server.login(Send_Email, 'boqtvrxfowhsoxsk')
+            mail=server.sendmail
+
+
+            if company_email:
+                ide = User.objects.get(email=email).id
+                ide=str(ide)
+                a="""Your Email registered successfully"""
+                
+                msg_chapass = "\r\n".join([
+                            
+                            "Subject:Change Password",
+                            "",
+                            a
+                            ]) 
+
+                
+                mail(Send_Email,email,msg_chapass)
+                messages.success(request,'Email sent')
+                print(mail)
+                print('yes')
+
+
+
             indiregi = IndividualRegister(user = useri,typeofuser=typeofuser,f_name=f_name,l_name=l_name,phone=phone,house_number=house_number,
             street_name=street_name,city=city, state=state,country=country, birthdate=birthdate,
             gender=gender,occupation=occupation,NIN=NIN,BVN=BVN,
