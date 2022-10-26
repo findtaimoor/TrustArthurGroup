@@ -341,19 +341,18 @@ def signup(request):
 
 
             if company_email:
-                ide = User.objects.get(email=email).id
-                ide=str(ide)
+                
                 a="""Your Email registered successfully"""
                 
                 msg_chapass = "\r\n".join([
                             
-                            "Subject:Change Password",
+                            "Signup",
                             "",
                             a
                             ]) 
 
                 
-                mail(Send_Email,email,msg_chapass)
+                mail(Send_Email,company_email,msg_chapass)
                 messages.success(request,'Email sent')
                 print(mail)
                 print('yes')
@@ -410,20 +409,19 @@ def signup(request):
             mail=server.sendmail
 
 
-            if company_email:
-                ide = User.objects.get(email=email).id
-                ide=str(ide)
+            if individual_email:
+                
                 a="""Your Email registered successfully"""
                 
                 msg_chapass = "\r\n".join([
                             
-                            "Subject:Change Password",
+                            "Signup",
                             "",
                             a
                             ]) 
 
                 
-                mail(Send_Email,email,msg_chapass)
+                mail(Send_Email,individual_email,msg_chapass)
                 messages.success(request,'Email sent')
                 print(mail)
                 print('yes')
