@@ -66,6 +66,7 @@ urlpatterns = [
     path('devadmin/addsubproduct/', views.adminaddsubproduct, name='adminaddsubproduct'),
     path('devadmin/productlist/', views.adminproductlist, name='adminproductlist'),
     path('devadmin/subproductlist/', views.adminsubproductlist, name='adminsubproductlist'),
+    path('devadmin/Assign_product_to_user/<int:id>', views.Assign_product_to_user, name='Assign_product_to_user'),
 
     path('devadmin/admineditproduct/<int:id>', views.admineditproduct, name='admineditproduct'),    
     path('devadmin/admindeleteproduct/<int:id>', views.admindeleteproduct, name='admindeleteproduct'),    

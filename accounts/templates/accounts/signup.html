@@ -951,21 +951,21 @@
                   <label class="required-field">Your full name</p></label>
                   <input type="text" name="name" id="kin_name" placeholder="Enter Full Name" autocomplete="on" required>
                   <label class="required-field">Next of kin relationship</p></label>
-                  <select class="select" name="occupation" id="kin_occupation" required>
-                    <option value="Please Select" selected disabled>Please Select</option>
-                    <option value="Husband">Husband</option>
-                    <option value="Wife">Wife</option>
-                    <option value="Partner">Partner</option>
-                    <option value="Son">Son</option>
-                    <option value="Daughter">Daughter</option>
-                    <option value="Father">Father</option>
-                    <option value="Mother">Mother</option>
-                    <option value="Brother">Brother</option>
-                    <option value="Sister">Sister</option>
-                    <option value="Cousin">Cousin</option>
-                    <option value="Dependent">Dependent</option>
-
-                  </select>
+                    <select class="select" name="occupation" id="kin_occupation" required>
+                      <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Husband">Husband</option>
+                      <option value="Wife">Wife</option>
+                      <option value="Partner">Partner</option>
+                      <option value="Son">Son</option>
+                      <option value="Daughter">Daughter</option>
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Brother">Brother</option>
+                      <option value="Sister">Sister</option>
+                      <option value="Cousin">Cousin</option>
+                      <option value="Dependent">Dependent</option>
+                      
+                    </select>
                   <span class="text-danger text-left mb-3" id="msg9"></span>
                 </form>
                 <button class="btn-register-9">Register Account</button>
@@ -997,7 +997,7 @@
                   <label>Phone number</label>
                   <input type="tel" name="phone" id="kin_phone" placeholder="Enter Phone number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
                   <label>House or Building number</label>
-                  <input type="text" name="kin_house_number" placeholder="Please Enter House/Building number" id="kin_house_number" autocomplete="on" required>
+                  <input type="number" name="kin_house_number" placeholder="Please Enter House/Building number" id="kin_house_number" maxlength="11" autocomplete="on" required>
                   <label>Street name</label>
                   <input type="text" name="kin_street_name" placeholder="Please Enter Street Name" id="kin_street_name" autocomplete="on" required>
 

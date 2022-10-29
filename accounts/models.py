@@ -1,3 +1,4 @@
+from ast import Assign
 from email.policy import default
 from pickletools import int4
 from django.db import models
@@ -130,6 +131,7 @@ class SubProduct(models.Model):
     Total_S = models.FloatField(default='None')
     Minemun_O = models.FloatField(default='None')
     Scope =  models.TextField()
+    Assign = models.CharField(max_length=200)
     
 
     def str(self):

@@ -8,41 +8,174 @@
         <style>td{padding:20px;} </style>
         <h2 class="m-4"> Edit Product </h2>
         
-        <form method ="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-
-    <table>
-
-        <tr>
-            <td><label for="">Select Type of User: </label></td>
-            <td> 
-                <select class="form-control" name="typeofuser" required>  
-                    {% for i in typeofuser %}
-                    <option value = "{{i}}" {% if product.typeofuser == i %} selected="selected" {% endif %}>{{i}}</option>
-                    {% endfor %}
-                </select>
-            </td>
-        </tr>
-        
-        <tr>
-            <td><label>Title of the Product:</label></td>
-            <td><input class="form-control" type="text" name="title" value="{{product.title}}" placeholder="Enter title" required></td>
-        </tr>
-
-        <tr>
-            <td><label>Product Sub title:</label></td>
-            <td><input class="form-control" type="text" name="title2" value="{{product.title2}}" placeholder="Enter Sub title" required></td>
-        </tr>
-
-        <tr>
-            <td><label>Product Image:</label></td>
-            <td><input class="form-control" type="file" name="productpic"/></td>
-        </tr>
-
-        <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr>
-    </table>
-
-    </form>
-</div>
+    
+            <table>
+    
+    
+    
+    
+                <tr>
+                    <td><label for="">Select Type of Product: </label></td>
+                    <td>
+                        <select id="myselection" class="form-control" name="typeofproduct" >
+                            {% for i in product %}
+                            <option value="{{i.title}}">{{ i.title| capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><label>Title of the Sub-Product:</label></td>
+                    <td><input class="form-control" type="text" name="subtitle" placeholder="Enter title" ></td>
+                </tr>
+    
+                <tr>
+                    <td><label>Brief Description of Sub product:</label></td>
+                    <td><input class="form-control" type="text" name="subtitle2" placeholder="Enter sub title" >
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><label>Sub-Product Image:</label></td>
+                    <td><input class="form-control" type="file" name="productpic"  /></td>
+                </tr>
+                <tr>
+                    <td><label for="">Private or Public: </label></td>
+                    <td>
+                        <select class="form-control" name="scopeofproduct" >
+    
+                            <option value="Private">Private</option>
+                            <option value="Public">Public</option>
+    
+                        </select>
+                        
+                    </td>
+                </tr>
+    
+                <!-- <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr> -->
+            </table>
+    
+            <div id="first_four_categories" style='display:block;'>
+                <table>
+    
+                    <tr>
+                        <td><label>Add Price of the Sub-Product:</label></td>
+                        <td><input class="form-control" type="number" name="selling_price" value="0" placeholder="Enter Price"
+                                ></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Total Stock:</label></td>
+                        <td><input class="form-control" type="number" name="Total" placeholder="Enter Total Stock" value="0"></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Minimum Order:</label></td>
+                        <td><input class="form-control" type="number" name="Minemum" placeholder="Enter Total Stock" value="0"></td>
+                    </tr>
+    
+    
+                    <tr>
+                        <td><label>Duration of Product:</label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Year</label></td>
+                        <td><input class="form-control" type="text"
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_year"
+                                placeholder="Enter Years" ></td>
+                    </tr>
+                    <tr>
+                        <td><label>Month</label></td>
+                        <td><input class="form-control" type="text"
+                                onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_month"
+                                placeholder="Enter Month" value="0" ></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Benefits: </label></td>
+                        <td><textarea class="form-control" name="benifits" rows="4" cols="50"
+                                placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="null"
+                                ></textarea></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Plan Features: </label></td>
+                        <td><textarea class="form-control" name="planfeatures" rows="4" cols="50"
+                                placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="null"></textarea></td>
+                    </tr>
+    
+    
+    
+                    <!-- <tr><td><input class="form-control btn btn-success" type="submit" value="Submit"></td></tr> -->
+                </table>
+    
+    
+            </div>
+    
+            <div id="wadia" style='display:none;'>
+                <table>
+    
+                    <tr>
+                        <td><label>Rate:</label></td>
+                        <td><input class="form-control" type="number" name="Rate" placeholder="Enter Price" value="0" ></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Principle:</label></td>
+                        <td><input class="form-control" type="number" name="Principle" placeholder="Enter Total Stock" value='0' ></td>
+                    </tr>
+    
+                    <!-- <tr>
+                        <td><label>Start Date:</label></td>
+                        <td><input type="date" class="form-control" name="Date" placeholder="Start Date" value="{{dat}}"></td>
+                    </tr> -->
+    
+                </table>
+               
+            </div>
+            <input class="form-control btn btn-success" type="submit" value="Submit">
+        </form>    
+       
+    
+    
+    </div>
+    
+    <script type="text/javascript">
+        function ShowHideDiv() {
+            // alert('call')
+            var div_first_four_categories = document.getElementById("first_four_categories");
+            var div_wadia = document.getElementById("wadia");
+    
+    
+            $('#myselection').on('change', function () {
+    
+                // alert('on select')
+    
+                var demovalue = $(this).val();
+                if (demovalue == "Wadiah Portfolio") {
+                    $("#first_four_categories").css('display', 'none');
+                    $("#wadia").css('display', 'block');
+                }
+                else {
+    
+                    $("#first_four_categories").css('display', 'block');
+                    $("#wadia").css('display', 'none');
+    
+                }
+    
+    
+    
+            });
+    
+            // normal.style.display = "show";
+            // alert(normal.style.display)
+    
+    
+        }
+        ShowHideDiv()
+    </script>
 
 {% endblock main-content %}

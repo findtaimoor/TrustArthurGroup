@@ -1,5 +1,6 @@
 {% extends 'devadmin/base.html' %}
 {% load static %}
+
 {% block title %}Admin{% endblock title %}
 
 {% block main-content %}
@@ -13,6 +14,7 @@
 
 <div class="m-4"  >
     <h2 class=""> Sub-Product List</h2>
+    
  <div  style="overflow-x:auto;"> 
    <table id="dtMaterialDesignExample" class="table table-striped">
    
@@ -28,6 +30,7 @@
             <th>Duration</th>
             <th>Benifits</th>
             <th>Plan Features</th>
+            <th>Assigned User</th>
             <th>Rate</th>
             <th>Principle</th>
             <th>Start Date</th>
@@ -48,11 +51,13 @@
             <td>{{i.duration_year}} Years {{i.duration_month}} Months</td>
             <td>{{i.benifits|linebreaks}}</td>
             <td>{{i.plan_feature|linebreaks}}</td>
+            <td>{{i.Assign}}</td>
             <td>{{i.Rate}}</td>
             <td>{{i.Principle}}</td>
             <td>{{i.Date}}</td>  
-            <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a></td>
+            <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a><a class='text-success' href="{% url 'Assign_product_to_user' i.id %}" ><i class='bx bxs-user-check'  style='font-size:22px;'></i></a></td>
         </tr>
+
         
 
         {% endfor %}
@@ -95,5 +100,12 @@
     $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
     
 </script>
+
+
+<select name="select_user" id="select_users">
+            
+  <option value="">abc</option>
+  
+</select>
 
 {% endblock main-content %}

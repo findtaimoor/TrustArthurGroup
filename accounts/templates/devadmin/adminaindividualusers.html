@@ -30,6 +30,7 @@ table{
     <tr>
         <th>User</th>
         <th>Fullname</th>
+        <th>Email</th>
         <th>Phone</th>
         <th>Birthdate</th>
         <th>Gender</th>
@@ -61,9 +62,10 @@ table{
     {% for i in iusers %}
       
     
-    <tr>
+    <tr>  
         <td>{{i.user|capfirst}}</td>
-        <td>{{i.fullname|capfirst}}</td>
+        <td>{{i.f_name|capfirst}}</td>
+        <td>{{i.u_email}}</td>
         <td>{{i.phone}}</td>
         <td>{{i.birthdate}}</td>
         <td>{{i.gender}}</td>

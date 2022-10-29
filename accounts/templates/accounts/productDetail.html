@@ -14,39 +14,67 @@
             <div class="left-box">
                 <p class="info-text">{{product.sub_title}}</p>
                 <img src="{{product.sub_product_image.url}}" alt="our product img">
+                {% if product.category_title != 'Wadiah Portfolio' %}
                 <h3>Benefits:</h3>
                 {% comment %} {% for key,value in dic.items %}
                 <p><span class="first-latter-color">{{key}}:</span> {{value}}</p>
                 {% endfor %} {% endcomment %}
-
-                <p><span class="first-latter-color">{{product.benifits|linebreaks}}</p>
-
-                <h3>Plan Features:</h3>
                 
-                
-                <p><span class="first-latter-color">{{product.plan_feature|linebreaks}}</p>
+                <div>
+                  <p><span class="first-latter-color">{{product.benifits|linebreaks}}</p>
 
-                 <p class="info-text">Duration:&nbsp;{{product.duration_year}} Years {{product.duration_month}} Month</p>
-                  {% if product.Total_S > product.Minemun_O %}
-                     <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
+                  <h3>Plan Features:</h3>
+                  
+                  
+                  <p><span class="first-latter-color">{{product.plan_feature|linebreaks}}</p>
 
-                     <p id="minimum_lable" class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
+                  <p class="info-text">Duration:&nbsp;{{product.duration_year}} Years {{product.duration_month}} Month</p>
+                    {% if product.Total_S > product.Minemun_O %}
+                      <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
 
-                     <p id="price_pu" class="info-test" >Price per unit:&nbsp;{{product.selling_price}}</p>
-                   
-                     
-                     <p><label id="validate_page" for="quantity">Quantity:</label>
+                      <p id="minimum_lable" class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
+
+                      <p id="price_pu" class="info-test" >Price per unit:&nbsp;₦{{product.selling_price}}</p>
                     
+                      
+                      <p><label id="validate_page" for="quantity">Quantity:</label>
+                      
+                      
+                      
+                        <input class="cus-qut"  type="number"  onchange="calc()"  style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                      
+                      {%else%}
+                      <p><span class="first-latter-color">Out of Stock</p>
+                    {% endif %}
+                      
+                    <p class="info-text first-latter-color" >Total price: <b>₦<span id="total">0</span></b></p>
+                </div>
+                {% endif %}
+                {% if product.category_title == 'Wadiah Portfolio' %}
+                <div> 
+                  <p class="info-text">Principle:&nbsp;{{product.Principle}}</p>
+                    <!-- {% if product.Total_S > product.Minemun_O %}
+                      <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
+
+                      <p id="minimum_lable" class="info-test" >Minimum Order:&nbsp;{{product.Minemun_O}}</p>
+
+                      <p id="price_pu" class="info-test" >Price per unit:&nbsp;₦{{product.selling_price}}</p>
                     
-                    
-                      <input class="cus-qut"  type="number"  onchange="calc()"  style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
-                     
-                     {%else%}
-                    <p><span class="first-latter-color">Out of Stock</p>
-                  {% endif %}
-                    
-                  <p class="info-text first-latter-color" >Total price: <b>$<span id="total">0</span></b></p>
-                 
+                      
+                      <p><label id="validate_page" for="quantity">Quantity:</label>
+                      
+                      
+                      
+                        <input class="cus-qut"  type="number"  onchange="calc()"  style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                      
+                      {%else%}
+                      <p><span class="first-latter-color">Out of Stock</p>
+                    {% endif %} -->
+                      
+                    <p class="info-text first-latter-color" >Rate: <b>₦<span id="total">{{product.Rate}}</span></b></p>
+                    <p class="info-text " >Starting Date: <span class="text-dark" id="total">{{product.Date}}</span></p>
+                </div>
+                {% endif %}
                 <div class="btn">
               
 
@@ -55,6 +83,8 @@
 
                         <form action="{% url 'quote' %}"  method="POST">
                         {% csrf_token %}
+
+                        
 
                         <input type="hidden" id="quan" name="u_quan">
                         <input type="hidden" value="{{product.id}}" name="product-id">

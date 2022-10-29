@@ -1,10 +1,15 @@
-from ast import Or
+from ast import Global, Or
 from calendar import month
 from copy import error
+from ctypes import Union
 import datetime
 import email
 from functools import total_ordering
+from http.client import responses
+from operator import and_
+from unicodedata import name
 from urllib import request
+from urllib.parse import ParseResult
 from urllib.request import Request
 from wsgiref.util import request_uri
 from django.conf import settings
@@ -482,7 +487,12 @@ def signin(request):
         password = request.POST.get('password')
 
         if User.objects.filter(email=email).exists():
+
+            global username
             username = User.objects.get(email=email).username
+
+             
+                        
             user = authenticate(username=username, password=password)
             
 
@@ -588,11 +598,11 @@ def change_p(request):
            print('Noo!')
            return redirect('signin')
      else:
-        msg = 'Email Not Exists!!'
+        msg = 'Account with that email was not found.'
         return render(request, 'accounts/changepass.html',{'msg':msg})          
    except:
         
-        msg = 'Email Not Exists!!!'
+        msg = 'Account with that email was not found.'
         
         return render(request, 'accounts/changepass.html',{'msg':msg})          
     
@@ -740,28 +750,54 @@ def product(request):
    except:
     return render(request,'accounts/index.html')
 def subproduct(request,id):
-   try:
+   
+   
     product = Product.objects.get(id=id)
-    subproduct = SubProduct.objects.filter(product=product)
+    
+    # if SubProduct.objects.get(Scope = 'private'):
+    #  subproduct = SubProduct.objects.filter(product=product)   
+    #  print ('farahn')
+    # else:SubProduct.objects.filter(product=product) and
+   
+    if request.user.is_authenticated:
+      
+      
+       cuser =User.objects.get(username=request.user)
+          
+       subproduct =   SubProduct.objects.filter(Scope = 'Public' , product=product ).union(SubProduct.objects.filter(Assign=cuser , product=product))
+
+       
+       
+
+      
+      
+
+    else:
+        subproduct =   SubProduct.objects.filter(Scope = 'Public' )
+        
+      
+    # print (subproduct )
     return render(request, 'accounts/subproduct.html',{'product':product,'subproduct':subproduct})
-   except:
-    return render(request,'accounts/index.html')
+ 
 def productdetail(request,id):
    try:
-    product = SubProduct.objects.get(id=id)
+    #product = SubProduct.objects.get(id=id)
+    product = SubProduct.objects.raw("SELECT  accounts_product.title category_title,  * FROM accounts_subproduct JOIN accounts_product on accounts_product.id = accounts_subproduct.product_id where accounts_subproduct.id = "+ str(id))
+
     global uui
     uui = str(uuid.uuid1())
     uui = uui[:6]
     print(uui)
+    print(product[0])
  
   
 
-    subproductall = SubProduct.objects.filter(product=product.product)
+    subproductall = SubProduct.objects.filter(product=product[0].product)
     s = {}
     s1 = "abc:wertasdfgfdsvb sdf asdfg#def:asdf qwert asdfg asdf"
     for i in s1.split('#'):
         s.update({i.split(":")[0]:i.split(":")[1]})
-    return render(request, 'accounts/productDetail.html',{'dic':s,'product':product,'subproductall':subproductall,'uui':uui})
+    return render(request, 'accounts/productDetail.html',{'dic':s,'product':product [0],'subproductall':subproductall,'uui':uui})
 
    except Exception as e:
     print(e)
@@ -909,8 +945,7 @@ def addadmin(request):
 
                 user.save()
                 messages.success(request, 'Added Successfully.')
-                
-                
+
                 return redirect('adminlist')
             else:
                 msg = 'Email Already Exists!!!'
@@ -1026,20 +1061,23 @@ def adminlogout(request):
 
 
 def dashboard(request):
-   try:
+   
     product = SubProduct.objects.all()
     corporatecount = BusinessRegister.objects.all().count()
     individualcount = IndividualRegister.objects.all().count()
 
     orders = OrderPlaced.objects.filter(payment_status='paid')
+
+    print(orders)
     
+
     camount = 0
     iamount = 0
-    for i in orders:
-        if i.product.product.typeofuser == 'corporate':
-            camount = camount + i.price
-        elif i.product.product.typeofuser == 'individual':
-            iamount = iamount + i.price
+    # for i in orders:
+    #     if i.product.product.typeofuser == 'corporate':
+    #         camount = camount + i.price
+    #     elif i.product.product.typeofuser == 'individual':
+    #         iamount = iamount + i.price
 
     if request.method == "POST":
         titleofproduct = request.POST['typeofproduct']
@@ -1047,11 +1085,11 @@ def dashboard(request):
         mindate = request.POST['mindate']
         maxdate = request.POST['maxdate']
         orders = OrderPlaced.objects.filter(product=product)
+        print(product)
         return render(request, 'devadmin/monthlyfilter.html',{'orders':orders,'mindate':mindate,'maxdate':maxdate})
    
     return render(request, 'devadmin/index.html',{'product':product,'corporatecount':corporatecount,'camount':camount,'individualcount':individualcount,'iamount':iamount})
-   except:
-    return render(request, 'devadmin/index.html')
+   
 def monthlyfilter(request):
     order = OrderPlaced.objects.all()
     return render(request, 'devadmin/monthlyfilter.html',{'orders':order})
@@ -1135,9 +1173,7 @@ def adminaddsubproduct(request):
         Principle = request.POST['Principle'] 
         # Date = request.POST['Date']
         Date = dat
-        
-        
-        
+               
         Minemun_Order = request.POST['Minemum']
         duration_month = request.POST['duration_month']
         duration_year = request.POST['duration_year']
@@ -1187,12 +1223,17 @@ def admindeletesubproduct(request,id):
     return redirect('adminsubproductlist')
 
 def adminproductlist(request):
+
     product = Product.objects.all()
+    
+    
     return render(request, 'devadmin/adminproductlist.html',{'product':product})
 
 
 def adminsubproductlist(request):
     subproduct = SubProduct.objects.all()
+   
+  
     return render(request, 'devadmin/adminsubproductlist.html',{'subproduct':subproduct})
 
 def adminabusinessusers(request):
@@ -1204,7 +1245,7 @@ def buserextradetails(request,id):
     return render(request, 'devadmin/buserextradetails.html',{'busers':busers})
 
 def adminaindividualusers(request):
-    iusers = IndividualRegister.objects.filter(joint_account = False)
+    iusers = IndividualRegister.objects.raw('SELECT  auth_user.email u_email,  * FROM accounts_individualregister JOIN auth_user on auth_user.id = accounts_individualregister.user_id where accounts_individualregister.joint_account = false')
     return render(request, 'devadmin/adminaindividualusers.html',{'iusers':iusers})
 
 def iuserextradetails(request,id):
@@ -2052,4 +2093,19 @@ def quotepaynow(request,id):
  print(uuio)
 
  return render(request,'accounts/quotepaynow.html',{'cp':cp,'uuio':uuio})
+
+def Assign_product_to_user(request,id):
+    All_user = User.objects.all()
+    
+    
+    if request.method == "POST":
+        Assign = request.POST['Assign']
+        
+        print(Assign)
+        SubProduct.objects.filter(id=id).update(Assign=Assign)
+        return redirect('adminsubproductlist')
+
+
+    return render(request,'devadmin/Assign_product_to_user.html',{"All_user":All_user})
+
 

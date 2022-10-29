@@ -78,6 +78,7 @@
                   <label>Select Type of Product: </label>
                   <!-- Date select -->
                   <select class="form-control mt-3" name="typeofproduct" required>  
+                    <option value=""></option>
                     {% for i in product %}
                         <option value = "{{i.sub_title}}" >{{ i.sub_title| capfirst}}</option>
                     {% endfor %}

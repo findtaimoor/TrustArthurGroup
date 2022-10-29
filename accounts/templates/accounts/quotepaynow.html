@@ -32,6 +32,11 @@
                                     <div class="dropdown-divider"></div>
                                     <div class="custom-control custom-radio mb-3">
                                         
+                                        <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
+                                        <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
+                                        <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
+                                        <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{uui}}</h4>
+
                                         <input type="hidden" value="{{i.product.id}}" name="product-id">
                                         <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
                                         <input type="hidden" value="{{i.total_p}}" name="total_price">
@@ -45,8 +50,7 @@
                                     <div class="dropdown-divider"></div>
                                     <div class=" mb-3">
                                         <div class="mb-2">
-                                            <label class="font-weight-bold" >Payment
-                                                Refference</label>
+                                            <label class="font-weight-bold" >Payment Refference</label>
                                         </div>
                                         <input type="text" class="bg-light text-center border border-light" value="{{uuio}}" name="transaction_id" id="transaction_id" readonly>
 
@@ -92,11 +96,8 @@
               </button>
             </div>
             <div class="modal-body mt-3 text-center">
-              <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
-              <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
-              <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
-              <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{ uui }}</h4>
-                
+             
+        
               <form action="{% url 'offlinepayment' %}"   method="POST">
                 {% csrf_token %}
            
