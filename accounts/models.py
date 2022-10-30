@@ -152,7 +152,7 @@ class OrderPlaced(models.Model):
     updated = models.DateTimeField(auto_now=True)
     payment_status = models.CharField(max_length=50)
     quantity = models.FloatField()
-
+    frequency = models.CharField(max_length=200, default='Null')
     def str(self):
         return str(self.id)
 
@@ -161,10 +161,10 @@ class Quote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(SubProduct, on_delete=models.SET_NULL, default= None, null=True)
     quote_date_time = models.DateTimeField(auto_now_add =True)
-    quote_date = models.DateField(auto_now_add =True)
-    quote_quantity = models.IntegerField()
+    quote_date = models.DateField()
+    quote_quantity = models.IntegerField(default = 1)
     total_p = models.IntegerField()
-
+    frequency = models.CharField(max_length=200)
     def str(self):
         return str(self.id)
 

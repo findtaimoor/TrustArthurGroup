@@ -581,13 +581,13 @@ $(document).ready(function () {
     var name3 = document.getElementById("exetive_name3").value;
     var name4 = document.getElementById("exetive_name4").value;
     if (name1 == null || name1 == "") {
-      document.getElementById("msg15").innerHTML = "Please enter name 1";
+      document.getElementById("msg15").innerHTML = "Enter First name";
     } else if (name2 == null || name2 == "") {
-      document.getElementById("msg15").innerHTML = "Please enter name 2";
+      document.getElementById("msg15").innerHTML = "Enter Second name";
     } else if (name3 == null || name3 == "") {
-      document.getElementById("msg15").innerHTML = "Please enter name 3";
+      document.getElementById("msg15").innerHTML = "Enter Third name";
     } else if (name4 == null || name4 == "") {
-      document.getElementById("msg15").innerHTML = "Please enter name 4";
+      document.getElementById("msg15").innerHTML = "Enter Fourth name";
     } else {
       formData.push({
         'Form':15,

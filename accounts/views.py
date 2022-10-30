@@ -2,8 +2,10 @@ from ast import Global, Or
 from calendar import month
 from copy import error
 from ctypes import Union
+from datetime import date,time,datetime
 import datetime
 import email
+from email import header
 from functools import total_ordering
 from http.client import responses
 from operator import and_
@@ -24,6 +26,7 @@ from django.db.models import Q
 from django import utils
 import logging
 from .generic import *
+from dateutil.relativedelta import relativedelta
 
 import uuid
 from http import server
@@ -527,10 +530,10 @@ def signin(request):
                     print(e)
                     return redirect('home')       
             else:
-                msg = 'User Not Exists!!!'
+                msg = '“Password incorrect'
                 return render(request, 'accounts/signin.html',{'msg':msg})
         else:
-                msg = 'User Not Exists!!'
+                msg = 'User does not exist.'
                 return render(request, 'accounts/signin.html',{'msg':msg})
 
     return render(request, 'accounts/signin.html')
@@ -812,7 +815,7 @@ def contact(request):
         contact= request.POST.get('phone','')
         message= request.POST.get('message','')
         Contact(name=name, email=email, contact=contact, message=message).save()
-        messages.success(request,'Your Feedback is Submitted Successfully.')
+        messages.success(request,'Your feedback has been submitted successfully')
         return redirect("home")
 
     return render(request, 'accounts/contact.html',{'home':home})
@@ -831,7 +834,7 @@ def subscriber(request):
         email= request.POST.get('email','')
         if email not in subemail:
             Subscriber(email=email).save()
-            messages.success(request,'Your subscription has been successfully.')
+            messages.success(request,'You have successfully subscribed to our newsletter')
             return redirect("home")
         else:
             messages.error(request,"You're already Subscribed.")
@@ -885,16 +888,16 @@ def dev(request):
                      return redirect('dashboard')
                 else:
                     messages.error(request,'User Not Exists!!!')
-                    msg = 'User Not Exists!!!'
+                    msg = 'User Not Exists1!!!'
                     return render(request, 'devadmin/login.html',{'msg':msg})    
                 
             else:
-                msg = 'User Not Exists!!!'
+                msg = 'User Not Exists2!!!'
                 messages.error(request,'User Not Exists!!!')
                 return render(request, 'devadmin/login.html',{'msg':msg})
         
         else:
-            msg = 'User Not Exists!!!'
+            msg = 'User does not exist1'
             return render(request, 'devadmin/login.html',{'msg':msg})
 
     return render(request, 'devadmin/login.html')
@@ -1742,33 +1745,46 @@ def deleteaboutboardmember(request,id):
 
 
 def quote(request):
-   try:
+#       
     if request.method == "POST":
         user = request.user
         productid = request.POST['product-id']
-          
+   
         quan = request.POST['u_quan']
-
-
-
-        Total_p = request.POST['total_p']
-        print(Total_p)
+    
         
+        Total_p = request.POST['total_p']
+        try:
+         quote_date = request.POST['starting_date_q']
+         frequency = request.POST['frequency_q'] 
+         print(quote_date)
+        except:
+         quote_date = date.today()
+         frequency = "null"
+        print(frequency) 
+       
+
         product_check = SubProduct.objects.get(id=productid)
         if(product_check):
-            if(Quote.objects.filter(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )):
+            if(Quote.objects.filter(user=user,product_id = productid, total_p = Total_p )):
                 messages.info(request, 'Its Already Quoted.')
             else:
-
-                Quote.objects.create(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )
+               if quan != 0 and frequency == "null":
+                   Quote.objects.create(user=user,product_id = productid,quote_quantity = quan,quote_date=date.today() ,total_p = Total_p )
+                   messages.success(request, 'Quoted Successfully.')
+            #    elif request.POST['frequency_q'] == 'null': 
+            #     Quote.objects.create(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )
+            #     messages.success(request, 'Quoted Successfully.')
+               else:
+                Quote.objects.create(user=user,product_id = productid,frequency=frequency,quote_date=quote_date, total_p = Total_p )
                 messages.success(request, 'Quoted Successfully.')
         else:
             messages.error("No Such Product")
 
     return redirect('customerquote')
-   except Exception as e:
+#    except Exception as e:
 
-    print(e)
+#     print(e)
 
     return render(request,'accounts/index.html')
 
@@ -1833,7 +1849,7 @@ def admindeletenews(request,id):
 
 from dateutil.relativedelta import relativedelta
 def offlinepayment(request):
-#   try:
+  
 
     if request.method == "POST":
         global productid
@@ -1843,18 +1859,27 @@ def offlinepayment(request):
         qua = request.POST['U_product']
         global total_price 
         total_price = request.POST['total_price']
-        # global total_quan
-        # total_quan = request.POST['product_quantity']
+      
         global total_quan
         try:
          
          total_quan = request.POST['product_quantity']
-         print(total_quan)
+   
         except:
          
          total_quan = product.Total_S - int(total_price)
-         print(total_quan)
         
+        global frequenc
+        Frequency=request.POST['frequency_OF']
+        
+        if Frequency in ["Monthly","Quarterly","Annually"]:
+          frequenc = request.POST['frequency_OF'] 
+          
+          frequency = frequenc
+        else:
+          frequenc = request.POST['frequency_OF']
+          frequenc = 'null'
+          frequency = frequenc
 
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
@@ -1862,17 +1887,35 @@ def offlinepayment(request):
             quote.delete()
         product_title = product.sub_title
         price = product.selling_price
-        
-        
+        now = date.today()
         
         
 
+        try:
+
+            duedate = now + relativedelta(months = int(product.duration_month))
+            duedate = duedate + relativedelta(years = int(product.duration_year))
       
-  
-        now = datetime.date.today()
-        duedate = now + relativedelta(months = int(product.duration_month))
-        duedate = duedate + relativedelta(years = int(product.duration_year))
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,
+        except:
+         
+            now = date.today()
+            if frequency == 'Quarterly':
+        
+            #  frequency = "3"
+               duedate = now + relativedelta(months=+3)
+            elif frequency == 'Monthly':
+                # frequency = "1"                
+                duedate = now + relativedelta(months=+1)
+            elif frequency == 'Annually':
+                
+                # frequency = "12"                
+                duedate = now + relativedelta(months=+1)
+               
+            else:
+                 duedate = now + relativedelta(months = int(product.duration_month))
+                 duedate = duedate + relativedelta(years = int(product.duration_year))
+
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,frequency=frequenc,
                                             payment_id = uui,quantity=qua,modeofpayment='offline',payment_status='pending',
                                             due_date=duedate)
         order.save()
@@ -1899,18 +1942,53 @@ def checkout(request):
         global U_Product
         U_Product = request.POST['U_product']
         
-        
+        print(U_Product)
+       
+        global frequenc
+        try:
+         
+         frequenc = request.POST['frequency_O'] 
+         
+         frequency = frequenc
+        except:
+         frequency = "null"
+         frequenc = 'frequenc'
 
-        
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
             quote = Quote.objects.get(user=request.user,product_id = productid)
             quote.delete()
         product_title = product.sub_title
-        price = product.selling_price
+        if product.selling_price != 0 :
+          price = product.selling_price
+        else:
+          price = product.Rate  
+        
+        
         now = datetime.date.today()
-        duedate = now + relativedelta(months = int(product.duration_month))
-        duedate = duedate + relativedelta(years = int(product.duration_year))
+      
+        try:
+
+            duedate = now + relativedelta(months = int(product.duration_month))
+            duedate = duedate + relativedelta(years = int(product.duration_year))
+           
+        except:
+             now = date.today()
+             if frequency == 'Quarterly':
+              frequency = "3"
+              duedate = now + relativedelta(months=+3)
+             elif frequency == 'Monthly':
+                
+                frequency = "1"                
+
+                duedate = now + relativedelta(months=+1)
+                
+
+             elif  frequency  == 'Annually':
+                 frequency =  "12" 
+                 duedate = now + relativedelta(months=+12)
+      
+            
         # OrderPlaced.objects.filter(productid=productid).update(quantity=U_Product)
 
         # checkout_session = stripe.checkout.Session.create(
@@ -1943,23 +2021,33 @@ def checkout(request):
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json',
                 }
-            pro = (int(U_Product))
-            
+            try:  
+             if U_Product == 0 : 
+              pro = (int(U_Product))
+             else:
+              pro =(int(frequency))
+            except:
+                pro = (int(U_Product))
             datum = {
                 "email": request.user.email,
                 "amount": int(price*pro) * 100
                 }
-                
+
+            
+           
             x = requests.post(url, data=json.dumps(datum), headers=headers)
+          
             if x.status_code != 200:
                 return str(x.status_code)
 
             results = x.json()
+
             return results
+       
 
         initialized = init_payment(request)
-        print(initialized['data']['authorization_url'])
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=price,
+            
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=price,frequency=frequenc,
                                             modeofpayment='online',due_date=duedate,payment_status='pending',payment_id=initialized['data']['reference'])
         order.save()
         amount = price/100
@@ -1970,9 +2058,9 @@ def checkout(request):
 
 def call_back_url(request):
     
-    print('callback')
+
     reference = request.GET.get('reference')
-    print(reference)
+
 	# We need to fetch the reference from PAYMENT
     check_pay = OrderPlaced.objects.filter(payment_id=reference).exists()
     
@@ -2007,11 +2095,11 @@ def call_back_url(request):
        OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(payment_status='paid')
        OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(quantity=U_Product)
        if OrderPlaced.objects.filter(payment_status='paid'):
-         SubProduct.objects.filter(id=productid).update(Total_S=R_Product)
-         print(
-            
-         )
-         print(productid)
+         try:
+          SubProduct.objects.filter(id=productid).update(Total_S=R_Product)
+         except:
+          print(productid)
+          
         
        
 
@@ -2090,7 +2178,7 @@ def quotepaynow(request,id):
  global uuio
  uuio = str(uuid.uuid1())
  uuio = uuio[:6]
- print(uuio)
+
 
  return render(request,'accounts/quotepaynow.html',{'cp':cp,'uuio':uuio})
 
@@ -2101,7 +2189,7 @@ def Assign_product_to_user(request,id):
     if request.method == "POST":
         Assign = request.POST['Assign']
         
-        print(Assign)
+
         SubProduct.objects.filter(id=id).update(Assign=Assign)
         return redirect('adminsubproductlist')
 

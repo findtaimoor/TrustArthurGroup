@@ -41,8 +41,8 @@
                       
                       
                       
-                        <input class="cus-qut"  type="number"  onchange="calc()"  style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
-                      
+                        <input class="cus-qut"  type="number"  onkeyup="calc()" onchange="calc()" style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                        <p><span class="first-latter-color" id="quantity_error"></p></p>
                       {%else%}
                       <p><span class="first-latter-color">Out of Stock</p>
                     {% endif %}
@@ -52,6 +52,7 @@
                 {% endif %}
                 {% if product.category_title == 'Wadiah Portfolio' %}
                 <div> 
+                  <p class="info-text first-latter-color" >Rate: <b>₦<span id="price_pu">{{product.Rate}}</span></b></p>
                   <p class="info-text">Principle:&nbsp;{{product.Principle}}</p>
                     <!-- {% if product.Total_S > product.Minemun_O %}
                       <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
@@ -71,38 +72,61 @@
                       <p><span class="first-latter-color">Out of Stock</p>
                     {% endif %} -->
                       
-                    <p class="info-text first-latter-color" >Rate: <b>₦<span id="total">{{product.Rate}}</span></b></p>
-                    <p class="info-text " >Starting Date: <span class="text-dark" id="total">{{product.Date}}</span></p>
+                    
+                    <div class="row g-3">
+                      <div class="col-auto">
+                        <label for="myInput"  class="info-text">Starting Date: </label>
+                      </div>
+                      <div class="col-auto">
+                        <input type="date" id="start_date" onchange="calc()" class="form-control">
+                      </div>
+                    </div> 
+                    <div class="row g-3">
+                      <div class="col-auto">
+                        <label for="" class="info-text">Frequency: </label>
+                      </div>
+                      <div class="col-auto">
+                        <select id="frequency" onchange="calc()" name="frequency" class="form-control">
+                          <option value="select">Select...</option>
+                          <option value="monthly">Monthly</option>
+                          <option value="quarterly">Quarterly</option>
+                          <option value="annually">Annually</option>
+                        </select>
+                      </div>
+                    </div> 
+                    <p><span class="first-latter-color" id="quantity_error"></span></p>
+                    <p class="info-text first-latter-color" >Total Price: <b>₦<span id="total">{{product.Rate}}</span></b></p>
+                    <!-- <p class="info-text " >Starting Date: <span class="text-dark" id="total">{{product.Date}}</span></p> -->
                 </div>
                 {% endif %}
                 <div class="btn">
               
 
                     {% if request.user.is_authenticated %}
-                      {% if product.Total_S > product.Minemun_O %}
+                      
 
                         <form action="{% url 'quote' %}"  method="POST">
                         {% csrf_token %}
 
                         
 
-                        <input type="hidden" id="quan" name="u_quan">
+                        <input type="text" value="1" id="quan" name="u_quan">
                         <input type="hidden" value="{{product.id}}" name="product-id">
-                        <input type="hidden" id='total_p' name="total_p"> 
+                        <input type="hidden" id='total_p' name="total_p">
+                        {% if product.category_title == 'Wadiah Portfolio' %}
+                        <input type="hidden" id='frequency_q' name="frequency_q">
+                        <input type="hidden" id='starting_date_q' name="starting_date_q"> 
+                        {% endif %}
                         <button type="submit" onclick="validate_value()" class="next-btn" id="checkout-button" >Quote</button>
                         </form>
-                        {% else %}
+                    
                                             
-                    {% endif %}
-                     {% if product.Total_S > product.Minemun_O %}
+                    
+                    
                         <button type="button" class="next-btn" onclick="validate_value()"   id="checkout_btn" data-toggle="modal" data-target="#exampleModalCenter">
                          Checkout
                         </button>
-                      {% else %}
-                        <button type="button" class="next-btn" >
-                        Checkout
-                        </button>
-                      {% endif %}
+                      
                         
                       <!-- Modal -->
                       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -118,9 +142,13 @@
                                 <form action="{% url 'checkout' %}" method="POST">
                                 <!-- <form id="paymentForm"> -->
                                     {% csrf_token %}
-                                    <input type="hidden" id="sum_q" name="avail_pro" >
-                                    <input type="hidden" id="put_quantitiy" name="U_product" >
-                                    <input type="hidden" value="{{product.id}}" name="product-id">
+                                    <input type="text" id="sum_q" name="avail_pro" >
+                                    <input type="text" id="put_quantitiy" name="U_product" >
+                                    <input type="text" value="{{product.id}}" name="product-id">
+                                    {% if product.category_title == 'Wadiah Portfolio' %}
+                                    <input type="hidden"   id='frequency_O' name="frequency_O"> 
+                                    <input type="hidden" id='starting_date_O' name="starting_date_O"> 
+                                    {% endif %}
                                     <button type="submit" class="next-btn" id="checkout-button">Online Payment</button>
                                     <!-- <button type="submit" class="next-btn" id="checkout-button" onclick="payWithPaystack()">Online Payment</button> -->
 
@@ -128,7 +156,7 @@
                                 <!-- <form action="{% url 'offlinepayment' %}" method="POST"> -->
                                     <!-- {% csrf_token %} -->
                                     <!-- <input type="hidden" value="{{product.id}}" name="product-id"> -->
-                                    <button type="submit" class="next-btn" id="checkout-button" onclick="get_quat('_quantity', 'put_quantitiy2', 'a-pro', 'sum_q2',)" data-toggle="modal" data-target="#exampleModalCenter2">Offline Payment</button>
+                                    <button type="submit" class="next-btn" id="checkout-button" onclick="get_quat('_quantity', 'put_quantitiy2', 'a-pro', 'sum_q2'); for_ofline_wadiah();" data-toggle="modal" data-target="#exampleModalCenter2">Offline Payment</button>
                                 <!-- </form> -->
                             </div>
                             <div class="modal-footer">
@@ -157,13 +185,17 @@
                               <form action="{% url 'offlinepayment' %}"   method="POST">
                                 {% csrf_token %}
                            
-                                <input type="hidden" id="avail_pro2" name="avail_pro" >
+                                <input type="text" id="avail_pro2" name="avail_pro" >
                                 
                                 <input type="text" id="put_quantitiy2" name="U_product">
                                 
                                 <input type="hidden"  name="product_quantity" id="sum_q2">
                                 <input type="hidden"  name="total_price" id="total_price">
                                 <input type="hidden" value="{{product.id}}" name="product-id">
+                                
+                                <input type="text" id='frequency_OF' name="frequency_OF">
+                                <input type="text" id='starting_date_OF' name="starting_date_OF">
+                               
                                 <button type="submit" class="next-btn" id="checkout-button">Okay</button>
                             </form>
                             </div>

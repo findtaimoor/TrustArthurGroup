@@ -112,7 +112,10 @@
                       </ul>
                       <div class="header-right-button">
                         {% if request.user.is_authenticated %}
-                        <a href="{% url 'logout' %}" class="header-btn">Logout</a>
+
+
+                        
+                        <a class="header-btn" data-toggle="modal" data-target="#exampleModalCenter">Logout</a>
                         
                         {% else %}
                         <a href="{% url 'signup' %}" class="header-btn">Register Now</a>
@@ -155,7 +158,8 @@
                          </li>
 
                         {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}" class="mobilelogin">Logout</a></li>
+
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter" class="mobilelogin">Logout</a></li>
                         
                         <li>
                           <a href="{% url 'orders' %}">My Profile</a>
@@ -341,7 +345,7 @@
               <a href="{% url 'orders' %}">My Profile</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'logout' %}">Logout</a>
+              <a data-toggle="modal" data-target="#exampleModalCenter"">Logout</a>
             </li>
             <li class="nav-item">
               <a href="{%url 'changepassword' request.user.id %}">Change password</a>
@@ -407,6 +411,27 @@
         it to make a type specimen book.</p>
       <button class="item-btn readmore-btn" type="button" id="close4">Close</button>
     </div>
+
+    <!--  -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLongTitle">permission</h2>
+          </div>
+          <div class="modal-body">
+              <P>Are you sure you want to
+                logout?</P>
+          </div>
+          <div class="modal-footer" >
+            <a href="{% url 'logout' %}"><button class="btn btn-success" >Yes</button></a>
+            <button class="btn btn-success btn btn-danger" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--  -->
 
 
 

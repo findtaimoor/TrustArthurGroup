@@ -99,6 +99,7 @@
                     <th>Product Title</th>
                     <th>SubProduct Title</th>
                     <th>Quantity</th>
+                    <th>frequency</th>
                     <th>Total Price</th>
                     <th>Quote Date</th>
                     <th>Action</th>
@@ -110,6 +111,7 @@
                   <td>{{i.product.product.title}}</td>
                   <td>{{i.product.sub_title}}</td>
                   <td>{{i.quote_quantity}}</td>
+                  <td>{{i.frequency}}</td>
                   <td>{{i.total_p}}</td>
                   <td>{{i.quote_date}}</td>
                   <td><a href="{% url 'customerquotedelete' i.id %}" class='text-danger'><i class='fas fa-trash'  style='font-size:22px;'></i></a>
