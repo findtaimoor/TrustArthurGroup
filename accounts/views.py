@@ -1952,7 +1952,7 @@ def checkout(request):
          frequency = frequenc
         except:
          frequency = "null"
-         frequenc = 'frequenc'
+         
 
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
