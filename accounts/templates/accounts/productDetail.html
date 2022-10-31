@@ -110,7 +110,7 @@
 
                         
 
-                        <input type="text" value="1" id="quan" name="u_quan">
+                        <input type="hidden" value="1" id="quan" name="u_quan">
                         <input type="hidden" value="{{product.id}}" name="product-id">
                         <input type="hidden" id='total_p' name="total_p">
                         {% if product.category_title == 'Wadiah Portfolio' %}
@@ -142,9 +142,9 @@
                                 <form action="{% url 'checkout' %}" method="POST">
                                 <!-- <form id="paymentForm"> -->
                                     {% csrf_token %}
-                                    <input type="text" id="sum_q" name="avail_pro" >
-                                    <input type="text" id="put_quantitiy" name="U_product" >
-                                    <input type="text" value="{{product.id}}" name="product-id">
+                                    <input type="hidden" id="sum_q" name="avail_pro" >
+                                    <input type="hidden" id="put_quantitiy" name="U_product" >
+                                    <input type="hidden" value="{{product.id}}" name="product-id">
                                     {% if product.category_title == 'Wadiah Portfolio' %}
                                     <input type="hidden"   id='frequency_O' name="frequency_O"> 
                                     <input type="hidden" id='starting_date_O' name="starting_date_O"> 
@@ -185,16 +185,16 @@
                               <form action="{% url 'offlinepayment' %}"   method="POST">
                                 {% csrf_token %}
                            
-                                <input type="text" id="avail_pro2" name="avail_pro" >
+                                <input type="hidden" id="avail_pro2" name="avail_pro" >
                                 
-                                <input type="text" id="put_quantitiy2" name="U_product">
+                                <input type="hidden" id="put_quantitiy2" name="U_product">
                                 
                                 <input type="hidden"  name="product_quantity" id="sum_q2">
                                 <input type="hidden"  name="total_price" id="total_price">
                                 <input type="hidden" value="{{product.id}}" name="product-id">
                                 
-                                <input type="text" id='frequency_OF' name="frequency_OF">
-                                <input type="text" id='starting_date_OF' name="starting_date_OF">
+                                <input type="hidden" id='frequency_OF' name="frequency_OF">
+                                <input type="hidden" id='starting_date_OF' name="starting_date_OF">
                                
                                 <button type="submit" class="next-btn" id="checkout-button">Okay</button>
                             </form>
