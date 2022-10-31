@@ -139,6 +139,17 @@ class SubProduct(models.Model):
  except Exception as e:
     print(e)
 
+class assign_products(models.Model):
+ try:
+    product_id = models.IntegerField()
+    user_id = models.IntegerField()
+  
+    def str(self):
+        return str(self.id)
+ except Exception as e:
+    print(e)
+
+
 class OrderPlaced(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(SubProduct, on_delete=models.SET_NULL, default= None, null=True)

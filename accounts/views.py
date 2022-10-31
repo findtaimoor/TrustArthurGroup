@@ -9,6 +9,7 @@ from email import header
 from functools import total_ordering
 from http.client import responses
 from operator import and_
+from pickle import FALSE
 from unicodedata import name
 from urllib import request
 from urllib.parse import ParseResult
@@ -755,29 +756,45 @@ def product(request):
 def subproduct(request,id):
    
    
+    logged_id = False
+    query = ''
     product = Product.objects.get(id=id)
     
+    if request.user.is_authenticated:
+        logged_id = True
+    
+    print(logged_id)
+    if logged_id == False:
+        query = "select * from accounts_subproduct where Scope = 'Public' and product_id =  "+ str(id)
+    else :
+        # cuser =User.objects.get(id=request.user)
+        print(request.user.id)
+        query = """select * from accounts_subproduct where Scope = 'Public' and product_id =  """+ str(id) + """
+union
+select accounts_subproduct.* from accounts_assign_products join accounts_subproduct on accounts_assign_products.product_id =  accounts_subproduct.id where accounts_assign_products.user_id = """+ str(request.user.id) +""" and accounts_subproduct.product_id = """ + str(id)
+    
+
+
+
+    subproduct = SubProduct.objects.raw(query)
+
+
     # if SubProduct.objects.get(Scope = 'private'):
     #  subproduct = SubProduct.objects.filter(product=product)   
     #  print ('farahn')
     # else:SubProduct.objects.filter(product=product) and
    
-    if request.user.is_authenticated:
-      
-      
-       cuser =User.objects.get(username=request.user)
-          
-       subproduct =   SubProduct.objects.filter(Scope = 'Public' , product=product ).union(SubProduct.objects.filter(Assign=cuser , product=product))
 
-       
-       
 
+    # if request.user.is_authenticated:
       
-      
+    #    cuser =User.objects.get(username=request.user)
+    #    subproduct =   SubProduct.objects.filter(Scope = 'Public' , product=product ).union(SubProduct.objects.filter(Assign=cuser , product=product))
 
-    else:
-        subproduct =   SubProduct.objects.filter(Scope = 'Public' )
-        
+    # else:
+    #     subproduct =   SubProduct.objects.filter(Scope = 'Public' )
+
+
       
     # print (subproduct )
     return render(request, 'accounts/subproduct.html',{'product':product,'subproduct':subproduct})
@@ -888,16 +905,16 @@ def dev(request):
                      return redirect('dashboard')
                 else:
                     messages.error(request,'User Not Exists!!!')
-                    msg = 'User Not Exists1!!!'
+                    msg = 'User Not Exists!!!'
                     return render(request, 'devadmin/login.html',{'msg':msg})    
                 
             else:
-                msg = 'User Not Exists2!!!'
+                msg = 'User Not Exists!!!'
                 messages.error(request,'User Not Exists!!!')
                 return render(request, 'devadmin/login.html',{'msg':msg})
         
         else:
-            msg = 'User does not exist1'
+            msg = 'User does not exist'
             return render(request, 'devadmin/login.html',{'msg':msg})
 
     return render(request, 'devadmin/login.html')
@@ -2180,11 +2197,20 @@ def quotepaynow(request,id):
 
 def Assign_product_to_user(request,id):
 
-    All_user = User.objects.all()    
+    All_user = User.objects.raw("select * from auth_user where is_superuser = 0 and is_staff = 0") 
+    Assigned_users = User.objects.raw("select auth_user.id, auth_user.username from accounts_assign_products join auth_user on accounts_assign_products.user_id =  auth_user.id") 
+    sub_product = SubProduct.objects.get(id=id) 
+    
+    
+
+
     if request.method == "POST":
-        Assign = request.POST['Assign']
-        SubProduct.objects.filter(id=id).update(Assign=Assign)
+        user_id = request.POST['Assign']
+        # SubProduct.objects.filter(id=id).update(Assign=Assign)
+        print(user_id)
+        assign_products.objects.create(user_id=user_id, product_id = id)
+
         return redirect('adminsubproductlist')
-    return render(request,'devadmin/Assign_product_to_user.html',{"All_user":All_user})
+    return render(request,'devadmin/Assign_product_to_user.html',{"All_user":All_user, "Assigned_users": Assigned_users, "Product":sub_product})
 
 

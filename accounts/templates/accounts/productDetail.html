@@ -52,8 +52,10 @@
                 {% endif %}
                 {% if product.category_title == 'Wadiah Portfolio' %}
                 <div> 
-                  <p class="info-text first-latter-color" >Rate: <b>₦<span id="price_pu">{{product.Rate}}</span></b></p>
-                  <p class="info-text">Principle:&nbsp;{{product.Principle}}</p>
+                  <p class="info-text first-latter-color" >Rate: <b><span id="price_pu_tmp">{{product.Rate}}</span></b></p>
+                
+                  <p class="info-text first-latter-color" >Principle: <b>₦<span id="price_pu">{{product.Principle}}</span></b></p>
+                  <!-- <p class="info-text">Principle:&nbsp;{{product.Principle}}</p> -->
                     <!-- {% if product.Total_S > product.Minemun_O %}
                       <p class="info-text first-latter-color" id="a-pro">Available Units:&nbsp;{{product.Total_S}}</p>
 

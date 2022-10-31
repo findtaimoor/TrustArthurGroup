@@ -110,7 +110,7 @@ function calc()
 {
   var quantity = null;
   var _frequecy = null;
-  var price = document.getElementById("price_pu");
+  var price = document.getElementById("price_principle");
   if(price != null){
     price = price.innerText.replace ( /[^\d.]/g, '' )
   }

@@ -55,7 +55,16 @@
             <td>{{i.Rate}}</td>
             <td>{{i.Principle}}</td>
             <td>{{i.Date}}</td>  
-            <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a><a class='text-success' href="{% url 'Assign_product_to_user' i.id %}" ><i class='bx bxs-user-check'  style='font-size:22px;'></i></a></td>
+            <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a>
+             
+              {% if i.Scope == 'Private'%}
+
+              <a class='text-success' href="{% url 'Assign_product_to_user' i.id %}" >
+                 <i class='bx bxs-user-check'  style='font-size:22px;'></i>
+              </a>
+              {% endif %}
+            
+            </td>
         </tr>
 
         

@@ -15,7 +15,7 @@
         margin-right: 25%;">
   
   <div class="text-center mt-lg-5" >
-    <h1>Assign</h1>
+    <h1>Assign "{{Product.sub_title}}" Product</h1>
 
    
     
@@ -25,14 +25,22 @@
         <div class="d-flex align-items-center" style="height: 350px">
           
             <select class="form-select"  name="Assign" id="Assign" style="margin-left: 25%; margin-right: 25%; margin-bottom:35%;" >
-                <option value="">NUll</option>
+                
                 {% for i in All_user %}
-                <Option value="{{i.username}}" >{{i.username}}</Option>
+                <Option value="{{i.id}}" >{{i.username}}</Option>
                 {%endfor%}
             </select>
           
         </div>
         <button class="btn btn-success" type="submit" >Assign</button>
+
+
+        <table class="table table-striped">
+            <th>Users</th>
+            {% for i in Assigned_users %}
+            <tr><td>{{i.username}}</td></tr>
+            {%endfor%}
+        </table>
   
     </form>
 
