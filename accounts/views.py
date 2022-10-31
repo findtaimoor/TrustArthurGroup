@@ -2167,33 +2167,25 @@ def call_back_url(request):
 
 def quotepayment(request,id):
 
- 
- cq = Quote.objects.filter(id=id)
-        
-    
+ cq = Quote.objects.filter(id=id)    
  return render (request,'accounts/quotepayment.html',{'cq':cq})
+
 def quotepaynow(request,id):
  
  cp = Quote.objects.filter(id=id)
  global uuio
  uuio = str(uuid.uuid1())
  uuio = uuio[:6]
-
-
  return render(request,'accounts/quotepaynow.html',{'cp':cp,'uuio':uuio})
 
 def Assign_product_to_user(request,id):
-    All_user = User.objects.all()
-    
-    
+
+    All_user = User.objects.all()    
     if request.method == "POST":
         Assign = request.POST['Assign']
-        
-
         SubProduct.objects.filter(id=id).update(Assign=Assign)
         return redirect('adminsubproductlist')
-
-
+        
     return render(request,'devadmin/Assign_product_to_user.html',{"All_user":All_user})
 
 
