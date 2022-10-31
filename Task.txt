@@ -1,3 +1,5 @@
+Updated by 31 Oct
+
 Price should be total = quantity x sale price == Complete
 
 There shouldn't be any decimal value in price or quantity == Complete
