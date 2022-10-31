@@ -341,10 +341,10 @@ def signup(request):
             signature=signature,photo=photo).save()
            
             #---Send mail_--
-            Send_Email = "trustauthurgroup1@gmail.com"
+            Send_Email = "trustauthurgroup@gmail.com"
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'boqtvrxfowhsoxsk')
+            server.login(Send_Email, 'nxbukvaocrzzetnu')
             mail=server.sendmail
 
 
@@ -410,10 +410,10 @@ def signup(request):
                 joint_account = False
 
 
-            Send_Email = "trustauthurgroup1@gmail.com"
+            Send_Email = "trustauthurgroup@gmail.com"
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'boqtvrxfowhsoxsk')
+            server.login(Send_Email, 'nxbukvaocrzzetnu')
             mail=server.sendmail
 
 
@@ -505,12 +505,12 @@ def signin(request):
                 messages.success(request,'You are now logged In Successfully.')
                 
 
-                Send_Email = "trustauthurgroup1@gmail.com"
+                Send_Email = "trustauthurgroup@gmail.com"
 
                 try:
                     server = smtplib.SMTP('smtp.gmail.com',587)
                     server.starttls()
-                    server.login(Send_Email, 'boqtvrxfowhsoxsk')
+                    server.login(Send_Email, 'nxbukvaocrzzetnu')
                     mail=server.sendmail
 
 
@@ -566,12 +566,12 @@ def change_p(request):
      ide=str(ide)
      
 
-     Send_Email = "trustauthurgroup1@gmail.com"
+     Send_Email = "trustauthurgroup@gmail.com"
 
      try:
         server = smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
-        server.login(Send_Email, 'boqtvrxfowhsoxsk')
+        server.login(Send_Email, 'nxbukvaocrzzetnu')
         mail=server.sendmail
 
 
@@ -592,7 +592,7 @@ def change_p(request):
                         ]) 
 
             
-            mail(Send_Email,email,msg_chapass)
+            mail(Send_Email,email,'ali')
             messages.success(request,'Email sent')
             print(mail)
             print('yes')
@@ -675,12 +675,12 @@ def Notification(request):
 
 
      try:
-        Send_Email = "trustauthurgroup1@gmail.com"
+        Send_Email = "trustauthurgroup@gmail.com"
         
         
         server = smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
-        server.login(Send_Email, 'boqtvrxfowhsoxsk')
+        server.login(Send_Email, 'nxbukvaocrzzetnu')
         mail=server.sendmail
 
 
@@ -864,12 +864,12 @@ def dev(request):
                     login(request, user)
                     messages.success(request,'You are now logged In.')
 
-                    Send_Email = "trustauthurgroup1@gmail.com"
+                    Send_Email = "trustauthurgroup@gmail.com"
 
                     try:
                         server = smtplib.SMTP('smtp.gmail.com',587)
                         server.starttls()
-                        server.login(Send_Email, 'boqtvrxfowhsoxsk')
+                        server.login(Send_Email, 'nxbukvaocrzzetnu')
                         mail=server.sendmail
 
 
@@ -1038,12 +1038,12 @@ def adminedit(request,id):
             messages.success(request, 'Updated Successfully.')
             E_Message="Updated Successfully."
 
-            Send_Email = "trustauthurgroup1@gmail.com"
+            Send_Email = "trustauthurgroup@gmail.com"
 
 
             server = smtplib.SMTP('smtp.gmail.com',587)
             server.starttls()
-            server.login(Send_Email, 'boqtvrxfowhsoxsk')
+            server.login(Send_Email, 'nxbukvaocrzzetnu')
 
             mail=server.sendmail
 
@@ -2166,7 +2166,7 @@ def call_back_url(request):
 #     order.save()
 
 def quotepayment(request,id):
-
+    
  cq = Quote.objects.filter(id=id)    
  return render (request,'accounts/quotepayment.html',{'cq':cq})
 
@@ -2185,7 +2185,6 @@ def Assign_product_to_user(request,id):
         Assign = request.POST['Assign']
         SubProduct.objects.filter(id=id).update(Assign=Assign)
         return redirect('adminsubproductlist')
-        
     return render(request,'devadmin/Assign_product_to_user.html',{"All_user":All_user})
 
 
