@@ -178,3 +178,29 @@ $(document).ready(function(){
 });
 
 
+// const check_username = document.getElementById("username");
+
+// $(document).ready(function(){
+//   $("#username").change(function () {
+//     var username = $(this).val();
+//     console.log(username)
+//     $.ajax({
+//       url: '{% url "validate_user" %}',
+//       data: {
+//         'username': username
+//       },
+//       dataType: 'json',
+      
+//       success: function (data) {
+//         if (data.is_taken) {
+//           document.getElementById("msg").innerHTML = "Username Already Exists!!!";
+//           check_username.value = " ";
+//           console.log(username)
+//         }
+//       }
+//     });
+
+//   });
+// });
+
+

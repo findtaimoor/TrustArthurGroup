@@ -106,11 +106,28 @@ function validate_value()
   
 }
 
+function validateForm() {
+  let x = document.forms["quote_form"]["starting_date_q"].value;
+  if (x == "") {
+    return false;
+  }
+}
+
+function validation_date(){
+  
+      var valid_span = document.getElementById("quantity_error")
+      if(valid_span != null){
+        valid_span.innerText = '';
+      }
+    
+  
+}
+
 function calc() 
 {
   var quantity = null;
   var _frequecy = null;
-  var price = document.getElementById("price_principle");
+  var price = document.getElementById("price_pu");
   if(price != null){
     price = price.innerText.replace ( /[^\d.]/g, '' )
   }

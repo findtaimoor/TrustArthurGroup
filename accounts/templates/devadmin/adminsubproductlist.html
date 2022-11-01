@@ -29,8 +29,7 @@
             <th>Scope</th>
             <th>Duration</th>
             <th>Benifits</th>
-            <th>Plan Features</th>
-            <th>Assigned User</th>
+            <th>Plan Features</th>  
             <th>Rate</th>
             <th>Principle</th>
             <th>Start Date</th>
@@ -40,6 +39,7 @@
      <tbody>
         {% if subproduct %}
         {% for i in subproduct %}
+      
         <tr>
             <td>{{i.product.title}}</td>
             <td>{{i.sub_title}}</td>
@@ -51,7 +51,7 @@
             <td>{{i.duration_year}} Years {{i.duration_month}} Months</td>
             <td>{{i.benifits|linebreaks}}</td>
             <td>{{i.plan_feature|linebreaks}}</td>
-            <td>{{i.Assign}}</td>
+           
             <td>{{i.Rate}}</td>
             <td>{{i.Principle}}</td>
             <td>{{i.Date}}</td>  
@@ -68,7 +68,7 @@
         </tr>
 
         
-
+        
         {% endfor %}
 
         {% endif %}

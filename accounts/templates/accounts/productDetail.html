@@ -80,7 +80,7 @@
                         <label for="myInput"  class="info-text">Starting Date: </label>
                       </div>
                       <div class="col-auto">
-                        <input type="date" id="start_date" onchange="calc()" class="form-control">
+                        <input type="date" id="start_date" onchange="calc(), validation_date()" class="form-control">
                       </div>
                     </div> 
                     <div class="row g-3">
@@ -107,7 +107,7 @@
                     {% if request.user.is_authenticated %}
                       
 
-                        <form action="{% url 'quote' %}"  method="POST">
+                        <form name="quote_form" action="{% url 'quote' %}"  method="POST" onsubmit="return validateForm()">
                         {% csrf_token %}
 
                         

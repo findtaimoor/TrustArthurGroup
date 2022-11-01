@@ -44,6 +44,7 @@ class  IndividualRegister(models.Model):
     typeofuser = models.CharField(max_length=200, default="None")
     f_name = models.CharField(max_length=200)
     l_name = models.CharField(max_length=200)
+    print(l_name)
 
     phone = models.PositiveIntegerField()
     house_number = models.CharField(max_length=200)

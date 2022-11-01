@@ -15,31 +15,52 @@
         margin-right: 25%;">
   
   <div class="text-center mt-lg-5" >
-    <h1>Assign "{{Product.sub_title}}" Product</h1>
+    <h1>Assigned  "{{Product.sub_title}}" Product</h1>
 
    
     
   </div>
   <form  method="POST" >
     {% csrf_token %}
-        <div class="d-flex align-items-center" style="height: 350px">
-          
-            <select class="form-select"  name="Assign" id="Assign" style="margin-left: 25%; margin-right: 25%; margin-bottom:35%;" >
+      
+
+        <div class="form-group row" style="margin-top: 20px; margin-bottom: 10%;">
+            <div class="col-3"></div>
+            <div class="col-4">
+                <select class="form-select"  name="Assign" id="Assign"   >
                 
-                {% for i in All_user %}
-                <Option value="{{i.id}}" >{{i.username}}</Option>
-                {%endfor%}
-            </select>
-          
+                    {% for i in All_user %}
+                    <Option value="{{i.id}}" >{{i.username}}</Option>
+                    {%endfor%}
+                </select>
+             
+            </div>
+            <div class="col-4">
+                <button class="btn btn-success" type="submit" >Assign</button>
+            </div>
+            <div class="col-1">
+            </div>
         </div>
-        <button class="btn btn-success" type="submit" >Assign</button>
+        
 
 
-        <table class="table table-striped">
-            <th>Users</th>
-            {% for i in Assigned_users %}
-            <tr><td>{{i.username}}</td></tr>
-            {%endfor%}
+        <table class="table text-center table-striped">
+            <thead >
+                <tr>
+                    <td class="fw-bold">
+                        Users
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in Assigned_users %}
+                <tr>
+                    <td>{{i.username}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+            
+            
         </table>
   
     </form>
