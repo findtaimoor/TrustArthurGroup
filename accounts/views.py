@@ -300,13 +300,13 @@ def customerquote(request):
     return render(request, 'accounts/quote.html',{'cq':cq})
    
 def customerquotedelete(request,id):
-   try:
+#    try:
     quote = Quote.objects.get(pk=id)
     quote.delete()
     messages.success(request,'Deleted Succesfully.')
     return redirect('customerquote')
-   except:
-    return render(request,'accounts/index.html')
+#    except:
+#     return render(request,'accounts/index.html')
 
 @csrf_exempt
 def signup(request):
