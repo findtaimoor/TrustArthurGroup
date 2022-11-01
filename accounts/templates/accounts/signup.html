@@ -215,7 +215,7 @@
                   <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
 
                   <label>Phone number</label>
-                  <input type="tel"  id="usr_phone" name="phone" placeholder="Enter Phone Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" autocomplete="on" required>
+                  <input type="tel"  id="usr_phone" name="phone" placeholder="Enter Phone Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="11" autocomplete="on" required>
                   <label>House or Building number</label>
                   <input type="text" name="usr_house_number" placeholder="Please Enter House/Building Number" id="usr_house_number" autocomplete="on" required>
                   <label>Street name</label>
@@ -587,7 +587,7 @@
                   </div>
                   <div class="form-group">
                     <label>National Identity Number</label>
-                    <input type="text" maxlength = "11" name="NIN" placeholder="Please Enter National Identity Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="NIN"required>
+                    <input type="text" maxlength = "11" name="NIN" placeholder="Please Enter National Identity Number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57"  id="NIN"required>
                   </div>
                   <div class="form-group">
                     <label>Bank Verification Number</label>
@@ -1000,7 +1000,7 @@
                   </div>
                   <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
                   <label>Phone number</label>
-                  <input type="tel" name="phone" id="kin_phone" placeholder="Enter Phone number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                  <input type="tel" name="phone" id="kin_phone" maxlength="11" placeholder="Enter Phone number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
                   <label>House or Building number</label>
                   <input type="number" name="kin_house_number" placeholder="Please Enter House/Building number" id="kin_house_number" maxlength="11" autocomplete="on" required>
                   <label>Street name</label>
@@ -1478,11 +1478,11 @@
                   </div>
                   <div class="form-group">
                     <label>National Identity Number</label>
-                    <input type="text" name="NIN" placeholder="Please Enter National Identity Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_NIN" required>
+                    <input type="text" maxlength="11" name="NIN" placeholder="Please Enter National Identity Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_NIN" required>
                   </div>
                   <div class="form-group">
                     <label>Bank Verification Number</label>
-                    <input type="text" name="BVN" placeholder="Please Enter Bank Verification Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_BVN" required>
+                    <input type="text" maxlength="11" name="BVN" placeholder="Please Enter Bank Verification Number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="company_BVN" required>
                   </div>
                   <div>
                   </div>
@@ -1515,9 +1515,9 @@
                   </div>
                   <hr style="height:2px; width:100%; border-width:0; background-color:#F5F5F5">
                   <label>Phone number</label>
-                  <input type="tel" name="phone" id="company_phone" placeholder="Enter Phone Number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+                  <input type="tel" maxlength="11" name="phone" id="company_phone" placeholder="Enter Phone Number" autocomplete="on" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
                   <label>House or Building number</label>
-                  <input type="number" name="company_house_number" placeholder="Please Enter House/Building Number" id="company_house_number" autocomplete="on" required>
+                  <input type="number" maxlength="11" name="company_house_number" placeholder="Please Enter House/Building Number" id="company_house_number" autocomplete="on" required>
                   <label>Street name</label>
                   <input type="text" name="company_street_name" placeholder="Please Enter Street Name" id="company_street_name" autocomplete="on" required>
                   {% comment %} <label>LGA</label>
