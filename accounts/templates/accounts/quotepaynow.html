@@ -15,7 +15,7 @@
                 <div class="p-3 border bg-white border-0">
                     <h4 class="mb-4"><i class="icon-circles"></i> Select your payment option.(Amount:{{i.total_p}}) </h4>
                     <div class="alert alert-success" role="alert">
-                        Your Transaction Id for this transaction is 1234832947
+                        Your Transaction Id for this transaction is {{i.Transaction_ID}}
                     </div>
                     <div class="card">
 
@@ -35,7 +35,7 @@
                                         <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
-                                        <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{uui}}</h4>
+                                        <!-- <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{i.Transaction_ID}}</h4> -->
 
                                         <input type="hidden" value="{{i.product.id}}" name="product-id">
                                         <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
@@ -52,7 +52,8 @@
                                         <div class="mb-2">
                                             <label class="font-weight-bold" >Payment Refference</label>
                                         </div>
-                                        <input type="text" class="bg-light text-center border border-light" value="{{uuio}}" name="transaction_id" id="transaction_id" readonly>
+                                        <input type="text" class="bg-light text-center border border-light" value="{{i.Transaction_ID}}" name="transaction_id" id="transaction_id" readonly>
+
 
                                     </div>
                                 </div>
@@ -107,8 +108,8 @@
                 
                 
                 <input type="hidden"  name="total_price" value="{{i.total_p}}">
-                <input type="text " value="{{i.product.id}}" name="product-id">
-                <input type="text" value="{{i.frequency}}" name="frequency_OF">
+                <input type="hidden" value="{{i.product.id}}" name="product-id">
+                <input type="hidden" value="{{i.frequency}}" name="frequency_OF">
                 <div class="text-center">
                                 
                     <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>

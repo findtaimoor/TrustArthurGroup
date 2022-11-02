@@ -115,7 +115,7 @@
 
 
                         
-                        <a class="header-btn" data-toggle="modal" data-target="#exampleModalCenter">Logout</a>
+                        <a class="header-btn" data-toggle="modal" data-target="#exampleModalCenter21">Logout</a>
                         
                         {% else %}
                         <a href="{% url 'signup' %}" class="header-btn">Register Now</a>
@@ -159,7 +159,7 @@
 
                         {% if request.user.is_authenticated %}
 
-                        <li><a data-toggle="modal" data-target="#exampleModalCenter" class="mobilelogin">Logout</a></li>
+                        <li><a data-toggle="modal" data-target="#exampleModalCenter21" class="mobilelogin">Logout</a></li>
                         
                         <li>
                           <a href="{% url 'orders' %}">My Profile</a>
@@ -345,7 +345,7 @@
               <a href="{% url 'orders' %}">My Profile</a>
             </li>
             <li class="nav-item">
-              <a data-toggle="modal" data-target="#exampleModalCenter"">Logout</a>
+              <a data-toggle="modal" data-target="#exampleModalCenter21">Logout</a>
             </li>
             <li class="nav-item">
               <a href="{%url 'changepassword' request.user.id %}">Change password</a>
@@ -413,7 +413,7 @@
     </div>
 
     <!--  -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter21" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter21Title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">

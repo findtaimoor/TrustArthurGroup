@@ -35,12 +35,12 @@
 
             <tr>
                 <td><label>Title of the Sub-Product:</label></td>
-                <td><input class="form-control" type="text" name="subtitle" placeholder="Enter title" ></td>
+                <td><input class="form-control" type="text" value="{{subproduct.sub_title}}" name="subtitle" placeholder="Enter title" ></td>
             </tr>
 
             <tr>
                 <td><label>Brief Description of Sub product:</label></td>
-                <td><input class="form-control" type="text" name="subtitle2" placeholder="Enter sub title" >
+                <td><input class="form-control" value="{{subproduct.sub_title}}" type="text" name="subtitle2" placeholder="Enter sub title" >
                 </td>
             </tr>
 
@@ -51,7 +51,7 @@
             <tr>
                 <td><label for="">Private or Public: </label></td>
                 <td>
-                    <select class="form-control" name="scopeofproduct" >
+                    <select class="form-control" value="{{subproduct.Scope}}" name="scopeofproduct" >
 
                         <option value="Private">Private</option>
                         <option value="Public">Public</option>
@@ -69,18 +69,18 @@
 
                 <tr>
                     <td><label>Add Price of the Sub-Product:</label></td>
-                    <td><input class="form-control" type="number" name="selling_price" value="0" placeholder="Enter Price"
+                    <td><input class="form-control" type="number" name="selling_price" value="{{subproduct.selling_price}}" placeholder="Enter Price"
                             ></td>
                 </tr>
 
                 <tr>
                     <td><label>Total Stock:</label></td>
-                    <td><input class="form-control" type="number" name="Total" placeholder="Enter Total Stock" value="0"></td>
+                    <td><input class="form-control" type="number" name="Total" placeholder="Enter Total Stock" value="{{subproduct.Total_S}}"></td>
                 </tr>
 
                 <tr>
                     <td><label>Minimum Order:</label></td>
-                    <td><input class="form-control" type="number" name="Minemum" placeholder="Enter Total Stock" value="0"></td>
+                    <td><input class="form-control" type="number" name="Minemum" placeholder="Enter Total Stock" value="{{subproduct.Minemun_O}}"></td>
                 </tr>
 
 
@@ -91,26 +91,26 @@
                     <td><label>Year</label></td>
                     <td><input class="form-control" type="text"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_year"
-                            placeholder="Enter Years" ></td>
+                            placeholder="Enter Years" value="{{subproduct.duration_year}}" ></td>
                 </tr>
                 <tr>
                     <td><label>Month</label></td>
                     <td><input class="form-control" type="text"
                             onkeypress="return event.charCode >= 48 && event.charCode <= 57" name="duration_month"
-                            placeholder="Enter Month" value="0" ></td>
+                            placeholder="Enter Month" value="{{subproduct.duration_month}}" ></td>
                 </tr>
 
                 <tr>
                     <td><label>Benefits: </label></td>
                     <td><textarea class="form-control" name="benifits" rows="4" cols="50"
-                            placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="null"
+                            placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="{{subproduct.benifits}}"
                             ></textarea></td>
                 </tr>
 
                 <tr>
                     <td><label>Plan Features: </label></td>
                     <td><textarea class="form-control" name="planfeatures" rows="4" cols="50"
-                            placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="null"></textarea></td>
+                            placeholder="Please Enter in key:value pair... Ex. Mode allowed: Yearly" value="{{subproduct.plan_feature}}"></textarea></td>
                 </tr>
 
 
@@ -126,12 +126,12 @@
 
                 <tr>
                     <td><label>Rate:</label></td>
-                    <td><input class="form-control" type="number" name="Rate" placeholder="Enter Price" value="0" ></td>
+                    <td><input class="form-control" type="number" name="Rate" placeholder="Enter Price" value="{{subproduct.Rate}}" ></td>
                 </tr>
 
                 <tr>
                     <td><label>Principle:</label></td>
-                    <td><input class="form-control" type="number" name="Principle" placeholder="Enter Total Stock" value='0' ></td>
+                    <td><input class="form-control" type="number" name="Principle" placeholder="Enter Total Stock" value="{{subproduct.Principle}}" ></td>
                 </tr>
 
                 <!-- <tr>

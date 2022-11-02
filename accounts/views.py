@@ -43,9 +43,21 @@ def validate_username(request):
     data = {
         'is_taken': User.objects.filter(email=email).exists()
     }
+  
     if data['is_taken']:
         data['error_message'] = 'A user with this email already exists.'
     return JsonResponse(data)
+
+# def validate_user(request):
+#     username = request.GET.get('username', None)
+#     print(username)
+#     data = {
+#         'is_taken': User.objects.filter(username=username).exists()
+#     }
+#     print(data)
+#     if data['is_taken']:
+#         data['error_message'] = 'A user with this username already exists.'
+#     return JsonResponse(data)
 
 import re
 
@@ -288,25 +300,27 @@ def customerquote(request):
     return render(request, 'accounts/quote.html',{'cq':cq})
    
 def customerquotedelete(request,id):
-   try:
+#    try:
     quote = Quote.objects.get(pk=id)
     quote.delete()
     messages.success(request,'Deleted Succesfully.')
     return redirect('customerquote')
-   except:
-    return render(request,'accounts/index.html')
+#    except:
+#     return render(request,'accounts/index.html')
 
 @csrf_exempt
 def signup(request):
-   try:
+#    try:
     if request.user.is_authenticated:
         return redirect('home')
     
     if request.method == "POST":
         
         typeofuser = request.POST['typeofuser']
-
+        
+         
         if typeofuser == 'corporate':
+            print('ahmad')
 
             company_email = request.POST['company_email']
             username = company_email[:company_email.index('@')]
@@ -334,7 +348,11 @@ def signup(request):
             userb = User.objects.create_user(username, company_email, password)
             userb.is_active=True
 
+
+
             userb.save()
+
+            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaafarhan')
 
             BusinessRegister(user = userb,typeofuser=typeofuser,company_name=company_name,company_number=company_number,tax_id=tax_id,
             company_industry=company_industry,company_date=company_date,NIN=NIN,BVN=BVN,phoneno=phoneno,houseno=houseno,
@@ -372,6 +390,7 @@ def signup(request):
 
             individual_email = request.POST['individual_email']
             username = individual_email[:individual_email.index('@')]
+            
             password = request.POST['password']
             f_name = request.POST['fullname']
             l_name = request.POST['fullname']
@@ -437,7 +456,7 @@ def signup(request):
 
 
 
-            indiregi = IndividualRegister(user = useri,typeofuser=typeofuser,f_name=f_name,l_name=l_name,phone=phone,house_number=house_number,
+            indiregi = IndividualRegister(user = useri,typeofuser=typeofuser,f_name=f_name,l_name=f_name,phone=phone,house_number=house_number,
             street_name=street_name,city=city, state=state,country=country, birthdate=birthdate,
             gender=gender,occupation=occupation,NIN=NIN,BVN=BVN,
             joint_account=joint_account,individual_signature=individual_signature,individual_photo=individual_photo,
@@ -478,8 +497,8 @@ def signup(request):
                 another.save()
         
     return render(request, 'accounts/signup.html')
-   except:
-    return render(request,'accounts/index.html')
+#    except:
+#     return render(request,'accounts/index.html')
 
 def signin(request):
    
@@ -531,7 +550,7 @@ def signin(request):
                     print(e)
                     return redirect('home')       
             else:
-                msg = '“Password incorrect'
+                msg = 'Password incorrect'
                 return render(request, 'accounts/signin.html',{'msg':msg})
         else:
                 msg = 'User does not exist.'
@@ -589,11 +608,16 @@ def change_p(request):
                         
                         "Subject:Change Password",
                         "",
-                        a
+                        """Trouble signing in?
+            Resetting your password is easy.
+            Just press the button below and follow the instructions. Well have you up and running in no time.
+            "https://sea-lion-app-wqh6w.ondigitalocean.app/Forgotpassword/"""+ide+"""
+            If you did not make this request then please ignore this email."""
+                        
                         ]) 
 
             
-            mail(Send_Email,email,'ali')
+            mail(Send_Email,email,msg_chapass)
             messages.success(request,'Email sent')
             print(mail)
             print('yes')
@@ -968,7 +992,7 @@ def addadmin(request):
 
                 return redirect('adminlist')
             else:
-                msg = 'Email Already Exists!!!'
+                msg = 'Email Already Exists23!!!'
                 return render(request, 'devadmin/addadmin.html',{'msg':msg})
         else:
             msg = 'Password are Not Match'
@@ -1068,7 +1092,7 @@ def adminedit(request,id):
             mail(Send_Email,email,E_Message)
             return redirect('adminlist')
         else:
-            msg = 'Email Already Exists!!!'
+            msg = 'Email Already Exists11!!!'
             return render(request, 'devadmin/adminedit.html',{'msg':msg})
 
     return render(request, 'devadmin/adminedit.html',{'user':user})
@@ -1252,7 +1276,7 @@ def adminproductlist(request):
 
 def adminsubproductlist(request):
     subproduct = SubProduct.objects.all()
-   
+
   
     return render(request, 'devadmin/adminsubproductlist.html',{'subproduct':subproduct})
 
