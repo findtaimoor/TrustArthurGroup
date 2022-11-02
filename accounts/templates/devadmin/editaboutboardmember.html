@@ -7,9 +7,8 @@
 <div class="row">
         <style>td{padding:20px;} </style>
         <h2 class="m-4"> Edit Board Member </h2>
-        
 
-        <h1>asdf:{{b_member.Profession}}</h1>
+
         
         <form method ="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -17,7 +16,7 @@
     <table>
         
         <tr>
-            <td><label>Namedss:{{b_member.name}}</label></td>
+            <td><label>Name:{{b_member.name}}</label></td>
             <td><input class="form-control" type="text" name="name" placeholder="Enter title" value="{{b_member.name}}" required></td>
         </tr>
 
