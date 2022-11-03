@@ -15,7 +15,7 @@
                 <div class="p-3 border bg-white border-0">
                     <h4 class="mb-4"><i class="icon-circles"></i> Select your payment option.(Amount:{{i.total_p}}) </h4>
                     <div class="alert alert-success" role="alert">
-                        Your Transaction Id for this transaction is {{i.Transaction_ID}}
+                        Your Transaction Id for this transaction is {{uuio}}
                     </div>
                     <div class="card">
 
@@ -35,12 +35,20 @@
                                         <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
-                                        <!-- <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{i.Transaction_ID}}</h4> -->
+                                        <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{uuio}}</h4>
 
-                                        <input type="hidden" value="{{i.product.id}}" name="product-id">
-                                        <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
-                                        <input type="hidden" value="{{i.total_p}}" name="total_price">
-                                        <input type="hidden" value="{{i.product.Total_S}}" name="avail_pro">
+                                        
+                                        
+                                        <input type="hidden" value="{{i.product_id}}" id="product_id" name="product_id">
+                                        <input type="hidden" value="{{i.product_type}}" id="product_type" name="product_type">
+                                        <input type="hidden" value="quote" id="payment_type" name="payment_type">
+                                        <input type="hidden" value="{{i.total_p}}" id="product_type" name="total">
+                                        <input type="hidden" value="{{i.quote_quantity}}" id="payment_type" name="quantity">
+                                        <input type="hidden" value="{{i.frequency}}" id="payment_type" name="wadia_frequency">
+                                        
+
+
+
                                         <input type="radio" onclick="online_pay()" class="custom-control-input" name="cr-l" id="cr_l_s_u">
                                         <label class="custom-control-label mr-2" for="cr_l_s_u"><img class="ml-4"
                                                 src="{% static 'accounts/images/paystack-logo.png' %}" height="80px" width="160px"
@@ -102,6 +110,9 @@
               <form action="{% url 'offlinepayment' %}"   method="POST">
                 {% csrf_token %}
            
+
+                <input type="hidden" value="{{uuio}}" name="uuid" >
+                
                 <input type="hidden" value="{{i.product.Total_S}}" name="avail_pro" >
                 
                 <input type="hidden" value="{{i.quote_quantity}}" name="U_product">

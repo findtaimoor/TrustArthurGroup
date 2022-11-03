@@ -1,4 +1,4 @@
-Updated by 1 nov 11:57 aM
+Updated by 12 nov 5:56 pM
 
 Price should be total = quantity x sale price == Complete
 

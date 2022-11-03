@@ -41,7 +41,7 @@
                       
                       
                       
-                        <input class="cus-qut"  type="number"  onkeyup="calc()" onchange="calc()" style="color: #444444 !important;" id="_quantity" name="quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                        <input class="cus-qut"  type="number"  onkeyup="calc()" onchange="calc()" style="color: #444444 !important;" id="_quantity" name="non_wadia_quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
                         <p><span class="first-latter-color" id="quantity_error"></p></p>
                       {%else%}
                       <p><span class="first-latter-color">Out of Stock</p>
@@ -88,8 +88,7 @@
                         <label for="" class="info-text">Frequency: </label>
                       </div>
                       <div class="col-auto">
-                        <select id="frequency" onchange="calc()" name="frequency" class="form-control">
-                          <option value="select">Select...</option>
+                        <select id="frequency" onchange="calc()" name="wadia_frequency" class="form-control">
                           <option value="monthly">Monthly</option>
                           <option value="quarterly">Quarterly</option>
                           <option value="annually">Annually</option>
@@ -110,15 +109,25 @@
                         <form name="quote_form" action="{% url 'quote' %}"  method="POST" onsubmit="return validateForm()">
                         {% csrf_token %}
 
+                        <input type="hidden" value="{{product.id}}" id="product_id" name="product_id">
+                        
+                        <input type="hidden" value="{{product.product_id}}" id="product_type" name="product_type">
+                        
+                        <input type="hidden" value="quote" id="payment_type" name="payment_type">
                         
 
-                        <input type="hidden" value="1" id="quan" name="u_quan">
+                        <input type="hidden" value="{{product.selling_price}}" id="non_wadia_rate" name="non_wadia_rate">
+                        <input type="hidden" value="0" id="non_wadia_total_quote" name="non_wadia_total">
+                        
+                        <input type="hidden" value="{{product.Principle}}" id="wadia_rate" name="wadia_rate">
+                        <input type="hidden" value="0" id="wadia_total_quote" name="wadia_total">
+                        
+
+                        <input type="hidden" value="1" id="quan" name="non_wadia_quantity">
                         <input type="hidden" value="{{product.id}}" name="product-id">
                         <input type="hidden" id='total_p' name="total_p">
-                        {% if product.category_title == 'Wadiah Portfolio' %}
-                        <input type="hidden" id='frequency_q' name="frequency_q">
+                        <input type="hidden" id='frequency_q' name="wadia_frequency">
                         <input type="hidden" id='starting_date_q' name="starting_date_q"> 
-                        {% endif %}
                         <button type="submit" onclick="validate_value()" class="next-btn" id="checkout-button" >Quote</button>
                         </form>
                     
@@ -144,13 +153,25 @@
                                 <form action="{% url 'checkout' %}" method="POST">
                                 <!-- <form id="paymentForm"> -->
                                     {% csrf_token %}
+
+                                    <input type="hidden" value="{{product.id}}" id="product_id" name="product_id">
+                        
+                                    <input type="hidden" value="{{product.product_id}}" id="product_type" name="product_type">
+                                    
+                                    <input type="hidden" value="direct" id="payment_type" name="payment_type">
+                                    
+            
+                                    <input type="hidden" value="{{product.selling_price}}" id="non_wadia_rate" name="non_wadia_rate">
+                                    <input type="hidden" value="0" id="non_wadia_total_direct" name="non_wadia_total">
+                                    
+                                    <input type="hidden" value="{{product.Principle}}" id="wadia_rate" name="wadia_rate">
+                                    <input type="hidden" value="0" id="wadia_total_direct" name="wadia_total">
+                                 
                                     <input type="hidden" id="sum_q" name="avail_pro" >
-                                    <input type="hidden" id="put_quantitiy" name="U_product" >
+                                    <input type="hidden" id="put_quantitiy" value="0" name="non_wadia_quantity" >
                                     <input type="hidden" value="{{product.id}}" name="product-id">
-                                    {% if product.category_title == 'Wadiah Portfolio' %}
-                                    <input type="hidden"   id='frequency_O' name="frequency_O"> 
+                                    <input type="hidden"   id='frequency_O' name="wadia_frequency"> 
                                     <input type="hidden" id='starting_date_O' name="starting_date_O"> 
-                                    {% endif %}
                                     <button type="submit" class="next-btn" id="checkout-button">Online Payment</button>
                                     <!-- <button type="submit" class="next-btn" id="checkout-button" onclick="payWithPaystack()">Online Payment</button> -->
 
@@ -187,13 +208,15 @@
                               <form action="{% url 'offlinepayment' %}"   method="POST">
                                 {% csrf_token %}
                            
+                                <input type="hidden" id="uuid" value="{{uui}}" name="uuid" >
+                                <input type="hidden" value="{{product.id}}" name="product-id">
                                 <input type="hidden" id="avail_pro2" name="avail_pro" >
                                 
-                                <input type="hidden" id="put_quantitiy2" name="U_product">
+                                <input type="hidden" id="put_quantitiy2" value="1" name="U_product">
                                 
-                                <input type="hidden"  name="product_quantity" id="sum_q2">
-                                <input type="hidden"  name="total_price" id="total_price">
-                                <input type="hidden" value="{{product.id}}" name="product-id">
+                                <input type="hidden"  name="product_quantity" value="1" id="sum_q2">
+                                <input type="hidden"  name="total_price" value = '0' id="total_price">
+                                
                                 
                                 <input type="hidden" id='frequency_OF' name="frequency_OF">
                                 <input type="hidden" id='starting_date_OF' name="starting_date_OF">

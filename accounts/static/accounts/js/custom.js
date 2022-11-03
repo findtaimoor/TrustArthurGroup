@@ -22,6 +22,7 @@ function get_quat(quantity, put_quantitiy, available_pro , sum_q )
    
     if(get_quantity!=null){
       get_quantity =get_quantity.value;
+      // alert('quantity changed')
       document.getElementById(put_quantitiy).value = get_quantity;
     }else{
       get_quantity = 0
@@ -107,8 +108,11 @@ function validate_value()
 }
 
 function validateForm() {
+
+  let product_type = document.forms["quote_form"]["product_type"].value;
+
   let x = document.forms["quote_form"]["starting_date_q"].value;
-  if (x == "") {
+  if (x == "" && product_type == '13') {
     return false;
   }
 }
@@ -132,6 +136,15 @@ function calc()
     price = price.innerText.replace ( /[^\d.]/g, '' )
   }
   var noTickets = document.getElementById("_quantity")
+
+  // document.getElementById("quan").value = noTickets.value
+  // document.getElementById("put_quantitiy").value = noTickets.value
+  // document.getElementById("put_quantitiy2").value = noTickets.value
+
+
+  
+  
+
   if(noTickets!=null){
     quantity = noTickets.value
   }
@@ -171,6 +184,22 @@ function calc()
   console.log("total price: " + total)
   if (!isNaN(total)){
     document.getElementById("total").innerText = total
+    document.getElementById("total").innerText = total
+
+    document.getElementById("non_wadia_total_direct").value = total
+    document.getElementById("non_wadia_total_quote").value = total
+    document.getElementById("wadia_total_direct").value = total
+    document.getElementById("wadia_total_quote").value = total
+    document.getElementById("total_price").value = total
+    
+
+
+
+    // alert(total)
+
+
+    // alert(total)
+    
     document.getElementById("total_p").value = total
     document.getElementById("total_price").value = total
     document.getElementById("starting_date_q").value = _date

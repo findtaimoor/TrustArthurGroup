@@ -177,6 +177,8 @@ class Quote(models.Model):
     quote_quantity = models.IntegerField(default = 1)
     total_p = models.IntegerField()
     frequency = models.CharField(max_length=200)
+    product_type = models.IntegerField()
+    
     def str(self):
         return str(self.id)
 

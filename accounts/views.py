@@ -1,4 +1,5 @@
 from ast import Global, Or
+from asyncio.windows_events import NULL
 from calendar import month
 from copy import error
 from ctypes import Union
@@ -1317,15 +1318,17 @@ def transactionupdate(request,id):
     status = ['paid','pending','fail']
     order = OrderPlaced.objects.get(id=id)
     
+         
+    
     if request.method == "POST":
         payment_status = request.POST.get('payment_status','')
         payment_id = request.POST.get('payment_id','')
         order.payment_status = payment_status
-        order.payment_id = payment_id
+        # order.payment_id = payment_id
         order.save()
         if order.payment_status == 'paid':
-            print('aliiiiiii')
-            SubProduct.objects.filter(id = productid).update(Total_S = total_quan)
+            sub_product = SubProduct.objects.get(id=order.product_id)
+            SubProduct.objects.filter(id=order.product_id).update(Total_S= (sub_product.Total_S - order.quantity) )
         
         return redirect('transaction')
     return render(request, 'devadmin/updatetransaction.html',{'orders':order,'status':status})
@@ -1789,36 +1792,59 @@ def quote(request):
 #       
     if request.method == "POST":
         user = request.user
-        productid = request.POST['product-id']
-   
-        quan = request.POST['u_quan']
-    
         
-        Total_p = request.POST['total_p']
-        try:
-         quote_date = request.POST['starting_date_q']
-         frequency = request.POST['frequency_q'] 
-         print(quote_date)
-        except:
-         quote_date = date.today()
-         frequency = "null"
-        print(frequency) 
-       
+        product_id = None
+        product_type = 'non_wadia'
+        payment_type = 'direct'
+        
 
-        product_check = SubProduct.objects.get(id=productid)
+        non_wadia_rate = 0
+        non_wadia_quantity = 0
+        non_wadia_total = 0
+
+        wadia_rate = 0
+        wadia_frequency = 'Monthly'
+        wadia_total = 0
+        
+        total = 0
+        quantity = 0
+        duedate = None
+        print(request.POST)
+        
+
+        product_id = request.POST['product_id']
+        product_type = request.POST['product_type']
+        non_wadia_total = request.POST['non_wadia_total']
+        
+        non_wadia_quantity = request.POST['non_wadia_quantity']
+        wadia_frequency = request.POST['wadia_frequency']
+        wadia_total = request.POST['wadia_total']
+        
+        if (product_type == '13'):
+            total = wadia_total
+            quantity = 1
+            quote_date = request.POST['starting_date_q']
+            
+        else:
+            total = non_wadia_total
+            quantity = non_wadia_quantity
+            quote_date = datetime.date.today()
+        
+
+        product_check = SubProduct.objects.get(id=product_id)
         if(product_check):
-            if(Quote.objects.filter(user=user,product_id = productid, total_p = Total_p )):
+            if(Quote.objects.filter(user=user,product_id = product_id)):
                 messages.info(request, 'Its Already Quoted.')
             else:
-               if quan != 0 and frequency == "null":
-                   Quote.objects.create(user=user,product_id = productid,quote_quantity = quan,quote_date=date.today() ,total_p = Total_p )
+               if quantity != 0:
+                   Quote.objects.create(user=user,product_id = product_id,quote_quantity = quantity,quote_date=quote_date ,total_p = total, product_type = product_type, frequency = wadia_frequency)
                    messages.success(request, 'Quoted Successfully.')
             #    elif request.POST['frequency_q'] == 'null': 
             #     Quote.objects.create(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )
             #     messages.success(request, 'Quoted Successfully.')
-               else:
-                Quote.objects.create(user=user,product_id = productid,frequency=frequency,quote_date=quote_date, total_p = Total_p )
-                messages.success(request, 'Quoted Successfully.')
+            #    else:
+            #     Quote.objects.create(user=user,product_id = productid,frequency=frequency,quote_date=quote_date, total_p = Total_p )
+            #     messages.success(request, 'Quoted Successfully.')
         else:
             messages.error("No Such Product")
 
@@ -1892,35 +1918,40 @@ from dateutil.relativedelta import relativedelta
 def offlinepayment(request):
   
 
+    print(request.POST)
+
     if request.method == "POST":
         global productid
+        
         productid = request.POST['product-id']
         product = SubProduct.objects.get(id=productid)
         global qua
         qua = request.POST['U_product']
         global total_price 
         total_price = request.POST['total_price']
+        uui = request.POST['uuid']
       
         global total_quan
-        try:
+        # try:
          
-         total_quan = request.POST['product_quantity']
-   
-        except:
-         
-         total_quan = product.Total_S - int(total_price)
+        # total_quan = request.POST['product_quantity']
+        if(qua == '0'):
+            qua = 1
+        # except:
+        print("quantit" + str(qua))
+        #  total_quan = product.Total_S - int(total_price)
         
-        global frequenc
+        # global frequenc
         Frequency=request.POST['frequency_OF']
         
-        if Frequency in ["Monthly","Quarterly","Annually"]:
-          frequenc = request.POST['frequency_OF'] 
+        # if Frequency in ["Monthly","Quarterly","Annually"]:
+        #   frequenc = request.POST['frequency_OF'] 
           
-          frequency = frequenc
-        else:
-          frequenc = request.POST['frequency_OF']
-          frequenc = 'null'
-          frequency = frequenc
+        #   frequency = frequenc
+        # else:
+        #   frequenc = request.POST['frequency_OF']
+        #   frequenc = 'null'
+        #   frequency = frequenc
 
         product = SubProduct.objects.get(id=productid)
         if Quote.objects.filter(user=request.user,product_id = productid).exists():
@@ -1940,14 +1971,14 @@ def offlinepayment(request):
         except:
          
             now = date.today()
-            if frequency == 'Quarterly':
+            if Frequency == 'Quarterly':
         
             #  frequency = "3"
                duedate = now + relativedelta(months=+3)
-            elif frequency == 'Monthly':
+            elif Frequency == 'Monthly':
                 # frequency = "1"                
                 duedate = now + relativedelta(months=+1)
-            elif frequency == 'Annually':
+            elif Frequency == 'Annually':
                 
                 # frequency = "12"                
                 duedate = now + relativedelta(months=+1)
@@ -1956,7 +1987,7 @@ def offlinepayment(request):
                  duedate = now + relativedelta(months = int(product.duration_month))
                  duedate = duedate + relativedelta(years = int(product.duration_year))
 
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,frequency=frequenc,
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,frequency=Frequency,
                                             payment_id = uui,quantity=qua,modeofpayment='offline',payment_status='pending',
                                             due_date=duedate)
         order.save()
@@ -1976,58 +2007,124 @@ def checkout(request):
     
     if request.method == "POST":
         
-        global productid
-        productid = request.POST['product-id']
-        global R_Product
-        R_Product = request.POST['avail_pro']
-        global U_Product
-        U_Product = request.POST['U_product']
-        
-        print(U_Product)
-       
-        global frequenc
-        try:
-         
-         frequenc = request.POST['frequency_O'] 
-         
-         frequency = frequenc
-        except:
-         frequency = "null"
-         
 
-        product = SubProduct.objects.get(id=productid)
-        if Quote.objects.filter(user=request.user,product_id = productid).exists():
-            quote = Quote.objects.get(user=request.user,product_id = productid)
-            quote.delete()
-        product_title = product.sub_title
-        if product.selling_price != 0 :
-          price = product.selling_price
+        product_id = None
+        product_type = 'non_wadia'
+        payment_type = 'direct'
+        
+
+        non_wadia_rate = 0
+        non_wadia_quantity = 0
+        non_wadia_total = 0
+
+        wadia_rate = 0
+        wadia_frequency = 'Monthly'
+        wadia_total = 0
+        
+        total = 0
+        quantity = 0
+        duedate = None
+        print(request.POST)
+        
+
+        if (request.POST['payment_type'] == 'direct'):
+            product_id = request.POST['product_id']
+            product_type = request.POST['product_type']
+            payment_type = request.POST['payment_type']
+
+            non_wadia_rate = request.POST['non_wadia_rate']
+            non_wadia_total = request.POST['non_wadia_total']
+            non_wadia_quantity = request.POST['non_wadia_quantity']
+
+            wadia_rate = request.POST['wadia_rate']
+            wadia_frequency = request.POST['wadia_frequency']
+            wadia_total = request.POST['wadia_total']
+
+        if (request.POST['payment_type'] == 'quote'):
+            product_id = request.POST['product_id']
+            product_type = request.POST['product_type']
+            # payment_type = request.POST['payment_type']
+
+            # non_wadia_rate = request.POST['non_wadia_rate']
+            non_wadia_total = request.POST['total']
+            non_wadia_quantity = request.POST['quantity']
+
+            # wadia_rate = request.POST['wadia_rate']
+            wadia_frequency = request.POST['wadia_frequency']
+            wadia_total = request.POST['total']
+
+
+        product = SubProduct.objects.get(id=product_id)
+        
+        if (product_type == '13'):
+            total = wadia_total
+            quantity = 1
+            now = datetime.date.today()
+            duedate = now + relativedelta(months = +2)
+            
         else:
-          price = product.Rate  
-        
-        
-        now = datetime.date.today()
-      
-        try:
-
+            total = non_wadia_total
+            quantity = non_wadia_quantity
+            print(quantity)
+            now = datetime.date.today()
             duedate = now + relativedelta(months = int(product.duration_month))
             duedate = duedate + relativedelta(years = int(product.duration_year))
-           
-        except:
-             now = date.today()
-             if frequency == 'Quarterly':
-              frequency = "3"
-              duedate = now + relativedelta(months=+3)
-             elif frequency == 'Monthly':
-                
-                frequency = "1"                
 
-                duedate = now + relativedelta(months=+1)
+        
+        # global productid
+
+
+        # productid = request.POST['product-id']
+
+        # global R_Product
+        # R_Product = 0
+        # R_Product = request.POST['avail_pro']
+        
+        # global U_Product
+        # U_Product = 0
+        # U_Product = request.POST['U_product']
+        
+        # print(U_Product)
+       
+        # global frequenc 
+        # frequenc = ''
+        # try:
+         
+        #  frequenc = request.POST['frequency_O'] 
+         
+        #  frequency = frequenc
+        # except:
+        #  frequency = None
+         
+        
+        
+        if Quote.objects.filter(user=request.user,product_id = product_id).exists():
+            quote = Quote.objects.get(user=request.user,product_id = product_id)
+            quote.delete()
+        product_title = product.sub_title
+        # if product.selling_price != 0 :
+        #   price = product.selling_price
+        # else:
+        #   price = product.Rate  
+        
+        
+        # now = datetime.date.today()
+      
+      
+        #      now = date.today()
+        #      if frequency == 'Quarterly':
+        #       frequency = "3"
+        #       duedate = now + relativedelta(months=+3)
+        #      elif frequency == 'Monthly':
+                
+        #         frequency = "1"                
+
+        #         duedate = now + relativedelta(months=+1)
                 
 
-             elif  frequency  == 'Annually':
-                 frequency =  "12" 
-                 duedate = now + relativedelta(months=+12)
+        #      elif  frequency  == 'Annually':
+        #          frequency =  "12" 
+        #          duedate = now + relativedelta(months=+12)
       
             
         # OrderPlaced.objects.filter(productid=productid).update(quantity=U_Product)
@@ -2054,6 +2151,7 @@ def checkout(request):
         # return redirect(checkout_session.url, code=303)
    
       
+        # print('total: ' + str(total))
         def init_payment(request):
 
             url = 'https://api.paystack.co/transaction/initialize'
@@ -2062,16 +2160,20 @@ def checkout(request):
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json',
                 }
-            try:  
-             if U_Product == 0 : 
-              pro = (int(U_Product))
-             else:
-              pro =(int(frequency))
-            except:
-                pro = (int(U_Product))
+            # try:  
+            #  if U_Product == 0 : 
+            #   pro = (int(U_Product))
+            #  else:
+            #   pro =(int(frequency))
+            # except:
+            #     pro = (int(U_Product))
+            # datum = {
+            #     "email": request.user.email,
+            #     "amount": int(price*pro) * 100
+            #     }
             datum = {
                 "email": request.user.email,
-                "amount": int(price*pro) * 100
+                "amount": int(total) * 100
                 }
 
             
@@ -2087,11 +2189,12 @@ def checkout(request):
        
 
         initialized = init_payment(request)
-            
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=price,frequency=frequenc,
+        # print(initialized)
+        print('quantity: ' + str(non_wadia_quantity))
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total,frequency=wadia_frequency, quantity = quantity,
                                             modeofpayment='online',due_date=duedate,payment_status='pending',payment_id=initialized['data']['reference'])
         order.save()
-        amount = price/100
+        amount = total*100
         link = initialized['data']['authorization_url']
         return HttpResponseRedirect(link)
         #return redirect(orders)
@@ -2104,15 +2207,18 @@ def call_back_url(request):
 
 	# We need to fetch the reference from PAYMENT
     check_pay = OrderPlaced.objects.filter(payment_id=reference).exists()
-    
+    order = OrderPlaced.objects.get(payment_id=reference)
+    print(order)
+    # print("start")
     if check_pay == False:
 		# This means payment was not made error should be thrown here...
         print("Error")
     else:
+        print('payment successful')
         payment = OrderPlaced.objects.get(payment_id=reference)
         
         def verify_payment(request):
-            print("hello")
+            # print("hello")
             url = 'https://api.paystack.co/transaction/verify/'+reference
             
             headers = {
@@ -2134,10 +2240,12 @@ def call_back_url(request):
     initialized = verify_payment(request)
     if initialized['data']['status'] == 'success':
        OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(payment_status='paid')
-       OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(quantity=U_Product)
+    #    OrderPlaced.objects.filter(payment_id=initialized['data']['reference']).update(quantity=order.quantity)
        if OrderPlaced.objects.filter(payment_status='paid'):
          try:
-          SubProduct.objects.filter(id=productid).update(Total_S=R_Product)
+
+          sub_product = SubProduct.objects.get(id=order.product_id)
+          SubProduct.objects.filter(id=order.product_id).update(Total_S= (sub_product.Total_S - order.quantity) )
          except:
           print(productid)
           
