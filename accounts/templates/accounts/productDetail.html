@@ -41,7 +41,7 @@
                       
                       
                       
-                        <input class="cus-qut"  type="number"  onkeyup="calc()" onchange="calc()" style="color: #444444 !important;" id="_quantity" name="non_wadia_quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
+                        <input class="cus-qut"  type="number"  onkeyup="calc(), validation_date()" onchange="calc(), validation_date()" style="color: #444444 !important;" id="_quantity" name="non_wadia_quantity" min={{product.Minemun_O}} max={{product.Total_S}} value={{product.Minemun_O}}>
                         <p><span class="first-latter-color" id="quantity_error"></p></p>
                       {%else%}
                       <p><span class="first-latter-color">Out of Stock</p>

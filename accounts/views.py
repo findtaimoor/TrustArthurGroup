@@ -1,5 +1,5 @@
 from ast import Global, Or
-from asyncio.windows_events import NULL
+
 from calendar import month
 from copy import error
 from ctypes import Union
@@ -1750,7 +1750,7 @@ def editaboutteammember(request,id):
 def editaboutboardmember(request,id):
    try:
     b_member = AboutBoardMembers.objects.get(id=id)
-    print('farhan')
+    
     if request.method == 'POST':
         b_member.name= request.POST.get('name','')
         b_member.profession= request.POST.get('profession','')
@@ -1763,10 +1763,10 @@ def editaboutboardmember(request,id):
         messages.success(request, 'Updated Successfully.')
         return redirect('aboutboardmembers')
 
-    return render(request, 'devadmin/addaboutboardmember.html',{'member':b_member})
+    return render(request, 'devadmin/editaboutboardmember.html',{'b_member':b_member})
    except Exception as e:
+    return redirect('aboutboardmembers')
     
-    print(e)
 
 
 

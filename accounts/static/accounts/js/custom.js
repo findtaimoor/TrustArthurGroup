@@ -66,15 +66,20 @@ function for_ofline_wadiah(){
     document.getElementById("frequency_OF").value = value;
   }
 }
+var input_val = null;
+var minimum_value= null;
+var maximum_value= null;
 
 
 function validate_value()
 {
-  var input_val = null;
-  // var minimum_val = parseInt(document.getElementById('minimum_lable').innerText.replace ( /[^\d.]/g, '' ))
+  
+ // var minimum_val = parseInt(document.getElementById('minimum_lable').innerText.replace ( /[^\d.]/g, '' ))
   var minimum_val = document.getElementById('minimum_lable');
   if(minimum_val!=null){
-    minimum_val = parseInt(minimum_val).innerText
+    minimum_val = parseInt(minimum_val.innerText.replace ( /[^\d.]/g, '' ));
+    minimum_value = minimum_val;
+    console.log("This is minimum value: "+ minimum_value);
     input_val = document.getElementById('_quantity').value;
   }
   
@@ -86,15 +91,20 @@ function validate_value()
 
   maximum_val =document.getElementById('a-pro')
   if(maximum_val!=null){
-    maximum_val = parseInt(maximum_val).innerText
+    maximum_val = parseInt(maximum_val.innerText.replace ( /[^\d.]/g, '' ))
+    maximum_value = maximum_val;
+    console.log("This is maximum value: "+ maximum_value);
     input_val = document.getElementById('_quantity').value;
   }
-  document.getElementById('quan').value = input_val
-  console.log(document.getElementById('quan').value)
-  if(input_val < minimum_val || input_val > maximum_val)
+  document.getElementById('quan').value = input_val.trim()
+  console.log("This is input quantitiy: "+ document.getElementById('quan').value)
+  if(input_val < minimum_value || input_val > maximum_value)
   {
     
     document.getElementById("quantity_error").innerText=('Your quantity must be between Minimum or Available Product!')
+    
+  
+
     document.getElementById('checkout_btn').setAttribute('data-target', '#')
   }else if(_date == ""){
     document.getElementById("quantity_error").innerText=('Select Starting Date!')
@@ -112,7 +122,12 @@ function validateForm() {
   let product_type = document.forms["quote_form"]["product_type"].value;
 
   let x = document.forms["quote_form"]["starting_date_q"].value;
-  if (x == "" && product_type == '13') {
+  let product_quantity = document.forms["quote_form"]["quan"].value;
+  if (product_quantity < minimum_value || product_quantity > maximum_value ) {
+    return false;
+  } 
+  if (x == "" && product_type == '13') 
+  {
     return false;
   }
 }
@@ -120,7 +135,8 @@ function validateForm() {
 function validation_date(){
   
       var valid_span = document.getElementById("quantity_error")
-      if(valid_span != null){
+      if(valid_span != null)
+      {
         valid_span.innerText = '';
       }
     
@@ -191,9 +207,6 @@ function calc()
     document.getElementById("wadia_total_direct").value = total
     document.getElementById("wadia_total_quote").value = total
     document.getElementById("total_price").value = total
-    
-
-
 
     // alert(total)
 
