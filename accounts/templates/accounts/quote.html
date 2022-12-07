@@ -21,7 +21,7 @@
     white-space: nowrap;
   }
 
-    @media(max-width: 768px) { 
+    @media(max-width: 768px) {
     table{
       display: block;
       overflow-x: auto;
@@ -54,7 +54,7 @@
             font-size: 20px;
             font-weight: bold;
         }
-    
+
         .d-grid a:hover{
             padding: 10px 40px;
             color: #fff!important;
@@ -62,7 +62,7 @@
             border-radius: 20px;
         }
     </style>
-    
+
     <!-- <div class="mt-5 mx-5">
     <div class="row">
       <div class="col-md-3">
@@ -84,7 +84,7 @@
         {% if request.user.is_superuser %}
             <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
             <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
-            {% else %}   
+            {% else %}
             <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
             <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
             <li class="d-grid"><a href="{% url 'editprofiledetails' %}" class="btn">Details</a></li>
@@ -113,8 +113,8 @@
                   <td>{{i.quote_quantity}}</td>
 
                   <td>{{i.frequency}}</td>
-                  
-                  <td>{{i.total_p}}</td>
+
+                  <td>{{i.total_p|floatformat:2}}</td>
                   <td>{{i.quote_date}}</td>
                   <td><a href="{% url 'customerquotedelete' i.id %}" class='text-danger'><i class='fas fa-trash'  style='font-size:22px;'></i></a>
                       <a href="{% url 'quotepayment' i.id %}" class = "text-danger"><i class="bi bi-bag-fill" style = 'font-size:22px;'></i></a>
@@ -131,11 +131,11 @@
                 </div>
                 </div>
             {% endif %}
-          </div>          
+          </div>
     </div>
   </div>
 
-        
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -153,15 +153,15 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
 
 {% comment %} <script>
-    
+
     $(document).ready(function() {
-    
+
     var table = $('#example').DataTable( {
      lengthChange: false
     } );
-    
+
     });
-    
+
 </script>     {% endcomment %}
 
 {% endblock main-content %}
@@ -187,7 +187,7 @@
             font-size: 20px;
             font-weight: bold;
         }
-    
+
         .d-grid a:hover{
             padding: 10px 40px;
             color: #fff!important;
@@ -204,7 +204,7 @@
     {% if request.user.is_superuser %}
         <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
         <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
-        {% else %}   
+        {% else %}
         <li class="d-grid"><a href="{% url 'orders' %}" class="btn">Orders</a></li>
         <li class="d-grid"><a href="{% url 'customerquote' %}" class="btn">Quote</a></li>
         <li class="d-grid"><a href="{% url 'editprofiledetails' %}" class="btn">Details</a></li>
@@ -216,7 +216,7 @@
       {% for op in cq %}
       </a>
    <div class="row shadow-sm mb-3">
-    
+
        <div class="col-md-3 orderimg">
             <a href="{% url 'productdetail' op.product.id %}">
                 <img src="{{op.product.sub_product_image.url}}" class="img-fluid" height="200" width="230" alt="">
@@ -235,7 +235,7 @@
 
     </div>
    </div>
-   
+
    {% endfor %}
    {% else %}
    <div class="container">

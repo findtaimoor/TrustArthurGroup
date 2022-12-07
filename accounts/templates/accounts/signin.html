@@ -13,25 +13,25 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <h1>Sign In</h1>
-                            
+
                                 <input type="email" placeholder="Email" name="email" required />
-                                
+
                                 <div class="inputeye">
                                     <input type="password" name="password" placeholder="Enter Password" id="id_password" required>
                                     <span>
                                     <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                                     <span>
-                                </div> 
+                                </div>
 
-                               
-                                
+
+
                                 {% if msg %}
                                     <span class="text-danger">{{msg}}</span>
                                 {% endif %}
-            
+
                                 <button type="submit">Sign In</button><br>
 
-                                <a href="{% url 'changepass' %}" class="ghost">Forgot password?</a>                                
+                                <a href="{% url 'changepass' %}" class="ghost">Forgot password?</a>
                             </form>
                         </div>
                     </div>

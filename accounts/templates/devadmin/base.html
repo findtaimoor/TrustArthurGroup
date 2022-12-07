@@ -9,7 +9,7 @@
       <meta name="description" content="" />
 
 
-      <title>TrustBanc | {% block title %}{% endblock title %} </title>
+      <title>TrustArthur | {% block title %}{% endblock title %} </title>
 
 
     <!-- Favicon Start Here -->
@@ -304,6 +304,12 @@
                     </a>
                   </li>
 
+                  <li class="menu-item">
+                    <a href="{% url 'aboutacemembers' %}" class="menu-link">
+                        <div data-i18n="Notifications">ACE Members</div>
+                    </a>
+                  </li>
+
 
 
                   <li class="menu-item">
@@ -379,14 +385,14 @@
                       <i class="fas fas-bars"> </i>
                       <i class="avatar avatar-online" style="margin-left: 150%; margin-bottom: 10%;"></i>
                       <!-- <a  class="w-px-40 h-auto rounded-circle fas fa-bars " > -->
-                    
+
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
-                            
+
                             <div class="avatar avatar-online">
                               <img src="{% static 'todo/img/my-img/favicon.png' %}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
@@ -428,18 +434,18 @@
           </nav>
 
           <!-- / Navbar -->
-          
+
 
           {% block main-content %}
-          
+
 
           {% endblock main-content %}
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h2 class="modal-title" id="exampleModalLongTitle">permission:</h2>
-                </div>
+                <!--<div class="modal-header">-->
+                <!--  <h2 class="modal-title" id="exampleModalLongTitle">permission:</h2>-->
+                <!--</div>-->
                 <div class="modal-body">
                     <P>Are you sure you want to
                       logout?</P>
@@ -451,7 +457,7 @@
               </div>
             </div>
           </div>
-          
+
 
 
 

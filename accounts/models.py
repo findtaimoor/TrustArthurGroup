@@ -8,7 +8,7 @@ import uuid
 # Create your models here.
 
 class BusinessRegister(models.Model):
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     typeofuser = models.CharField(max_length=200, default="None")
     company_name = models.CharField(max_length=200)
@@ -31,7 +31,7 @@ class BusinessRegister(models.Model):
     em4 = models.CharField(max_length=200)
     signature = models.ImageField(upload_to='businesssignpic')
     photo = models.ImageField(upload_to='businessprofilepic')
-    
+
     print(company_name)
 
     def str(self):
@@ -71,14 +71,14 @@ class  IndividualRegister(models.Model):
     kin_state = models.CharField(max_length=200)
     kin_country = models.CharField(max_length=200)
 
-    
+
     def str(self):
         return str(self.id)
    except Exception as e:
     print(e)
 
 class  AnotherJoinAccountRegister(models.Model):
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     individual_user = models.ForeignKey(IndividualRegister, on_delete=models.CASCADE)
     another_name = models.CharField(max_length=200)
@@ -133,7 +133,7 @@ class SubProduct(models.Model):
     Minemun_O = models.FloatField(default='None')
     Scope =  models.TextField()
     Assign = models.CharField(max_length=200)
-    
+
 
     def str(self):
         return str(self.id)
@@ -144,7 +144,7 @@ class assign_products(models.Model):
  try:
     product_id = models.IntegerField()
     user_id = models.IntegerField()
-  
+
     def str(self):
         return str(self.id)
  except Exception as e:
@@ -165,6 +165,7 @@ class OrderPlaced(models.Model):
     payment_status = models.CharField(max_length=50)
     quantity = models.FloatField()
     frequency = models.CharField(max_length=200, default='Null')
+    currency = models.CharField(max_length=200, default='Null')
     def str(self):
         return str(self.id)
 
@@ -175,10 +176,11 @@ class Quote(models.Model):
     quote_date_time = models.DateTimeField(auto_now_add =True)
     quote_date = models.DateField()
     quote_quantity = models.IntegerField(default = 1)
-    total_p = models.IntegerField()
+    total_p = models.FloatField()
     frequency = models.CharField(max_length=200)
     product_type = models.IntegerField()
-    
+    currency = models.CharField(max_length=200, default='Null')
+
     def str(self):
         return str(self.id)
 
@@ -306,7 +308,15 @@ class AboutBoardMembers(models.Model):
     profession = models.CharField(max_length=200)
     description = models.TextField()
     member_image = models.ImageField(upload_to='home/boardmembers')
-    
+    def str(self):
+        return str(self.id)
+
+class AboutACEMembers(models.Model):
+    name = models.CharField(max_length=200)
+    profession = models.CharField(max_length=200)
+    description = models.TextField()
+    member_image = models.ImageField(upload_to='home/acemembers')
+
     def str(self):
         return str(self.id)
 

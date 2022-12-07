@@ -14,10 +14,10 @@
 
 <div class="m-4"  >
     <h2 class=""> Sub-Product List</h2>
-    
- <div  style="overflow-x:auto;"> 
+
+ <div  style="overflow-x:auto;">
    <table id="dtMaterialDesignExample" class="table table-striped">
-   
+
      <thead>
         <tr>
             <th>Product</th>
@@ -29,52 +29,52 @@
             <th>Scope</th>
             <th>Duration</th>
             <th>Benifits</th>
-            <th>Plan Features</th>  
+            <th>Plan Features</th>
             <th>Rate</th>
             <th>Principle</th>
             <th>Start Date</th>
             <th>Actions</th>
         </tr>
-     </thead> 
+     </thead>
      <tbody>
         {% if subproduct %}
         {% for i in subproduct %}
-      
+
         <tr>
             <td>{{i.product.title}}</td>
             <td>{{i.sub_title}}</td>
             <td>{{i.sub_title2}}</td>
-            <td>{{i.selling_price}}</td>
+            <td>{{i.selling_price|floatformat:2}}</td>
             <td>{{i.Total_S}}</td>
             <td>{{i.Minemun_O}}</td>
             <td>{{i.Scope}}</td>
             <td>{{i.duration_year}} Years {{i.duration_month}} Months</td>
             <td>{{i.benifits|linebreaks}}</td>
             <td>{{i.plan_feature|linebreaks}}</td>
-           
+
             <td>{{i.Rate}}</td>
-            <td>{{i.Principle}}</td>
-            <td>{{i.Date}}</td>  
+            <td>{{i.Principle|floatformat:2}}</td>
+            <td>{{i.Date}}</td>
             <td><a href="{% url 'admineditsubproduct' i.id %}" class='text-primary'><i class='bx bx-edit'  style='font-size:22px;'></i></a><a href="{% url 'admindeletesubproduct' i.id %}" class='text-danger'><i class='bx bx-trash'  style='font-size:22px;'></i></a>
-             
+
               {% if i.Scope == 'Private'%}
 
               <a class='text-success' href="{% url 'Assign_product_to_user' i.id %}" >
                  <i class='bx bxs-user-check'  style='font-size:22px;'></i>
               </a>
               {% endif %}
-            
+
             </td>
         </tr>
 
-        
-        
+
+
         {% endfor %}
 
         {% endif %}
 
      </tbody>
-    
+
    </table>
  </div>
 </div>
@@ -107,14 +107,14 @@
       'custom-select custom-select-sm form-control form-control-sm');
     $('#dtMaterialDesignExample_wrapper select, #dt-material-checkbox_wrapper select').addClass('mdb-select');
     $('#dtMaterialDesignExample_wrapper .mdb-select, #dt-material-checkbox_wrapper .mdb-select').materialSelect();
-    
+
 </script>
 
 
 <select name="select_user" id="select_users">
-            
+
   <option value="">abc</option>
-  
+
 </select>
 
 {% endblock main-content %}

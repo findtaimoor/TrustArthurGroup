@@ -4,12 +4,13 @@
 {% block main-content %}
 
 
-   
+
     <div class="container px-4">
         <div class="m-4 row gx-5 text-center">
             <div class="card-header border-0 bg-white header-elements-inline">
                 <h4 class="card-title"><i class=""></i> Your Quote</h4>
             {% for i in cp %}
+
             </div>
              <div class="col-8">
                 <div class="p-3 border bg-white border-0">
@@ -22,6 +23,9 @@
                         <div class="card-body bg-light">
                             <form action="{% url 'checkout' %}" method="POST">
                                 {% csrf_token %}
+                               {% if i.currency == '₦' %}
+
+
                                 <div class=" p-3 rounded">
                                     <div class="custom-control custom-radio mb-2">
                                         <input type="radio" class="" onclick="offline_pay()" name="cr-l" id="cr_l_s_s"
@@ -31,21 +35,19 @@
                                     </div>
                                     <div class="dropdown-divider"></div>
                                     <div class="custom-control custom-radio mb-3">
-                                        
+
                                         <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
-                                        <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>  
+                                        <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>
                                         <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{uuio}}</h4>
 
-                                        
-                                        
                                         <input type="hidden" value="{{i.product_id}}" id="product_id" name="product_id">
                                         <input type="hidden" value="{{i.product_type}}" id="product_type" name="product_type">
                                         <input type="hidden" value="quote" id="payment_type" name="payment_type">
                                         <input type="hidden" value="{{i.total_p}}" id="product_type" name="total">
                                         <input type="hidden" value="{{i.quote_quantity}}" id="payment_type" name="quantity">
                                         <input type="hidden" value="{{i.frequency}}" id="payment_type" name="wadia_frequency">
-                                        
+
 
 
 
@@ -53,7 +55,7 @@
                                         <label class="custom-control-label mr-2" for="cr_l_s_u"><img class="ml-4"
                                                 src="{% static 'accounts/images/paystack-logo.png' %}" height="80px" width="160px"
                                                 alt=""></label>
-                                       
+
                                     </div>
                                     <div class="dropdown-divider"></div>
                                     <div class=" mb-3">
@@ -65,14 +67,32 @@
 
                                     </div>
                                 </div>
-                                
+                                {%else%}
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="radio" class="" onclick="offline_pay()" name="cr-l" id="cr_l_s_s"
+                                    checked="">
+                                <label class="font-weight-bold" for="cr_l_s_s">Bank Transfer in any of the following
+                                    Bank.</label>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="custom-control custom-radio mb-3">
+
+                                    <h4 style="color:#EF0502; font-weight: bold;">Trust Arthur Ltd</h4>
+                                    <h4 style="color:#EF0502; font-weight: bold;">1185796470</h4>
+                                    <h4 style="color:#EF0502; font-weight: bold;" >Lotus bank</h4>
+                                    <h4 style="color:#EF0502; font-weight: bold;" >Transaction ID:{{uuio}}</h4>
+
+                                {%endif%}
+
+
                                 <button class="btn btn-success" style="text-align: center ;" id="online_payment">Proceed</button>
                             </form>
-                            <div class="text-center">
-                                
-                                <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>
-                            </div>
-                            
+
+
+                        </div>
+                        <div class="text-center">
+
+                            <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>
                         </div>
                         <script>
                             function offline_pay(){
@@ -91,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <!-- model -->
@@ -105,24 +125,24 @@
               </button>
             </div>
             <div class="modal-body mt-3 text-center">
-             
-        
+
+
               <form action="{% url 'offlinepayment' %}"   method="POST">
                 {% csrf_token %}
-           
+
 
                 <input type="hidden" value="{{uuio}}" name="uuid" >
-                
+
                 <input type="hidden" value="{{i.product.Total_S}}" name="avail_pro" >
-                
+
                 <input type="hidden" value="{{i.quote_quantity}}" name="U_product">
-                
-                
+                <input type="hidden" value="{{i.currency}}" name="currencies">
+
                 <input type="hidden"  name="total_price" value="{{i.total_p}}">
                 <input type="hidden" value="{{i.product.id}}" name="product-id">
                 <input type="hidden" value="{{i.frequency}}" name="frequency_OF">
                 <div class="text-center">
-                                
+
                     <button class="btn btn-success" id="offline_payment" data-toggle="modal" data-target="#exampleModalCenter2">Proceed</button>
                 </div>
               </form>
@@ -132,6 +152,6 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     <!-- /javascript files -->
-    {% endblock main-content %} 
+    {% endblock main-content %}

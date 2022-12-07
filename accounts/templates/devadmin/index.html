@@ -11,7 +11,7 @@
 
     <style>td{
       padding:20px;
-      } 
+      }
     </style>
 
     <form method ="post">
@@ -20,8 +20,8 @@
 
         <tr>
           <td><label for="">Select Type of Product: </label></td>
-          <td> 
-              <select class="form-control" name="typeofproduct" required>  
+          <td>
+              <select class="form-control" name="typeofproduct" required>
                   {% for i in product %}
                       <option value = "{{i.sub_title}}" >{{ i.sub_title| capfirst}}</option>
                   {% endfor %}
@@ -72,13 +72,13 @@
                 {% csrf_token %}
               <!-- Grid row -->
               <div class="row">
-                
+
                 <!-- Grid column -->
                 <div class="col-lg-4 col-sm-12">
                   <label>Select Type of Product: </label>
                   <!-- Date select -->
-                  <select class="form-control mt-3" name="typeofproduct" required>  
-                    <option value=""></option>
+                  <select class="form-control mt-3" name="typeofproduct" required>
+                    <option value="">Select SubProduct</option>
                     {% for i in product %}
                         <option value = "{{i.sub_title}}" >{{ i.sub_title| capfirst}}</option>
                     {% endfor %}
@@ -244,8 +244,8 @@
         <!-- Grid row -->
 
       </section>
-    
-       
-        
+
+
+
 
 {% endblock main-content %}

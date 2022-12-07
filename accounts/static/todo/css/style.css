@@ -12771,29 +12771,29 @@ div#wrapper.open > .offcanvas-mask {
   margin-bottom: 10px;
 }
 
-.project-wrap-layout1 .section-subtitle:before {
-  content: "";
-  height: 4px;
-  width: 15px;
-  background-color: #7ab0dd;
-  position: absolute;
-  bottom: 12px;
-  left: 144px;
-  border-radius: 10px;
-  border: none;
-}
+/*.project-wrap-layout1 .section-subtitle:before {*/
+/*  content: "";*/
+/*  height: 4px;*/
+/*  width: 15px;*/
+/*  background-color: #7ab0dd;*/
+/*  position: absolute;*/
+/*  bottom: 12px;*/
+/*  left: 144px;*/
+/*  border-radius: 10px;*/
+/*  border: none;*/
+/*}*/
 
-.project-wrap-layout1 .section-subtitle:after {
-  content: "";
-  height: 4px;
-  width: 34px;
-  background-color: #114d7f;
-  position: absolute;
-  bottom: 12px;
-  left: 165px;
-  border-radius: 10px;
-  border: none;
-}
+/*.project-wrap-layout1 .section-subtitle:after {*/
+/*  content: "";*/
+/*  height: 4px;*/
+/*  width: 34px;*/
+/*  background-color: #114d7f;*/
+/*  position: absolute;*/
+/*  bottom: 12px;*/
+/*  left: 165px;*/
+/*  border-radius: 10px;*/
+/*  border: none;*/
+/*}*/
 
 .project-wrap-layout1 .section-subtitle-sm:before {
   left: 82px;

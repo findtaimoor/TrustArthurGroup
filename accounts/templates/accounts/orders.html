@@ -16,6 +16,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
+
 <style>
 
   table{
@@ -64,7 +66,7 @@
             background-color: #EF0502;
             border-radius: 20px;
         }
-    </style>
+</style>
 
     <!-- <div class="mt-5 mx-5">
     <div class="row">
@@ -95,14 +97,14 @@
                 </ul>
             </div>
             <div class="col-md-10">
-                <div class="row g-3">
+                <div class="row g-3" >
                     <div class="col-auto">
                     <label for="inputPassword6" class="col-form-label">Search:</label>
                     </div>
                     <div class="col-auto">
                     <input type="text" id="myInput"  class="form-control">
                     </div>
-                </div>    
+                </div>
                 {% if orders %}
                 <table id="example" class="table display nowrap mt-3" style="width:100%">
                 <thead>
@@ -121,10 +123,11 @@
                 </thead>
                 <tbody id="myTable">
                 {% for i in orders %}
+
                 <tr>
                     {% comment %} <td>{{i.user.email}}</td> {% endcomment %}
                     <td>{{i.product_title}}</td>
-                    <td>₦{{i.price}}</td>
+                    <td>{{i.currency}}{{i.price|floatformat:2}}</td>
                     <td>{{i.modeofpayment}}</td>
                     <td>{{i.payment_id}}</td>
                     <td>{{i.quantity}}</td>
@@ -137,9 +140,19 @@
                 {% endfor %}
                 </tbody>
                 </table>
-
+                <div class="row g-3">
+                    <!-- <div class="col-auto mt-1">
+                        <select name="show_rows" class="form-control" id="show_rows" onchange="get_rows_count(); pagination();">
+                            <option value="5" >5 Rows</option>
+                            <option value="10" selected>10 Rows</option>
+                            <option value="15">15 Rows</option>
+                            <option value="20">20 Rows</option>
+                        </select>
+                    </div> -->
+                    <div id='pagination_buttons'></div>
+                </div>
                 <script>
-                    
+
                         $(document).ready(function(){
                         $("#myInput").on("keyup", function() {
                             var value = $(this).val().toLowerCase();
@@ -148,7 +161,7 @@
                             });
                         });
                         });
-                    
+
                     </script>
                 {% else %}
                 <div class="container">
@@ -164,7 +177,7 @@
   </div>
 
 
-
+  <script src="{% static 'todo/js/custom.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
@@ -200,43 +213,6 @@
 {% block title %}Orders{% endblock title %}
 {% block main-content %}
 
-
-
-<style>
-    .noorder{
-        width: 40%;
-    }
-    .next-btn{
-        font-weight: 700;
-        font-size: 20px;
-        padding: 5px 31px;
-        margin-right: 15px;
-        background-color: #EF0502;
-        border-radius: 20px;
-        border: none;
-        color: #fff;
-    }
-    a:hover{
-        color:#fff;
-    }
-
-        .d-grid{
-            border-bottom: 2px solid #000;
-            margin: 10px;
-        }
-        .d-grid a{
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .d-grid a:hover{
-            padding: 10px 40px;
-            color: #fff!important;
-            background-color: #EF0502;
-            border-radius: 20px;
-        }
-
-</style>
 
 <div class="container my-5 ordersec">
  <div class="row">

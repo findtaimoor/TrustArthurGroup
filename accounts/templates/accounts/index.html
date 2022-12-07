@@ -215,8 +215,8 @@
             <div class="grd-info">
 
               {% for i in wwd %}
-                
-              
+
+
               <div class="info-in">
                 <div class="consulting-service3" data-bg-image="../static/todo/img/my-img/comp3.png" width="555"
                   height="299">
@@ -252,6 +252,7 @@
     <!--=====================================-->
     <!--=            Progress-bar Start      =-->
     <!--=====================================-->
+    {% comment %}
     <section class="progress-bar-wrap1">
       <div class="container-fluid">
         <div class="row no-gutters">
@@ -289,6 +290,7 @@
         </div>
       </div>
     </section>
+    {% endcomment %}
     <!--=====================================-->
     <!--=            Banner Start           =-->
     <!--=====================================-->
@@ -333,58 +335,6 @@
     <!--=            Project Start          =-->
     <!--=====================================-->
 
-    <section class="project-wrap-layout1 carousel-img">
-      <div class="container">
-        <p class="section-subtitle">Explore Our Products and Offerings​</p>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="project-box2">
-              <p>
-                We offer a range of services to our esteemed customers to help achieve their set goals and meet their
-                target right in their comfort zone.​
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="owl-carousel owl-theme">
-
-        {% for i in explore %}
-          
-        
-        <div class="portfolio-box1">
-          <div class="item-img">
-            <a>
-              <img src="{{i.exp_image.url}}" alt="blog" class="blg-img">
-              <!-- <div class="blg-img" style="background-image: url(../static/todo/img/my-img/blg1.jpg)"></div> -->
-            </a>
-            <div class="item-content">
-              {% comment %} <div class="item-number">0{{forloop.counter}}</div> {% endcomment %}
-              <h3 class="heading-title">{{i.title}}</h3>
-              <p class="portfolio-para">
-                {{i.description}}
-              </p>
-              <div class="item-button">
-                <a class="item-btn read-more Readmore1">+ <span>Read More</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {% endfor %}
-
-      </div>
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Here i am</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            Thank to pop me out of that button, but now i'm done so you can close this window.
-          </div>
-        </div>
-      </div>
-    </section>
     <!--=====================================-->
     <!--=            Call-back Start        =-->
     <!--=====================================-->
@@ -404,10 +354,10 @@
                     <input type="email" class="form-control" id="inputAddress2" name="email" placeholder="Email" required />
                   </div>
                   <div class="form-group col-lg-12">
-                    <input type="tel" class="form-control" id="inputAddress3" name= "phone" placeholder="Phone" required />
+                    <input type="number" class="form-control" id="inputAddress3" name= "phone" placeholder="Phone"  maxlength="11" required />
                   </div>
                   <div class="form-group col-lg-12">
-                    <textarea id="message" class="form-control" name="message"  placeholder="Message" cols="30"rows="4"></textarea>
+                    <textarea id="message" class="form-control" name="message"  placeholder="Message" cols="30"rows="4" required ></textarea>
                   </div>
                   <div class="form-group col-lg-12">
                     <input type="submit" class="item-btn" value="Submit Now" />
@@ -464,7 +414,7 @@
             data-slick='{"arrows": true, "slidesToShow": 1, "autoplay": false, "vertical": true}'>
 
             {% for i in testi %}
-              
+
             <div class="slick-slide">
               <div class="media">
                 <div class="item-img">
@@ -556,6 +506,6 @@
       </div>
     </section>
 
-    
+
 
 {% endblock main-content %}

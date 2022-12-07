@@ -44,7 +44,7 @@ def validate_username(request):
     data = {
         'is_taken': User.objects.filter(email=email).exists()
     }
-  
+
     if data['is_taken']:
         data['error_message'] = 'A user with this email already exists.'
     return JsonResponse(data)
@@ -66,9 +66,9 @@ def home(request):
 
     home = HomeInfoSection.objects.all().last()
     banner = HomeBanner.objects.all()
-    
+
     wwd = HomeWhatWeDo.objects.all()
- 
+
     explore = HomeExploreProducts.objects.all()
     testi = HomeTestinomials.objects.all()
     return render(request, 'accounts/index.html',{'home':home,'banner':banner,'wwd':wwd,'explore':explore,'testi':testi})
@@ -81,7 +81,9 @@ def about(request):
     testi = AboutTestinomials.objects.all()
     members = AboutTeamMembers.objects.all()
     b_members = AboutBoardMembers.objects.all()
-    return render(request, 'accounts/about.html',{'home':home,'about':about,'ccv':ccv,'testi':testi,'members':members,'b_members':b_members})
+    a_members = AboutACEMembers.objects.all()
+
+    return render(request, 'accounts/about.html',{'home':home,'about':about,'ccv':ccv,'testi':testi,'members':members,'b_members':b_members,'a_members':a_members})
    except:
      return render(request,'accounts/index.html')
 def news(request):
@@ -91,7 +93,7 @@ def news(request):
     except:
         return render(request, 'accounts/index.html')
 def editprofiledetails(request):
- 
+
     gender = ['Male','Female']
     if IndividualRegister.objects.filter(user=request.user).exists():
         cuser = IndividualRegister.objects.get(user=request.user)
@@ -219,7 +221,7 @@ def editprofiledetails(request):
             messages.success(request,'Updated Succesfully.')
             return redirect('editprofiledetails')
         return render(request, 'accounts/editprofiledetails.html',{'cuser':cuser})
- 
+
 
     elif AnotherJoinAccountRegister.objects.filter(user=request.user).exists():
         auser = AnotherJoinAccountRegister.objects.get(user=request.user)
@@ -277,7 +279,7 @@ def editprofiledetails(request):
             return redirect('editprofiledetails')
 
         return render(request, 'accounts/editprofiledetails.html',{'auser':auser,'gender':gender})
- 
+
 
 
 
@@ -290,16 +292,16 @@ def orders(request):
     # currentordersorted = sorted(currentorder, key=lambda x: x.due_date)
     orders = sorted(orders, key=lambda x: x.ordered_date_time, reverse=True)
 
-    
+
 
     return render(request, 'accounts/orders.html',{'orders':orders})
    except:
     return render(request,'accounts/index.html')
 def customerquote(request):
-   
+
     cq = Quote.objects.filter(user=request.user)
     return render(request, 'accounts/quote.html',{'cq':cq})
-   
+
 def customerquotedelete(request,id):
 #    try:
     quote = Quote.objects.get(pk=id)
@@ -314,12 +316,12 @@ def signup(request):
 #    try:
     if request.user.is_authenticated:
         return redirect('home')
-    
+
     if request.method == "POST":
-        
+
         typeofuser = request.POST['typeofuser']
-        
-         
+
+
         if typeofuser == 'corporate':
             print('ahmad')
 
@@ -345,7 +347,7 @@ def signup(request):
             em4 = request.POST['name4']
             signature = request.FILES['signature']
             photo = request.FILES['photo']
-            
+
             userb = User.objects.create_user(username, company_email, password)
             userb.is_active=True
 
@@ -357,9 +359,9 @@ def signup(request):
 
             BusinessRegister(user = userb,typeofuser=typeofuser,company_name=company_name,company_number=company_number,tax_id=tax_id,
             company_industry=company_industry,company_date=company_date,NIN=NIN,BVN=BVN,phoneno=phoneno,houseno=houseno,
-            street_name=street_name,city=city, state=state,country=country, em1=em1,em2=em2,em3=em3, em4=em4, 
+            street_name=street_name,city=city, state=state,country=country, em1=em1,em2=em2,em3=em3, em4=em4,
             signature=signature,photo=photo).save()
-           
+
             #---Send mail_--
             Send_Email = "trustauthurgroup@gmail.com"
             server = smtplib.SMTP('smtp.gmail.com',587)
@@ -369,29 +371,29 @@ def signup(request):
 
 
             if company_email:
-                
+
                 a="""Your Email registered successfully"""
-                
+
                 msg_chapass = "\r\n".join([
-                            
+
                             "Signup",
                             "",
                             a
-                            ]) 
+                            ])
 
-                
+
                 mail(Send_Email,company_email,msg_chapass)
                 messages.success(request,'Email sent')
                 print(mail)
                 print('yes')
 
 
-        
+
         if typeofuser == 'individual':
 
             individual_email = request.POST['individual_email']
             username = individual_email[:individual_email.index('@')]
-            
+
             password = request.POST['password']
             f_name = request.POST['fullname']
             l_name = request.POST['fullname']
@@ -418,7 +420,7 @@ def signup(request):
             kin_city = request.POST['kin_city']
             kin_state = request.POST['kin_state']
             kin_country = request.POST['kin_country']
-            
+
 
             useri = User.objects.create_user(username, individual_email, password)
             useri.is_active=True
@@ -439,17 +441,17 @@ def signup(request):
 
 
             if individual_email:
-                
+
                 a="""Your Email registered successfully"""
-                
+
                 msg_chapass = "\r\n".join([
-                            
+
                             "Signup",
                             "",
                             a
-                            ]) 
+                            ])
 
-                
+
                 mail(Send_Email,individual_email,msg_chapass)
                 messages.success(request,'Email sent')
                 print(mail)
@@ -461,7 +463,7 @@ def signup(request):
             street_name=street_name,city=city, state=state,country=country, birthdate=birthdate,
             gender=gender,occupation=occupation,NIN=NIN,BVN=BVN,
             joint_account=joint_account,individual_signature=individual_signature,individual_photo=individual_photo,
-            kin_name=kin_name,kin_relationship=kin_relationship,kin_phone=kin_phone, kin_house_number=kin_house_number, 
+            kin_name=kin_name,kin_relationship=kin_relationship,kin_phone=kin_phone, kin_house_number=kin_house_number,
             kin_street_name=kin_street_name,kin_city=kin_city,kin_state=kin_state,kin_country=kin_country)
 
             indiregi.save()
@@ -496,13 +498,13 @@ def signup(request):
                 another_occupation=another_occupation,another_signature=another_signature,another_photo=another_photo)
 
                 another.save()
-        
+
     return render(request, 'accounts/signup.html')
 #    except:
 #     return render(request,'accounts/index.html')
 
 def signin(request):
-   
+
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -515,16 +517,16 @@ def signin(request):
             global username
             username = User.objects.get(email=email).username
 
-             
-                        
+
+
             user = authenticate(username=username, password=password)
-            
+
 
             if user is not None:
                 login(request, user)
                 request.session['vendor_email'] = email
                 messages.success(request,'You are now logged In Successfully.')
-                
+
 
                 Send_Email = "trustauthurgroup@gmail.com"
 
@@ -536,22 +538,22 @@ def signin(request):
 
 
                     msg_Lin = "\r\n".join([
-                        
+
                     "Subject:Login",
                     "",
                     "You are now logged In Successfully."
                     ])
 
-                    
-                    
+
+
                     mail(Send_Email,email,msg_Lin)
                     print('yes')
                     return redirect('home')
                 except Exception as e :
                     print(e)
-                    return redirect('home')       
+                    return redirect('home')
             else:
-                msg = 'Password incorrect'
+                msg = 'Password is incorrect'
                 return render(request, 'accounts/signin.html',{'msg':msg})
         else:
                 msg = 'User does not exist.'
@@ -560,23 +562,23 @@ def signin(request):
     return render(request, 'accounts/signin.html')
 
 def change_password(request,id):
-   
-  users=User.objects.get(id=id)    
+
+  users=User.objects.get(id=id)
   if request.method =="POST":
      if request.method == "POST":
-      
+
       password=request.POST['password']
       users.set_password(password)
       users.save()
       messages.success(request,'password change Successfully.')
-      
+
       return redirect('signin')
      else:
-       
+
         return render(request,'accounts/Forgotpassword.html')
-      
+
   return render(request,'accounts/Forgotpassword.html')
-    
+
 #<----------------------------------------------------->
 def change_p(request):
    try:
@@ -585,7 +587,7 @@ def change_p(request):
      Email=User.objects.filter(email=email).exists()
      ide = User.objects.get(email=email).id
      ide=str(ide)
-     
+
 
      Send_Email = "trustauthurgroup@gmail.com"
 
@@ -604,9 +606,9 @@ def change_p(request):
             Just press the button below and follow the instructions. Well have you up and running in no time.
             "https://sea-lion-app-wqh6w.ondigitalocean.app/Forgotpassword/"""+ide+"""
             If you did not make this request then please ignore this email."""
-            
+
             msg_chapass = "\r\n".join([
-                        
+
                         "Subject:Change Password",
                         "",
                         """Trouble signing in?
@@ -614,10 +616,10 @@ def change_p(request):
             Just press the button below and follow the instructions. Well have you up and running in no time.
             "https://sea-lion-app-wqh6w.ondigitalocean.app/Forgotpassword/"""+ide+"""
             If you did not make this request then please ignore this email."""
-                        
-                        ]) 
 
-            
+                        ])
+
+
             mail(Send_Email,email,msg_chapass)
             messages.success(request,'Email sent')
             print(mail)
@@ -628,20 +630,20 @@ def change_p(request):
            return redirect('signin')
      else:
         msg = 'Account with that email was not found.'
-        return render(request, 'accounts/changepass.html',{'msg':msg})          
+        return render(request, 'accounts/changepass.html',{'msg':msg})
    except:
-        
+
         msg = 'Account with that email was not found.'
-        
-        return render(request, 'accounts/changepass.html',{'msg':msg})          
-    
+
+        return render(request, 'accounts/changepass.html',{'msg':msg})
+
    return render(request,'accounts/changepass.html')
 
 #<------------------------------------------------------>
 
 def Adminchange_p(request,id):
   users=User.objects.get(id=id)
-      
+
   if request.method =="POST":
     if request.method == "POST":
       password=request.POST['passw']
@@ -650,16 +652,16 @@ def Adminchange_p(request,id):
       users.save()
       messages.success(request,'password change Successfully.')
       return redirect('dev')
-   
+
   else:
-       
-             
+
+
    return render(request,'devadmin/chageFpassword.html')
 
 #<------------------------------------------------------>
 
-def changepassword(request,id): 
-  try: 
+def changepassword(request,id):
+  try:
     user = User.objects.get(id=id)
     cuser = request.user
     if request.method == 'POST':
@@ -668,23 +670,23 @@ def changepassword(request,id):
         if password1 == password2:
             if user == cuser:
                 user.set_password(password1)
-                user.save() 
+                user.save()
                 logout(request)
                 messages.success(request, 'Password Changed Successfully.')
                 return redirect('sigin')
             else:
                 user.set_password(password1)
-                user.save() 
+                user.save()
                 logout(request)
                 messages.success(request, 'Password Changed Successfully.')
                 return redirect('signin')
         else:
             msg = 'Password are Not Match'
-            return render(request,'accounts/changepassword.html',{'msg':msg}) 
- 
-       
-    
-    
+            return render(request,'accounts/changepassword.html',{'msg':msg})
+
+
+
+
     return render(request,'accounts/changepassword.html')
   except:
         return redirect('signin')
@@ -697,13 +699,13 @@ def Notification(request):
      Email=User.objects.filter(email=email).exists()
      ide = User.objects.get(email=email).id
      ide=str(ide)
-     
+
 
 
      try:
         Send_Email = "trustauthurgroup@gmail.com"
-        
-        
+
+
         server = smtplib.SMTP('smtp.gmail.com',587)
         server.starttls()
         server.login(Send_Email, 'nxbukvaocrzzetnu')
@@ -711,10 +713,10 @@ def Notification(request):
 
 
 
-        
 
-        
-            
+
+
+
         if Email :
             ide = User.objects.get(email=email).id
             ide=str(ide)
@@ -723,48 +725,48 @@ def Notification(request):
             Just press the button below and follow the instructions. Well have you up and running in no time.
             "https://sea-lion-app-wqh6w.ondigitalocean.app/devadmin/chageFpassword/"""+ide+"""
             If you did not make this request then please ignore this email."""
-            
+
             msg_chapass = "\r\n".join([
-                        
+
                         "Subject:Change Password",
                         "",
                         a
-                        ]) 
-            
-            
-            
+                        ])
+
+
+
             mail(Send_Email,email,msg_chapass)
-            
+
             print('yes i am good')
             return redirect('dev')
      except :
-        
+
         print("noooo")
         return redirect('dev')
-         
+
      else:
         msg = 'Email Not Exists!!'
-        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})          
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})
  except:
-        
+
         msg = 'Email Not Exists!!!'
-        return render(request, 'devadmin/forgotpassword.html',{'msg':msg}) 
+        return render(request, 'devadmin/forgotpassword.html',{'msg':msg})
 
  return render(request,'devadmin/forgotpassword.html')
 def signout(request):
    try:
     logout(request)
     messages.success(request,'You are logged out Successfully.')
-    
-    
-    
+
+
+
     return redirect('signin')
    except:
     return render(request,'accounts/index.html')
 def product(request):
    try:
     product = Product.objects.all()
-    if request.user.is_authenticated:  
+    if request.user.is_authenticated:
         if IndividualRegister.objects.filter(user=request.user).exists():
             cuser = IndividualRegister.objects.get(user=request.user)
             product = Product.objects.filter(typeofuser=cuser.typeofuser)
@@ -779,15 +781,15 @@ def product(request):
    except:
     return render(request,'accounts/index.html')
 def subproduct(request,id):
-   
-   
+
+
     logged_id = False
     query = ''
     product = Product.objects.get(id=id)
-    
+
     if request.user.is_authenticated:
         logged_id = True
-    
+
     print(logged_id)
     if logged_id == False:
         query = "select * from accounts_subproduct where Scope = 'Public' and product_id =  "+ str(id)
@@ -797,7 +799,7 @@ def subproduct(request,id):
         query = """select * from accounts_subproduct where Scope = 'Public' and product_id =  """+ str(id) + """
 union
 select accounts_subproduct.* from accounts_assign_products join accounts_subproduct on accounts_assign_products.product_id =  accounts_subproduct.id where accounts_assign_products.user_id = """+ str(request.user.id) +""" and accounts_subproduct.product_id = """ + str(id)
-    
+
 
 
 
@@ -805,14 +807,14 @@ select accounts_subproduct.* from accounts_assign_products join accounts_subprod
 
 
     # if SubProduct.objects.get(Scope = 'private'):
-    #  subproduct = SubProduct.objects.filter(product=product)   
+    #  subproduct = SubProduct.objects.filter(product=product)
     #  print ('farahn')
     # else:SubProduct.objects.filter(product=product) and
-   
+
 
 
     # if request.user.is_authenticated:
-      
+
     #    cuser =User.objects.get(username=request.user)
     #    subproduct =   SubProduct.objects.filter(Scope = 'Public' , product=product ).union(SubProduct.objects.filter(Assign=cuser , product=product))
 
@@ -820,10 +822,10 @@ select accounts_subproduct.* from accounts_assign_products join accounts_subprod
     #     subproduct =   SubProduct.objects.filter(Scope = 'Public' )
 
 
-      
+
     # print (subproduct )
     return render(request, 'accounts/subproduct.html',{'product':product,'subproduct':subproduct})
- 
+
 def productdetail(request,id):
    try:
     #product = SubProduct.objects.get(id=id)
@@ -834,8 +836,8 @@ def productdetail(request,id):
     uui = uui[:6]
     print(uui)
     print(product[0])
- 
-  
+
+
 
     subproductall = SubProduct.objects.filter(product=product[0].product)
     s = {}
@@ -885,22 +887,22 @@ def subscriber(request):
     return render(request,'accounts/index.html')
 
 def dev(request):
- try:  
+ try:
     if request.user.is_authenticated:
         if request.user.is_superuser == True:
             return render(request, 'devadmin/index.html')
         else:
             logout(request)
             return redirect('dev')
-        
+
     if request.method == "POST":
         email = request.POST.get('email')
         password = request.POST.get('pass')
-        
+
         if User.objects.filter(email=email).exists():
             username = User.objects.get(email=email).username
             user = authenticate(username=username, password=password)
-            
+
             if user is not None:
                 if user.is_superuser == True or user.is_staff == True:
                     login(request, user)
@@ -916,30 +918,30 @@ def dev(request):
 
 
                         msg_Lin = "\r\n".join([
-                            
+
                         "Subject:Login",
                         "",
                         "You are now logged In Successfully."
                         ])
- 
+
                         mail(Send_Email,email,msg_Lin)
-                        
+
                         return redirect('dashboard')
                     except:
-                     
+
                      return redirect('dashboard')
                 else:
-                    messages.error(request,'User Not Exists!!!')
-                    msg = 'User Not Exists!!!'
-                    return render(request, 'devadmin/login.html',{'msg':msg})    
-                
+
+                    msg = 'Username is invalid'
+                    return render(request, 'devadmin/login.html',{'msg':msg})
+
             else:
-                msg = 'User Not Exists!!!'
-                messages.error(request,'User Not Exists!!!')
+                msg = 'password is invalid'
+
                 return render(request, 'devadmin/login.html',{'msg':msg})
-        
+
         else:
-            msg = 'User does not exist'
+            msg = 'Username or password is invalid'
             return render(request, 'devadmin/login.html',{'msg':msg})
 
     return render(request, 'devadmin/login.html')
@@ -979,9 +981,9 @@ def addadmin(request):
 
                 if superadmin == True:
                     user.is_superuser = True
-                   
+
                 else:
-                    user.is_superuser = False 
+                    user.is_superuser = False
 
                 if admin == True:
                     user.is_staff = True
@@ -1015,7 +1017,7 @@ def admindelete(request,id):
 
 
 def adminchangepass(request,id):
-   
+
     user = User.objects.get(id=id)
     cuser = request.user
     if request.method == 'POST':
@@ -1024,13 +1026,13 @@ def adminchangepass(request,id):
         if password1 == password2:
             if user == cuser:
                 user.set_password(password1)
-                user.save() 
+                user.save()
                 logout(request)
                 messages.success(request, 'Password Changed Successfully.')
                 return redirect('dev')
             else:
                 user.set_password(password1)
-                user.save() 
+                user.save()
                 messages.success(request, 'Password Changed Successfully.')
                 return redirect('adminlist')
         else:
@@ -1106,7 +1108,7 @@ def adminlogout(request):
 
 
 def dashboard(request):
-   
+
     product = SubProduct.objects.all()
     corporatecount = BusinessRegister.objects.all().count()
     individualcount = IndividualRegister.objects.all().count()
@@ -1114,7 +1116,7 @@ def dashboard(request):
     orders = OrderPlaced.objects.filter(payment_status='paid')
 
     print(orders)
-    
+
 
     camount = 0
     iamount = 0
@@ -1132,9 +1134,9 @@ def dashboard(request):
         orders = OrderPlaced.objects.filter(product=product)
         print(product)
         return render(request, 'devadmin/monthlyfilter.html',{'orders':orders,'mindate':mindate,'maxdate':maxdate})
-   
+
     return render(request, 'devadmin/index.html',{'product':product,'corporatecount':corporatecount,'camount':camount,'individualcount':individualcount,'iamount':iamount})
-   
+
 def monthlyfilter(request):
     order = OrderPlaced.objects.all()
     return render(request, 'devadmin/monthlyfilter.html',{'orders':order})
@@ -1206,25 +1208,25 @@ def adminaddsubproduct(request):
     print(dat)
     if request.method == "POST":
         titleofproduct = request.POST['typeofproduct']
-        
+
         product = Product.objects.get(title=titleofproduct)
         sub_title = request.POST['subtitle']
         sub_title2 = request.POST['subtitle2']
-        
+
         selling_price = request.POST['selling_price']
         Total_stock =   request.POST['Total']
-      
-        Rate = request.POST['Rate'] 
-        Principle = request.POST['Principle'] 
+
+        Rate = request.POST['Rate']
+        Principle = request.POST['Principle']
         # Date = request.POST['Date']
         Date = dat
-               
+
         Minemun_Order = request.POST['Minemum']
         duration_month = request.POST['duration_month']
         duration_year = request.POST['duration_year']
         benifits = request.POST['benifits']
         plan_feature = request.POST['planfeatures']
-        sub_product_image = request.FILES['productpic'] 
+        sub_product_image = request.FILES['productpic']
         Scope = request.POST['scopeofproduct']
         SubProduct(product=product, sub_title=sub_title, sub_title2=sub_title2, selling_price=selling_price, Total_S=Total_stock, Minemun_O=Minemun_Order,Rate=Rate,
         benifits=benifits,plan_feature=plan_feature,sub_product_image=sub_product_image,duration_month=duration_month, Scope=Scope,Principle=Principle,Date=Date,
@@ -1250,7 +1252,10 @@ def admineditsubproduct(request,id):
         subproduct.duration_year= request.POST.get('duration_year','')
         subproduct.benifits= request.POST.get('benifits','')
         subproduct.plan_feature= request.POST.get('planfeatures','')
+        subproduct.Rate = request.POST['Rate']
+        subproduct.Principle = request.POST['Principle']
         subproductpic = request.FILES.get('productpic')
+
         if subproductpic is not None:
             subproduct.sub_product_image = subproductpic
 
@@ -1270,15 +1275,15 @@ def admindeletesubproduct(request,id):
 def adminproductlist(request):
 
     product = Product.objects.all()
-    
-    
+
+
     return render(request, 'devadmin/adminproductlist.html',{'product':product})
 
 
 def adminsubproductlist(request):
     subproduct = SubProduct.objects.all()
 
-  
+
     return render(request, 'devadmin/adminsubproductlist.html',{'subproduct':subproduct})
 
 def adminabusinessusers(request):
@@ -1317,9 +1322,9 @@ def transaction(request):
 def transactionupdate(request,id):
     status = ['paid','pending','fail']
     order = OrderPlaced.objects.get(id=id)
-    
-         
-    
+
+
+
     if request.method == "POST":
         payment_status = request.POST.get('payment_status','')
         payment_id = request.POST.get('payment_id','')
@@ -1329,7 +1334,7 @@ def transactionupdate(request,id):
         if order.payment_status == 'paid':
             sub_product = SubProduct.objects.get(id=order.product_id)
             SubProduct.objects.filter(id=order.product_id).update(Total_S= (sub_product.Total_S - order.quantity) )
-        
+
         return redirect('transaction')
     return render(request, 'devadmin/updatetransaction.html',{'orders':order,'status':status})
 
@@ -1693,10 +1698,18 @@ def aboutteammember(request):
     return render(request,'devadmin/aboutteammember.html')
 
 def aboutboardmembers(request):
-    print("aboutboardmembers")
+
     b_member = AboutBoardMembers.objects.all()
     print(b_member)
     return render(request, 'devadmin/aboutboardmember.html',{'b_member':b_member})
+
+
+def aboutacemembers(request):
+
+    a_member = AboutACEMembers.objects.all()
+
+    return render(request, 'devadmin/aboutacemember.html',{'a_member':a_member})
+
 
 def addaboutteammember(request):
    try:
@@ -1713,6 +1726,23 @@ def addaboutteammember(request):
    except:
     return render(request,'devadmin/addaboutteammember.html')
 
+def addaboutacemember(request):
+   try:
+    if request.method == "POST":
+        name = request.POST['name']
+        print (name)
+        profession = request.POST['profession']
+        description = request.POST['description']
+        member_image = request.FILES['member_image']
+        AboutACEMembers(name=name,profession=profession ,description=description,member_image=member_image).save()
+        messages.success(request, 'Added Successfully.')
+        return redirect('aboutacemembers')
+
+    return render(request, 'devadmin/addaboutacemember.html')
+   except Exception as e:
+    print(e)
+    return render(request,'devadmin/addaboutacemember.html')
+
 def addaboutboardmember(request):
 
     if request.method == "POST":
@@ -1722,7 +1752,7 @@ def addaboutboardmember(request):
         member_image = request.FILES['member_image']
         AboutBoardMembers(name=name,profession=profession ,description=description,member_image=member_image).save()
         messages.success(request, 'Added Successfully.')
-        return redirect('aboutboardmembers')    
+        return redirect('aboutboardmembers')
 
     return render(request, 'devadmin/addaboutboardmember.html')
 
@@ -1739,7 +1769,6 @@ def editaboutteammember(request,id):
 
         member.save()
         messages.success(request, 'Updated Successfully.')
-        return redirect('aboutboardmember')
 
     return render(request, 'devadmin/editaboutteammember.html',{'member':member})
    except Exception as e:
@@ -1747,10 +1776,31 @@ def editaboutteammember(request,id):
     return render(request,'devadmin/editaboutteammember.html')
 
 
+def editaboutacemember(request,id):
+   try:
+    a_member = AboutACEMembers.objects.get(id=id)
+    if request.method == 'POST':
+        a_member.name= request.POST.get('name','')
+        a_member.profession= request.POST.get('profession','')
+        a_member.description= request.POST.get('description','')
+        member_image = request.FILES.get('member_image')
+        if member_image is not None:
+            a_member.member_image = member_image
+
+        a_member.save()
+        messages.success(request, 'Updated Successfully.')
+        return redirect('aboutboardmember')
+
+    return render(request, 'devadmin/editaboutacemember.html',{'a_member':a_member})
+   except Exception as e:
+    print (e)
+    return render(request,'devadmin/editaboutacemember.html')
+
+
 def editaboutboardmember(request,id):
    try:
     b_member = AboutBoardMembers.objects.get(id=id)
-    
+
     if request.method == 'POST':
         b_member.name= request.POST.get('name','')
         b_member.profession= request.POST.get('profession','')
@@ -1766,37 +1816,44 @@ def editaboutboardmember(request,id):
     return render(request, 'devadmin/editaboutboardmember.html',{'b_member':b_member})
    except Exception as e:
     return redirect('aboutboardmembers')
-    
+
 
 
 
 
 def deleteaboutteammember(request,id):
-   
+
     pi = AboutTeamMembers.objects.get(pk=id)
     pi.delete()
     messages.success(request,'Deleted Succesfully.')
     return redirect('aboutteammember')
-   
+
 def deleteaboutboardmember(request,id):
-   
+
     pi = AboutBoardMembers.objects.get(pk=id)
     print(pi)
     pi.delete()
     messages.success(request,'Deleted Succesfully.')
     return redirect('aboutboardmembers')
-   
+
+def deleteaboutacemember(request,id):
+
+    pi = AboutACEMembers.objects.get(pk=id)
+    print(pi)
+    pi.delete()
+    messages.success(request,'Deleted Succesfully.')
+    return redirect('aboutacemembers')
 
 
 def quote(request):
-#       
+#
     if request.method == "POST":
         user = request.user
-        
+
         product_id = None
         product_type = 'non_wadia'
         payment_type = 'direct'
-        
+
 
         non_wadia_rate = 0
         non_wadia_quantity = 0
@@ -1805,31 +1862,32 @@ def quote(request):
         wadia_rate = 0
         wadia_frequency = 'Monthly'
         wadia_total = 0
-        
+
         total = 0
         quantity = 0
         duedate = None
         print(request.POST)
-        
+
 
         product_id = request.POST['product_id']
         product_type = request.POST['product_type']
         non_wadia_total = request.POST['non_wadia_total']
-        
+
         non_wadia_quantity = request.POST['non_wadia_quantity']
         wadia_frequency = request.POST['wadia_frequency']
         wadia_total = request.POST['wadia_total']
-        
+        currency = request.POST['currency']
+
         if (product_type == '13'):
             total = wadia_total
             quantity = 1
             quote_date = request.POST['starting_date_q']
-            
+
         else:
             total = non_wadia_total
             quantity = non_wadia_quantity
             quote_date = datetime.date.today()
-        
+
 
         product_check = SubProduct.objects.get(id=product_id)
         if(product_check):
@@ -1837,9 +1895,9 @@ def quote(request):
                 messages.info(request, 'Its Already Quoted.')
             else:
                if quantity != 0:
-                   Quote.objects.create(user=user,product_id = product_id,quote_quantity = quantity,quote_date=quote_date ,total_p = total, product_type = product_type, frequency = wadia_frequency)
+                   Quote.objects.create(user=user,product_id = product_id,quote_quantity = quantity,quote_date=quote_date ,total_p = total, product_type = product_type, frequency = wadia_frequency,currency=currency)
                    messages.success(request, 'Quoted Successfully.')
-            #    elif request.POST['frequency_q'] == 'null': 
+            #    elif request.POST['frequency_q'] == 'null':
             #     Quote.objects.create(user=user,product_id = productid,quote_quantity = quan, total_p = Total_p )
             #     messages.success(request, 'Quoted Successfully.')
             #    else:
@@ -1916,37 +1974,42 @@ def admindeletenews(request,id):
 
 from dateutil.relativedelta import relativedelta
 def offlinepayment(request):
-  
+
 
     print(request.POST)
 
     if request.method == "POST":
         global productid
-        
+
         productid = request.POST['product-id']
         product = SubProduct.objects.get(id=productid)
         global qua
         qua = request.POST['U_product']
-        global total_price 
+        global total_price
         total_price = request.POST['total_price']
         uui = request.POST['uuid']
-      
+        # ------------------------------------
+        currency = request.POST['currencies']
+        # print(currency)
+
+        # ------------------------------------
+
         global total_quan
         # try:
-         
+
         # total_quan = request.POST['product_quantity']
         if(qua == '0'):
             qua = 1
         # except:
         print("quantit" + str(qua))
         #  total_quan = product.Total_S - int(total_price)
-        
+
         # global frequenc
         Frequency=request.POST['frequency_OF']
-        
+
         # if Frequency in ["Monthly","Quarterly","Annually"]:
-        #   frequenc = request.POST['frequency_OF'] 
-          
+        #   frequenc = request.POST['frequency_OF']
+
         #   frequency = frequenc
         # else:
         #   frequenc = request.POST['frequency_OF']
@@ -1960,34 +2023,34 @@ def offlinepayment(request):
         product_title = product.sub_title
         price = product.selling_price
         now = date.today()
-        
-        
+
+
 
         try:
 
             duedate = now + relativedelta(months = int(product.duration_month))
             duedate = duedate + relativedelta(years = int(product.duration_year))
-      
+
         except:
-         
+
             now = date.today()
             if Frequency == 'Quarterly':
-        
+
             #  frequency = "3"
                duedate = now + relativedelta(months=+3)
             elif Frequency == 'Monthly':
-                # frequency = "1"                
+                # frequency = "1"
                 duedate = now + relativedelta(months=+1)
             elif Frequency == 'Annually':
-                
-                # frequency = "12"                
+
+                # frequency = "12"
                 duedate = now + relativedelta(months=+1)
-               
+
             else:
                  duedate = now + relativedelta(months = int(product.duration_month))
                  duedate = duedate + relativedelta(years = int(product.duration_year))
 
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,frequency=Frequency,
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total_price,frequency=Frequency,currency=currency,
                                             payment_id = uui,quantity=qua,modeofpayment='offline',payment_status='pending',
                                             due_date=duedate)
         order.save()
@@ -2002,16 +2065,16 @@ import requests
 import json
 from django.http import HttpResponseRedirect
 def checkout(request):
-   
+
     host = request.get_host()
-    
+
     if request.method == "POST":
-        
+
 
         product_id = None
         product_type = 'non_wadia'
         payment_type = 'direct'
-        
+
 
         non_wadia_rate = 0
         non_wadia_quantity = 0
@@ -2020,18 +2083,18 @@ def checkout(request):
         wadia_rate = 0
         wadia_frequency = 'Monthly'
         wadia_total = 0
-        
+
         total = 0
         quantity = 0
         duedate = None
         print(request.POST)
-        
+
 
         if (request.POST['payment_type'] == 'direct'):
             product_id = request.POST['product_id']
             product_type = request.POST['product_type']
             payment_type = request.POST['payment_type']
-
+            currency = request.POST['currency']
             non_wadia_rate = request.POST['non_wadia_rate']
             non_wadia_total = request.POST['non_wadia_total']
             non_wadia_quantity = request.POST['non_wadia_quantity']
@@ -2055,13 +2118,13 @@ def checkout(request):
 
 
         product = SubProduct.objects.get(id=product_id)
-        
+
         if (product_type == '13'):
             total = wadia_total
             quantity = 1
             now = datetime.date.today()
             duedate = now + relativedelta(months = +2)
-            
+
         else:
             total = non_wadia_total
             quantity = non_wadia_quantity
@@ -2070,7 +2133,7 @@ def checkout(request):
             duedate = now + relativedelta(months = int(product.duration_month))
             duedate = duedate + relativedelta(years = int(product.duration_year))
 
-        
+
         # global productid
 
 
@@ -2079,25 +2142,25 @@ def checkout(request):
         # global R_Product
         # R_Product = 0
         # R_Product = request.POST['avail_pro']
-        
+
         # global U_Product
         # U_Product = 0
         # U_Product = request.POST['U_product']
-        
+
         # print(U_Product)
-       
-        # global frequenc 
+
+        # global frequenc
         # frequenc = ''
         # try:
-         
-        #  frequenc = request.POST['frequency_O'] 
-         
+
+        #  frequenc = request.POST['frequency_O']
+
         #  frequency = frequenc
         # except:
         #  frequency = None
-         
-        
-        
+
+
+
         if Quote.objects.filter(user=request.user,product_id = product_id).exists():
             quote = Quote.objects.get(user=request.user,product_id = product_id)
             quote.delete()
@@ -2105,28 +2168,28 @@ def checkout(request):
         # if product.selling_price != 0 :
         #   price = product.selling_price
         # else:
-        #   price = product.Rate  
-        
-        
+        #   price = product.Rate
+
+
         # now = datetime.date.today()
-      
-      
+
+
         #      now = date.today()
         #      if frequency == 'Quarterly':
         #       frequency = "3"
         #       duedate = now + relativedelta(months=+3)
         #      elif frequency == 'Monthly':
-                
-        #         frequency = "1"                
+
+        #         frequency = "1"
 
         #         duedate = now + relativedelta(months=+1)
-                
+
 
         #      elif  frequency  == 'Annually':
-        #          frequency =  "12" 
+        #          frequency =  "12"
         #          duedate = now + relativedelta(months=+12)
-      
-            
+
+
         # OrderPlaced.objects.filter(productid=productid).update(quantity=U_Product)
 
         # checkout_session = stripe.checkout.Session.create(
@@ -2149,8 +2212,8 @@ def checkout(request):
         # )
 
         # return redirect(checkout_session.url, code=303)
-   
-      
+
+
         # print('total: ' + str(total))
         def init_payment(request):
 
@@ -2160,8 +2223,8 @@ def checkout(request):
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json',
                 }
-            # try:  
-            #  if U_Product == 0 : 
+            # try:
+            #  if U_Product == 0 :
             #   pro = (int(U_Product))
             #  else:
             #   pro =(int(frequency))
@@ -2173,25 +2236,25 @@ def checkout(request):
             #     }
             datum = {
                 "email": request.user.email,
-                "amount": int(total) * 100
+                "amount": float(total) * 100
                 }
 
-            
-           
+
+
             x = requests.post(url, data=json.dumps(datum), headers=headers)
-          
+
             if x.status_code != 200:
                 return str(x.status_code)
 
             results = x.json()
 
             return results
-       
+
 
         initialized = init_payment(request)
         # print(initialized)
         print('quantity: ' + str(non_wadia_quantity))
-        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total,frequency=wadia_frequency, quantity = quantity,
+        order = OrderPlaced.objects.create(user=request.user, product=product,product_title=product_title,price=total,frequency=wadia_frequency, quantity = quantity,currency=currency,
                                             modeofpayment='online',due_date=duedate,payment_status='pending',payment_id=initialized['data']['reference'])
         order.save()
         amount = total*100
@@ -2201,7 +2264,7 @@ def checkout(request):
 
 
 def call_back_url(request):
-    
+
 
     reference = request.GET.get('reference')
 
@@ -2216,11 +2279,11 @@ def call_back_url(request):
     else:
         print('payment successful')
         payment = OrderPlaced.objects.get(payment_id=reference)
-        
+
         def verify_payment(request):
             # print("hello")
             url = 'https://api.paystack.co/transaction/verify/'+reference
-            
+
             headers = {
 				'Authorization': 'Bearer '+settings.PAYSTACK_SECRET_KEY,
 				'Content-Type' : 'application/json',
@@ -2230,7 +2293,7 @@ def call_back_url(request):
 				"reference": payment.payment_id
 				}
             x = requests.get(url, data=json.dumps(datum), headers=headers)
-            
+
             if x.status_code != 200:
                 return str(x.status_code)
 
@@ -2248,12 +2311,12 @@ def call_back_url(request):
           SubProduct.objects.filter(id=order.product_id).update(Total_S= (sub_product.Total_S - order.quantity) )
          except:
           print(productid)
-          
-        
-       
+
+
+
 
        return redirect('orders')
-    
+
     return render(request, 'accounts/payment.html')
 
 # def paymentSuccess(request):
@@ -2315,12 +2378,12 @@ def call_back_url(request):
 #     order.save()
 
 def quotepayment(request,id):
-    
- cq = Quote.objects.filter(id=id)    
+
+ cq = Quote.objects.filter(id=id)
  return render (request,'accounts/quotepayment.html',{'cq':cq})
 
 def quotepaynow(request,id):
- 
+
  cp = Quote.objects.filter(id=id)
  global uuio
  uuio = str(uuid.uuid1())
@@ -2329,11 +2392,11 @@ def quotepaynow(request,id):
 
 def Assign_product_to_user(request,id):
 
-    All_user = User.objects.raw("select * from auth_user where is_superuser = 0 and is_staff = 0") 
-    Assigned_users = User.objects.raw("select auth_user.id, auth_user.username from accounts_assign_products join auth_user on accounts_assign_products.user_id =  auth_user.id") 
-    sub_product = SubProduct.objects.get(id=id) 
-    
-    
+    All_user = User.objects.raw("select * from auth_user where is_superuser = 0 and is_staff = 0")
+    Assigned_users = User.objects.raw("select auth_user.id, auth_user.username from accounts_assign_products join auth_user on accounts_assign_products.user_id =  auth_user.id")
+    sub_product = SubProduct.objects.get(id=id)
+
+
 
 
     if request.method == "POST":

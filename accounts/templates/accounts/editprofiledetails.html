@@ -112,7 +112,7 @@
 
         <tr>
             <td><label>LGA: </label></td>
-            <td><input class="form-control" type="text" name="city"  value="{{cuser.city}}"></td>
+            <td><input class="form-control" type="text" name="city"  value="{{cuser.city}}">>>></td>
         </tr>
 
         <tr>
@@ -201,14 +201,25 @@
     </tr>
 
     <tr>
-        <td><label>LGA: </label></td>
-        <td><input class="form-control" type="text" name="city"  value="{{cuser.city}}"></td>
+        <td><label>State: </label></td>
+        <td><select class="form-control" onchange="getstate('_1_states'); print_LGA('usr_1_city')" id="_1_states" name="state">
+            <option value="-Select-">-Select-</option>            
+        </select></td>
     </tr>
 
     <tr>
-        <td><label>State: </label></td>
-        <td><input class="form-control" type="text" name="state"  value="{{cuser.state}}"></td>
+        <td><label>LGA: </label></td>
+        <td> 
+            <div class="form-group">
+            <select name="city" id="usr_1_city" class="form-control select-lga" required>
+               <option value="{{cuser.city}}">{{cuser.city}}</option>
+            </select>
+          </div>
+        </td>
+        
     </tr>
+
+    
 
     <tr>
         <td><label>Country of residence: </label></td>
@@ -235,8 +246,21 @@
     <tr>
         <td><label>Occupation: </label></td>
         <td><select class="select form-control" name="occupation" id="usr_occupation">
-            <option value="Test">Test</option>
-            <option value="Test">Test</option>
+            <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Accountant">Accountant</option>
+                      <option value="Actort">Actor</option>
+                      <option value="Architect">Architect</option>
+                      <option value="Artisan">Artisan</option>
+                      <option value="Lawyer">Lawyer</option>
+                      <option value="Banker">Banker</option>
+                      <option value="Business Person">Business Person</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Medical Professional">Medical Professional</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Technology Professional">Technology Professional</option>
+                      <option value="Economist">Economist</option>
+                      <option value="Engineer">Engineer</option>
+                      <option value="Other">Other</option>
           </select></td>
     </tr>
 
@@ -295,15 +319,28 @@
         <td><input class="form-control" type="text" name="another_street_name"  value="{{juser.another_street_name}}"></td>
     </tr>
 
-    <tr>
-        <td><label>LGA: </label></td>
-        <td><input class="form-control" type="text" name="another_city"  value="{{juser.another_city}}"></td>
-    </tr>
 
     <tr>
         <td><label>State: </label></td>
-        <td><input class="form-control" type="text" name="another_state"  value="{{juser.another_state}}"></td>
+        <td><select class="form-control" onchange="getstate('_2_states'); print_LGA('usr_2_city')" id="_2_states" name="state">
+            <option value="-Select-">-Select-</option>            
+        </select></td>
     </tr>
+
+    <tr>
+        <td><label>LGA: </label></td>
+        <td> 
+            <div class="form-group">
+            <select name="another_city" id="usr_2_city" class="form-control select-lga" required>
+               <option value="{{juser.another_city}}">{{juser.another_city}}</option>
+            </select>
+          </div>
+        </td>
+
+        <td><input class="form-control" type="text" name="another_city"  value="{{juser.another_city}}"></td>
+    </tr>
+
+   
 
     <tr>
         <td><label>Country of residence: </label></td>
@@ -328,8 +365,21 @@
     <tr>
         <td><label>Occupation: </label></td>
         <td><select class="select form-control" name="another_occupation" id="usr_occupation">
-            <option value="Test">Test</option>
-            <option value="Test">Test</option>
+            <option value="" selected disabled>Please Select</option>
+                      <option value="Accountant">Accountant</option>
+                      <option value="Actort">Actor</option>
+                      <option value="Architect">Architect</option>
+                      <option value="Artisan">Artisan</option>
+                      <option value="Lawyer">Lawyer</option>
+                      <option value="Banker">Banker</option>
+                      <option value="Business Person">Business Person</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Medical Professional">Medical Professional</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Technology Professional">Technology Professional</option>
+                      <option value="Economist">Economist</option>
+                      <option value="Engineer">Engineer</option>
+                      <option value="Other">Other</option>
           </select></td>
     </tr>
 
@@ -358,8 +408,18 @@
     <tr>
         <td><label>Next of kin relationship: </label></td>
         <td><select class="select form-control" name="kin_relationship" id="usr_occupation">
-            <option value="Test">Test</option>
-            <option value="Test">Test</option>
+             <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Husband">Husband</option>
+                      <option value="Wife">Wife</option>
+                      <option value="Partner">Partner</option>
+                      <option value="Son">Son</option>
+                      <option value="Daughter">Daughter</option>
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Brother">Brother</option>
+                      <option value="Sister">Sister</option>
+                      <option value="Cousin">Cousin</option>
+                      <option value="Dependent">Dependent</option>
           </select></td>
     </tr>
 
@@ -379,14 +439,21 @@
     </tr>
 
     <tr>
-        <td><label>LGA: </label></td>
-        <td><input class="form-control" type="text" name="kin_city"  value="{{cuser.kin_city}}"></td>
+        <td><label>Stateaa: </label></td>
+         <td><select class="form-control" onchange="getstate('_3_states'); print_LGA('usr_3_city')" id="_3_states" name="state">
+            <option value="-Select-">-Select-</option>            
+        </select></td>
+        <td><input class="form-control" type="text" name="kin_state"  value="{{cuser.kin_state}}"></td>
     </tr>
 
     <tr>
-        <td><label>State: </label></td>
-        <td><input class="form-control" type="text" name="kin_state"  value="{{cuser.kin_state}}"></td>
+        <td><label>LGA: </label></td>
+        <td><select class="form-control" id="usr_3_city" type="text" name="kin_city">
+            <option value=""></option>
+        </select></td>
     </tr>
+
+    
 
     <tr>
         <td><label>Country of residence: </label></td>
@@ -505,16 +572,21 @@
         <td><label>Street name: </label></td>
         <td><input class="form-control" type="text" name="street_name"  value="{{auser.individual_user.street_name}}"></td>
     </tr>
+    <tr>
+        <td><label>State: </label></td>
+        <td><select class="form-control" id="_4_states" onchange="getstate('_4_states'); print_LGA('usr_4_city')" type="text" name="state">
+            <option value="-Select-">-Select-</option>
+        </select></td>
+    </tr>
 
     <tr>
         <td><label>LGA: </label></td>
-        <td><input class="form-control" type="text" name="city"  value="{{auser.individual_user.city}}"></td>
+        <td><select class="form-control" id="usr_4_city" type="text" name="city" >
+            
+        </select>></td>
     </tr>
 
-    <tr>
-        <td><label>State: </label></td>
-        <td><input class="form-control" type="text" name="state"  value="{{auser.individual_user.state}}"></td>
-    </tr>
+  
 
     <tr>
         <td><label>Country of residence: </label></td>
@@ -579,8 +651,18 @@
     <tr>
         <td><label>Next of kin relationship: </label></td>
         <td><select class="select form-control" name="kin_relationship" id="usr_occupation">
-            <option value="Test">Test</option>
-            <option value="Test">Test</option>
+             <option value="Please Select" selected disabled>Please Select</option>
+                      <option value="Husband">Husband</option>
+                      <option value="Wife">Wife</option>
+                      <option value="Partner">Partner</option>
+                      <option value="Son">Son</option>
+                      <option value="Daughter">Daughter</option>
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Brother">Brother</option>
+                      <option value="Sister">Sister</option>
+                      <option value="Cousin">Cousin</option>
+                      <option value="Dependent">Dependent</option>
           </select></td>
     </tr>
 
@@ -601,7 +683,7 @@
 
     <tr>
         <td><label>LGA: </label></td>
-        <td><input class="form-control" type="text" name="kin_city"  value="{{auser.individual_user.kin_city}}"></td>
+        <td><input class="form-control" type="text" name="kin_city"  value="{{auser.individual_user.kin_city}}">2</td>
     </tr>
 
     <tr>
@@ -624,6 +706,8 @@
     {% endif %}
 </div>
 </div>
+<script src="{% static 'accounts/js/customLGA.js' %}"></script> 
+<!-- <script src="{% static 'accounts/js/customLGA.js' %}"></script> -->
 
 <script>
     function companyDate(){

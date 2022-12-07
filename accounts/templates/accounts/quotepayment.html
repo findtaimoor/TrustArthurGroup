@@ -12,7 +12,7 @@
 
 </style>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
@@ -33,28 +33,28 @@
                               {% for i in cq %}
 
                                 <tbody>
-                                    <tr> 
+                                    <tr>
                                         <td class="font-bold">Product Title</td>
                                         <td>{{i.product.product.title}}</td>
                                     </tr>
 
-                                    <tr> 
+                                    <tr>
                                         <td class="font-bold">SubProduct Title</td>
                                         <td>{{i.product.sub_title}}</td>
                                     </tr>
-                                   
-                                    <tr> 
+
+                                    <tr>
                                         <td class="font-bold">Quantity</td>
                                         <td>{{i.quote_quantity}}</td>
                                     </tr>
 
-                                    <tr> 
+                                    <tr>
                                         <td class="font-bold">Total Price</td>
-                                        <td>₦{{i.total_p}}</td>
+                                        <td>₦{{i.total_p|floatformat:2}}</td>
                                     </tr>
-                              
+
                                 </tbody>
-                                
+
                             </table>
                             <a href="{% url 'quotepaynow' i.id %}"><button class="btn btn-success">Pay Now</button></a>
                             {% endfor %}
@@ -62,24 +62,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="p-3 border bg-light">
-                    <h5><i class="mr-2 icon-circles"></i>Third Party</h5>
-                    <div class="card">
-                        <img src="./assets/images/wordspace.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Product Description</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-                                itaque et facilis molestias error doloremque, tenetur repudiandae excepturi minima sunt
-                                veniam assumenda. Delectus nemo repudiandae exercitationem fuga nobis! Laudantium,
-                                fugiat?</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="col-4">-->
+            <!--    <div class="p-3 border bg-light">-->
+            <!--        <h5><i class="mr-2 icon-circles"></i>Third Party</h5>-->
+            <!--        <div class="card">-->
+            <!--            <img src="./assets/images/wordspace.webp" class="card-img-top" alt="...">-->
+            <!--            <div class="card-body">-->
+            <!--                <h5 class="card-title">Product Description</h5>-->
+            <!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk-->
+            <!--                    of the card's content. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat-->
+            <!--                    itaque et facilis molestias error doloremque, tenetur repudiandae excepturi minima sunt-->
+            <!--                    veniam assumenda. Delectus nemo repudiandae exercitationem fuga nobis! Laudantium,-->
+            <!--                    fugiat?</p>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
         </div>
     </div>
-    
+
     <!-- /javascript files -->
-    {% endblock main-content %} 
+    {% endblock main-content %}

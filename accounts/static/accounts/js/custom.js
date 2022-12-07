@@ -9,17 +9,30 @@ function get_quat(quantity, put_quantitiy, available_pro , sum_q )
   if(get_start_date!= null){
     document.getElementById("starting_date_O").value = get_start_date.value;
   }
-  
+
   var get_frequency = document.getElementById("frequency")
   if(get_frequency!= null){
     var value = get_frequency.options[get_frequency.selectedIndex].text;
     document.getElementById("frequency_O").value = value;
   }
+  var get_currency = document.getElementById("currency_sel")
+  if(get_currency!=null){
+    let selected_currency = get_currency.options[get_currency.selectedIndex].text;
+    document.getElementById("wadia_currency_direct").value = selected_currency;
+    document.getElementById("currency").value = selected_currency;
+    document.getElementById("currencies").value = selected_currency;
+    if(selected_currency != "₦"){
+      document.getElementById("online_payment_form").style.display = 'none';
+    }else{
+      document.getElementById("online_payment_form").style.display = 'block';
+
+    }
+  }
 
   if(quantity != null){
-  
+
     var get_quantity = document.getElementById(quantity)
-   
+
     if(get_quantity!=null){
       get_quantity =get_quantity.value;
       // alert('quantity changed')
@@ -29,8 +42,8 @@ function get_quat(quantity, put_quantitiy, available_pro , sum_q )
       document.getElementById(put_quantitiy).value = get_quantity;
 
     }
-    
-    
+
+
 
     var get_availablePro = document.getElementById(available_pro)
     if(get_availablePro!= null){
@@ -41,14 +54,14 @@ function get_quat(quantity, put_quantitiy, available_pro , sum_q )
       document.getElementById('avail_pro2').value = get_availablePro
 
     }
-    
-  
+
+
     console.log('farhan Ali'+document.getElementById('avail_pro2').value)
-  
+
     sum_product = get_availablePro - get_quantity ;
     document.getElementById(sum_q).value = sum_product;
     check = true;
-  }  
+  }
 }
 
 function for_ofline_wadiah(){
@@ -59,13 +72,14 @@ function for_ofline_wadiah(){
   if(get_start_date!= null){
     document.getElementById("starting_date_OF").value = get_start_date.value;
   }
-  
+
   var get_frequency = document.getElementById("frequency")
   if(get_frequency!= null){
     var value = get_frequency.options[get_frequency.selectedIndex].text;
     document.getElementById("frequency_OF").value = value;
   }
 }
+
 var input_val = null;
 var minimum_value= null;
 var maximum_value= null;
@@ -73,7 +87,7 @@ var maximum_value= null;
 
 function validate_value()
 {
-  
+
  // var minimum_val = parseInt(document.getElementById('minimum_lable').innerText.replace ( /[^\d.]/g, '' ))
   var minimum_val = document.getElementById('minimum_lable');
   if(minimum_val!=null){
@@ -82,7 +96,7 @@ function validate_value()
     console.log("This is minimum value: "+ minimum_value);
     input_val = document.getElementById('_quantity').value;
   }
-  
+
   var _date = null;
     var start_date = document.getElementById("start_date")
   if(start_date!=null){
@@ -94,16 +108,16 @@ function validate_value()
     maximum_val = parseInt(maximum_val.innerText.replace ( /[^\d.]/g, '' ))
     maximum_value = maximum_val;
     console.log("This is maximum value: "+ maximum_value);
-    input_val = document.getElementById('_quantity').value;
+    input_val = document.getElementById('_quantity').value.trim();
   }
-  document.getElementById('quan').value = input_val.trim()
+  document.getElementById('quan').value = input_val
   console.log("This is input quantitiy: "+ document.getElementById('quan').value)
   if(input_val < minimum_value || input_val > maximum_value)
   {
-    
+
     document.getElementById("quantity_error").innerText=('Your quantity must be between Minimum or Available Product!')
-    
-  
+
+
 
     document.getElementById('checkout_btn').setAttribute('data-target', '#')
   }else if(_date == ""){
@@ -114,7 +128,7 @@ function validate_value()
     document.getElementById('checkout_btn').setAttribute('data-target', '#exampleModalCenter')
     get_quat('_quantity','put_quantitiy','a-pro','sum_q');
   }
-  
+
 }
 
 function validateForm() {
@@ -125,25 +139,25 @@ function validateForm() {
   let product_quantity = document.forms["quote_form"]["quan"].value;
   if (product_quantity < minimum_value || product_quantity > maximum_value ) {
     return false;
-  } 
-  if (x == "" && product_type == '13') 
+  }
+  if (x == "" && product_type == '13')
   {
     return false;
   }
 }
 
 function validation_date(){
-  
+
       var valid_span = document.getElementById("quantity_error")
       if(valid_span != null)
       {
         valid_span.innerText = '';
       }
-    
-  
+
+
 }
 
-function calc() 
+function calc()
 {
   var quantity = null;
   var _frequecy = null;
@@ -158,8 +172,8 @@ function calc()
   // document.getElementById("put_quantitiy2").value = noTickets.value
 
 
-  
-  
+
+
 
   if(noTickets!=null){
     quantity = noTickets.value
@@ -189,14 +203,15 @@ function calc()
     console.log("this is frequency: " + value)
   }
   var _date = null;
-  
+
   var starting_date = document.getElementById("start_date")
   if(starting_date!=null){
     _date = starting_date.value;
     console.log("This is starting date: " + _date)
   }
-  
+
   var total = parseFloat(price) * quantity
+  total = total.toFixed(2)
   console.log("total price: " + total)
   if (!isNaN(total)){
     document.getElementById("total").innerText = total
@@ -209,17 +224,17 @@ function calc()
     document.getElementById("total_price").value = total
 
     // alert(total)
-
+    document
 
     // alert(total)
-    
+
     document.getElementById("total_p").value = total
     document.getElementById("total_price").value = total
     document.getElementById("starting_date_q").value = _date
     document.getElementById("frequency_q").value = _frequecy
-    console.log(document.getElementById("total_p").value) 
+    console.log(document.getElementById("total_p").value)
   }
-  
+
 }
 calc()
 

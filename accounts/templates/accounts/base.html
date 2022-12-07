@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Custom Css --> 
+    <!-- Custom Css -->
     <link rel="stylesheet" href="{% static 'todo/css/Custom.css' %}" />
     <!-- Favicon Start Here -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'todo/img/my-img/favicon.png' %}" />
@@ -114,9 +114,9 @@
                         {% if request.user.is_authenticated %}
 
 
-                        
+
                         <a class="header-btn" data-toggle="modal" data-target="#exampleModalCenter21">Logout</a>
-                        
+
                         {% else %}
                         <a href="{% url 'signup' %}" class="header-btn">Register Now</a>
                         <a href="{% url 'signin' %}" class="header-btn s-up">Sign In</a>
@@ -160,14 +160,14 @@
                         {% if request.user.is_authenticated %}
 
                         <li><a data-toggle="modal" data-target="#exampleModalCenter21" class="mobilelogin">Logout</a></li>
-                        
+
                         <li>
                           <a href="{% url 'orders' %}">My Profile</a>
                         </li>
                         {% else %}
                         <li><a href="{% url 'signup' %}" class="mobilelogin">Register Now</a></li>
                         <li><a href="{% url 'signin' %}" class="mobilelogin">Sign In</a></li>
-                        
+
                         {% endif %}
                       </ul>
                     </nav>
@@ -358,7 +358,7 @@
               <a href="{% url 'signin' %}">Sign In</a>
             </li>
           </li>
-          
+
             {% endif %}
 
 
@@ -375,15 +375,15 @@
               <li>
                 <a href="www.linkedin.com/in/trust-arthur-ltd-804959253"><i class="fab fa-linkedin-in"></i></a>
               </li>
-              <!-- <li>
-                <a href="#"><i class="fab fa-google-plus-g"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fas fa-rss"></i></a>
-              </li> -->
+              <!--<li>-->
+              <!--  <a href="#"><i class="fab fa-google-plus-g"></i></a>-->
+              <!--</li>-->
+              <!--<li>
+              <!--  <a href="#"><i class="fab fa-pinterest"></i></a>-->
+              <!--</li>-->
+              <!--<li>-->
+              <!--  <a href="#"><i class="fas fa-rss"></i></a>-->
+              <!--</li>-->
             </ul>
           </div>
         </div>
@@ -416,9 +416,9 @@
     <div class="modal fade" id="exampleModalCenter21" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter21Title" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title" id="exampleModalLongTitle">permission</h2>
-          </div>
+          <!--<div class="modal-header">-->
+          <!--  <h2 class="modal-title" id="exampleModalLongTitle">permission</h2>-->
+          <!--</div>-->
           <div class="modal-body">
               <P>Are you sure you want to
                 logout?</P>
@@ -430,7 +430,7 @@
         </div>
       </div>
     </div>
-    
+
     <!--  -->
 
 
@@ -464,9 +464,9 @@
     <!--Custom JS-->
     <script src="{% static 'accounts/js/main.js' %}"></script>
     <!--cus js-->>
-    
-    
-    
+
+
+
 </body>
 </html>
 

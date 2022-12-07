@@ -53,7 +53,7 @@ $(document).ready(function () {
     nextFunction();
   });
 
-  
+
 
   $(".btn-register").click(function () {
     var fullname = document.getElementById("usr_name").value;
@@ -70,9 +70,9 @@ $(document).ready(function () {
     } else if (re_pass == null || re_pass == "") {
       document.getElementById("msg").innerHTML = "Please enter valid password";
     } else if (pass != re_pass ) {
-      document.getElementById("msg").innerHTML = "Your passwords are not match";
+      document.getElementById("msg").innerHTML = "Passwords do not match";
     } else if (check == false) {
-      document.getElementById("msg").innerHTML = "Please Check Term and condition";
+      document.getElementById("msg").innerHTML = "Please agree to the Terms & Conditions";
     } else {
       formData.push({
         'Form':1,
@@ -131,7 +131,7 @@ $(document).ready(function () {
       formData2.append('city', city)
       formData2.append('state', state)
       formData2.append('country', country)
-      
+
       nextFunction();
     }
   });
@@ -161,7 +161,7 @@ $(document).ready(function () {
         'NIN':NIN,
         'BVN':BVN
       })
-      
+
       formData2.append('birthdate', birthdate)
       formData2.append('gender', gender)
       formData2.append('occupation', occupation)
@@ -179,7 +179,7 @@ $(document).ready(function () {
         'Form':4,
         'joint_account':joint_account
       })
-      
+
       formData2.append('joint_account', joint_account)
       nextFunction();
 
@@ -189,7 +189,7 @@ $(document).ready(function () {
         'Form':4,
         'joint_account':joint_account
       })
-      
+
       formData2.append('joint_account', joint_account)
       nextFunction();
     }else{
@@ -212,7 +212,7 @@ $(document).ready(function () {
     } else if (another_re_pass == null || another_re_pass == "") {
       document.getElementById("msg5").innerHTML = "Please enter valid password";
     } else if (another_pass != another_re_pass ) {
-      document.getElementById("msg5").innerHTML = "Your passwords are not match";
+      document.getElementById("msg5").innerHTML = "Passwords do not match ";
     } else if (check == false) {
       document.getElementById("msg5").innerHTML = "Please Check Term and condition";
     } else {
@@ -223,7 +223,7 @@ $(document).ready(function () {
         'another_pass':another_pass,
         'check':check
       })
-      
+
       formData2.append('another_name', another_name)
       formData2.append('another_email', another_email)
       formData2.append('another_pass', another_pass)
@@ -266,7 +266,7 @@ $(document).ready(function () {
         'another_state':another_state,
         'another_country':another_country,
       })
-    
+
       nextFunction();
 
       formData2.append('another_phone', another_phone)
@@ -296,7 +296,7 @@ $(document).ready(function () {
         'another_gender':another_gender,
         'another_occupation':another_occupation
       })
-      
+
       formData2.append('another_birthdate', another_birthdate)
       formData2.append('another_gender', another_gender)
       formData2.append('another_occupation', another_occupation)
@@ -349,7 +349,7 @@ $(document).ready(function () {
         'kin_name':kin_name,
         'kin_relationship':kin_relationship
       })
-      
+
       formData2.append('kin_name', kin_name)
       formData2.append('kin_relationship', kin_relationship)
 
@@ -428,7 +428,7 @@ $(document).ready(function () {
         'check2':check2,
         'check3':check3
       })
-      
+
       formData2.append('individual_signature', individual_signature)
       formData2.append('individual_photo',  individual_photo)
       formData2.append('csrfmiddlewaretoken', $("input[name=csrfmiddlewaretoken]").val())
@@ -451,7 +451,7 @@ $(document).ready(function () {
             console.log(response)
         })
     }
-    
+
   });
 
 
@@ -509,7 +509,7 @@ $(document).ready(function () {
     } else if (re_pass == null || re_pass == "") {
       document.getElementById("msg13").innerHTML = "Please enter valid password";
     } else if (pass != re_pass ) {
-      document.getElementById("msg13").innerHTML = "Your passwords are not match";
+      document.getElementById("msg13").innerHTML = "Passwords do not match";
     // } else if (check == false) {
     //   alert("please Check Term and condition");
     } else {
@@ -631,12 +631,12 @@ $(document).ready(function () {
         'check2':check2,
         'check3':check3
       })
-      
-      
+
+
       formData2.append('signature',  signature)
       formData2.append('photo',  photo)
       formData2.append('csrfmiddlewaretoken', $("input[name=csrfmiddlewaretoken]").val())
-      
+
       formData.push({'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()})
 
     $.ajax({
@@ -656,7 +656,7 @@ $(document).ready(function () {
             console.log(response)
         })
     }
-    
+
   });
 
   const validateEmail = (email) => {
@@ -691,7 +691,7 @@ $(document).ready(function () {
     if (child > 1) {
       child--;
     }
-    
+
     // let xhr = new XMLHttpRequest();
     // let url = "/signup";
     // xhr.open("POST", url, true);
@@ -699,11 +699,11 @@ $(document).ready(function () {
     // xhr.send(formData);
     // $.ajax({
     //   url:"./signup2",
-    //   type:"POST", 
+    //   type:"POST",
     //   contentType:"application/json",
     //   data: JSON.stringify(formData)
     // });
-    
+
     var currentSection = $("section .register-usr:nth-of-type(" + child + ")");
     currentSection.fadeIn();
     currentSection.css("transform", "translateX(0)");
@@ -712,5 +712,5 @@ $(document).ready(function () {
       .css("transform", "translateX(100px)");
     $("section .register-usr").not(currentSection).hide();
   });
-  
+
 });

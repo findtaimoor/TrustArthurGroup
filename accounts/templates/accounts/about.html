@@ -93,7 +93,7 @@
         </div>
         <div class="row">
           {% for i in ccv %}
-            
+
           <div class="col-lg-6">
             <div class="company-value-box">
               <div class="media">
@@ -114,7 +114,7 @@
           </div>
 
           {% endfor %}
-          
+
         </div>
       </div>
     </section>
@@ -131,22 +131,18 @@
       <div class="container">
         <div class="section-heading">
           {% comment %} <p class="item-subtitle">Our Team Members</p> {% endcomment %}
-          <h2 class="heading-title">Our Team Members</h2>
+          <h2 class="heading-title">Executive Team Members</h2>
           <p>
-            TrustBanc Group is
-            governed by a set of skillful and
-            innovative professionals, who are
-            zealous in elevating the firm. They are
-            led by principles of professionalism,
-            reliability, and transparency with a
-            vision of growing a stable and
-            profitable business.
+            We are governed by a set of skillful and innovative professionals,
+            who are zealous in elevating the firm. They are led by principles of
+            professionalism, reliability, and transparency with a vision
+            of growing a stable and profitable business.
           </p>
           <!-- <div class="row"> -->
 
             <div class="teamdiv">
             {% for i in members %}
-              
+
               <div class="team-box1 trigger_popup_fricc">
                 <div class="item-shape"></div>
                 <div class="item-img">
@@ -161,13 +157,13 @@
               {% endfor %}
             </div>
 
-              
+
           <!-- </div> -->
         </div>
       </div>
 
-      
-      
+
+
     </section>
   <!--=====================================-->
   <!--=            board Start             =-->
@@ -181,25 +177,20 @@
     </div>
     <div class="container">
       <div class="section-heading">
-        <h2 class="heading-title">Our Board Members</h2>
+        <h2 class="heading-title">Executive Board Members</h2>
         <p>
-          TrustBanc Group is
-          governed by a set of skillful and
-          innovative professionals, who are
-          zealous in elevating the firm. They are
-          led by principles of professionalism,
-          reliability, and transparency with a
-          vision of growing a stable and
-          profitable business.
+          Our board comprises of seasoned professionals in the
+          industry who have over time earned their place in the industry.
+          They help oversee our growth and development as an organisation.
         </p>
         <!-- <div class="row"> -->
 
           <div class="teamdiv">
-            
 
-            
+
+
             {% for i in b_members %}
-          
+
             <div class="team-box1 trigger_popup_fricc">
               <div class="item-shape"></div>
               <div class="item-img">
@@ -212,17 +203,70 @@
               </div>
             </div>
             {% endfor %}
-            
+
           </div>
 
-            
+
         <!-- </div> -->
       </div>
     </div>
 
-    
-    
+
+
   </section>
+     <!--=====================================-->
+    <!--=            ACE Start        =-->
+    <!--=====================================-->
+
+    <section class="team-wrap-layout1">
+      <div class="background-image2">
+        <img src="../static/todo/img/figure/figure14.png" alt="figure" width="490" height="945" />
+      </div>
+      <div class="background-image3">
+        <img src="../static/todo/img/figure/figure15.png" alt="figure" width="501" height="" />
+      </div>
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="heading-title">Our ACE Members</h2>
+          <p>
+            The Advisory committee of experts are a committee that provide
+            guidance and direction for the Trust Arthur Group engagements and activities.
+            It is made up of knowledgeable individuals who are seasoned in their various areas.
+          </p>
+          <!-- <div class="row"> -->
+
+            <div class="teamdiv">
+
+
+
+              {% for i in a_members %}
+
+              <div class="team-box1 trigger_popup_fricc">
+                <div class="item-shape"></div>
+                <div class="item-img">
+                  <a href="#"><img src="{{i.member_image.url}}" alt="team" width="510" height="500" /></a>
+                </div>
+                <div class="item-content">
+                  <h3 class="item-title"><a href="#">{{i.name}}</a></h3>
+                  <h4 class="item-subtitle">{{i.profession}}</h4>
+                  <h6 class="item-subtitle blog-card-description text-justify">{{i.description}}</h6>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+
+
+          <!-- </div> -->
+        </div>
+      </div>
+
+
+
+    </section>
+
+
+
 
     <!--=====================================-->
     <!--=            Call-back Start        =-->
@@ -276,7 +320,7 @@
         <div class="testimonial-box3">
           <div class="slick-carousel slick-slider"
             data-slick='{"arrows": true, "slidesToShow": 1, "autoplay": false, "autoplaySpeed": 2000}'>
-            
+
             {% for i in testi %}
 
             <div class="slick-slide">
@@ -291,10 +335,10 @@
                 <h3 class="heading-subtitle">{{i.profession}}</h3>
               </div>
             </div>
-              
+
             {% endfor %}
 
-            
+
           </div>
         </div>
       </div>

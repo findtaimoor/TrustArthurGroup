@@ -9,14 +9,14 @@
         <h2 class="m-4"> Edit Board Member </h2>
 
 
-        
+
         <form method ="post" enctype="multipart/form-data">
             {% csrf_token %}
 
     <table>
-        
+
         <tr>
-            <td><label>Name:{{b_member.name}}</label></td>
+            <td><label>Name:</label></td>
             <td><input class="form-control" type="text" name="name" placeholder="Enter title" value="{{b_member.name}}" required></td>
         </tr>
 

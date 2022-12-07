@@ -38,7 +38,7 @@ urlpatterns = [
     path('changepassword/<int:id>', views.changepassword, name='changepassword'),
     path('Forgotpassword/<int:id>',views.change_password,name='Forgotpassword'),
     path('changepass', views.change_p,name='changepass'),
-    
+
     path('devadmin/forgotpassword/',views.Notification, name='Notification'),
 
     path('devadmin/chageFpassword/<int:id>',views.Adminchange_p, name='Adminchange_p'),
@@ -48,10 +48,10 @@ urlpatterns = [
     path('devadmin/', views.dev, name='dev'),
     path('devadmin/addadmin/', views.addadmin, name='addadmin'),
     path('devadmin/adminlist/', views.adminlist, name='adminlist'),
-    path('devadmin/admindelete/<int:id>', views.admindelete, name='admindelete'),  
-    path('devadmin/adminchangepass/<int:id>', views.adminchangepass, name='adminchangepass'),      
-    path('devadmin/admindedit/<int:id>', views.adminedit, name='adminedit'), 
-    path('changepass', views.change_p,name='changepass'),     
+    path('devadmin/admindelete/<int:id>', views.admindelete, name='admindelete'),
+    path('devadmin/adminchangepass/<int:id>', views.adminchangepass, name='adminchangepass'),
+    path('devadmin/admindedit/<int:id>', views.adminedit, name='adminedit'),
+    path('changepass', views.change_p,name='changepass'),
     path('devadmin/logout/', views.adminlogout, name='adminlogout'),
 
     path('devadmin/dashboard/', views.dashboard, name='dashboard'),
@@ -68,16 +68,16 @@ urlpatterns = [
     path('devadmin/subproductlist/', views.adminsubproductlist, name='adminsubproductlist'),
     path('devadmin/Assign_product_to_user/<int:id>', views.Assign_product_to_user, name='Assign_product_to_user'),
 
-    path('devadmin/admineditproduct/<int:id>', views.admineditproduct, name='admineditproduct'),    
-    path('devadmin/admindeleteproduct/<int:id>', views.admindeleteproduct, name='admindeleteproduct'),    
+    path('devadmin/admineditproduct/<int:id>', views.admineditproduct, name='admineditproduct'),
+    path('devadmin/admindeleteproduct/<int:id>', views.admindeleteproduct, name='admindeleteproduct'),
 
-    path('devadmin/admineditsubproduct/<int:id>', views.admineditsubproduct, name='admineditsubproduct'),    
-    path('devadmin/admindeletesubproduct/<int:id>', views.admindeletesubproduct, name='admindeletesubproduct'),      
-    
+    path('devadmin/admineditsubproduct/<int:id>', views.admineditsubproduct, name='admineditsubproduct'),
+    path('devadmin/admindeletesubproduct/<int:id>', views.admindeletesubproduct, name='admindeletesubproduct'),
+
     path('devadmin/news/', views.adminaddnews, name='adminaddnews'),
     path('devadmin/newslist/', views.adminnewslist, name='adminnewslist'),
-    path('devadmin/admineditnews/<int:id>', views.admineditnews, name='admineditnews'),    
-    path('devadmin/admindeletenews/<int:id>', views.admindeletenews, name='admindeletenews'), 
+    path('devadmin/admineditnews/<int:id>', views.admineditnews, name='admineditnews'),
+    path('devadmin/admindeletenews/<int:id>', views.admindeletenews, name='admindeletenews'),
 
 
     path('devadmin/buserlist/', views.adminabusinessusers, name='adminabusinessusers'),
@@ -139,6 +139,12 @@ urlpatterns = [
     path('devadmin/editaboutboardmember/<int:id>', views.editaboutboardmember, name='editaboutboardmember'),
     path('devadmin/deleteaboutboardmember/<int:id>', views.deleteaboutboardmember, name='deleteaboutboardmember'),
 
+    path('devadmin/aboutacemember/', views.aboutacemembers, name='aboutacemembers'),
+    path('devadmin/addaboutacedmember/', views.addaboutacemember, name='addaboutacemember'),
+    path('devadmin/editaboutacemember/<int:id>', views.editaboutacemember, name='editaboutacemember'),
+    path('devadmin/deleteaboutacemember/<int:id>', views.deleteaboutacemember, name='deleteaboutacemember'),
+
+
     re_path(r'^validate_username/$', views.validate_username, name='validate_username'),
-    
+
 ]+ static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
